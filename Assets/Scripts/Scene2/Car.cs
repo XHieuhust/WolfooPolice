@@ -25,18 +25,14 @@ public class Car : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && rigidCar.velocity.x != 0)
-        {
-            StopCoroutine(nameof(Boost));
-            StartCoroutine(nameof(Boost));
-        }
+        CheckBoost();
         Move();
         CheckEndMinigame1();
     }
 
     private void CheckEndMinigame1()
     {
-        if(transform.position.x >= endPosition.position.x + 6f)
+        if(transform.position.x >= Camera.main.transform.position.x + 6f)
         {
             speedCar = 0;
         }
@@ -48,6 +44,15 @@ public class Car : MonoBehaviour
         
     }
  
+    void CheckBoost()
+    {
+        if (Input.GetMouseButtonDown(0) && rigidCar.velocity.x != 0)
+        {
+            StopCoroutine(nameof(Boost));
+            StartCoroutine(nameof(Boost));
+        }
+    }
+
     private IEnumerator Boost()
     {
         elapsed = 0;
