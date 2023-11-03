@@ -46,6 +46,12 @@ public class Toys : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            RoundManager.ins.VpAnDuoc++;
+            if(RoundManager.ins.VpAnDuoc == 10)
+            {
+                GameManager.ins.CompleteMap();
+                ScenesManager.ins.LoadScene("SceneMenu");
+            }
             Destroy(gameObject);
         }
 

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 608614725932042672}
   - component: {fileID: 2935405116162323907}
+  - component: {fileID: -9207103759152731513}
   m_Layer: 0
   m_Name: TrueTick
   m_TagString: Untagged
@@ -84,3 +85,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-9207103759152731513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7819539815107450637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e369b3f31edc7247a9f5d52ce8ca930, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

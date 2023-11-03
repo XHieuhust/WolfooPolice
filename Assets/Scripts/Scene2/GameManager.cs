@@ -4,16 +4,24 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] GameObject Map1;
-    [SerializeField] GameObject Map2;
-    [SerializeField] GameObject Map3;
-
+    
     public static GameManager ins;
-    void Start()
+    void Awake()
     {
         ins = this;
     }
 
+    public void CompleteMap()
+    {
+        int nextMap = PlayerPrefs.GetInt("currentMap");
+        PlayerPrefs.SetInt("currentMap", nextMap + 1);
+    }
 
+    public int GetCurrentMap()
+    {
+        int curMap = PlayerPrefs.GetInt("currentMap", 0);
+       
+        return curMap;
+    }
 
 }

@@ -38,6 +38,12 @@ public class DragSprite : MonoBehaviour
             (transform.position.y - TruePosition.position.y) * (transform.position.x - TruePosition.position.x)) < minDist)
         {
             transform.position = TruePosition.position;
+            RoundManager.ins.completedDrag++;
+            // Load NextScene
+            if(RoundManager.ins.completedDrag == 3)
+            {
+                StartCoroutine(StartToLoadNextScene());
+            }
         }
         else
         {
@@ -56,5 +62,11 @@ public class DragSprite : MonoBehaviour
             transform.position = newPosition;
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    IEnumerator StartToLoadNextScene()
+    {
+        yield return new WaitForSeconds(1);
+        ScenesManager.ins.LoadScene("Scene5");
     }
 }

@@ -10,7 +10,7 @@ public class IntroPanel : MonoBehaviour
     {
         btnBoDam.GetComponent<Button>().onClick.AddListener(delegate
         {
-            ScenesManager.ins.LoadScene2();
+            ScenesManager.ins.LoadScene("Scene2");
         });
     }
 }

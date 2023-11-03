@@ -59,7 +59,7 @@ public class SpawnThings : MonoBehaviour
     int cntToys;
     void FallToys()
     {
-        Vector3 fallPosition = new Vector3(thief.transform.position.x - 1.5f, thief.transform.position.y + 2f, thief.transform.position.z);
+        Vector3 fallPosition = new Vector3(thief.transform.position.x - 1f, thief.transform.position.y + 2f, thief.transform.position.z);
         Instantiate(ListDoChoi[(cntToys++) % 6], fallPosition, Quaternion.identity);
     }
 

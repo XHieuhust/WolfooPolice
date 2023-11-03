@@ -32,7 +32,7 @@ public class Car : MonoBehaviour
 
     private void CheckEndMinigame1()
     {
-        if(transform.position.x >= Camera.main.transform.position.x + 6f)
+        if(transform.position.x >= Camera.main.transform.position.x + 5f)
         {
             speedCar = 0;
         }

@@ -11,8 +11,10 @@ public class ScenesManager : MonoBehaviour
         ins = this;
     }
 
-    public void LoadScene2()
+    public void LoadScene(string sceneName)
     {
-        SceneManager.LoadScene("Scene2");
+        SceneManager.LoadScene(sceneName);
     }
+
+ 
 }
