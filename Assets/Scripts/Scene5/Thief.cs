@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Thief : MonoBehaviour
 {
+    [SerializeField] Vector3 positionStartToRun;
+    [SerializeField] float speedAnim;
+    [SerializeField] float speedMoveWhenPlayerRun;
     private int cntDirectionMove;
     bool isMoving;
     [SerializeField] float distMove;
@@ -15,12 +18,36 @@ public class Thief : MonoBehaviour
     float directY;
     private void Awake()
     {
-        newPosition = new Vector3(transform.position.x, transform.position.y, 0);
+        StartCoroutine(MoveToPositionStartToRun());
+    }
+
+    IEnumerator MoveToPositionStartToRun()
+    {
+        Vector2 tmpPosition;
+        while (transform.position != positionStartToRun)
+        {
+            tmpPosition = transform.position;
+            transform.position = Vector3.MoveTowards(tmpPosition, positionStartToRun, speedAnim * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+        }
+        SpawnThings.ins.StartToSpawn();
+        StartCoroutine(MoveWhenPlayerRun());
+    }
+
+    IEnumerator MoveWhenPlayerRun()
+    {
+        while (!GameScene5Manager.ins.isPlayerStartToRun)
+        {
+            transform.position = new Vector2(transform.position.x + speedMoveWhenPlayerRun * Time.deltaTime, transform.position.y);
+            yield return new WaitForEndOfFrame();
+        }
         StartCoroutine(RandomMove());
     }
 
     IEnumerator RandomMove()
     {
+        GameScene5Manager.ins.isThiefStartToRun = true;
+        newPosition = new Vector3(transform.position.x, transform.position.y, 0);
         while (true)
         {
             yield return new WaitForSeconds(timeRandomMove);

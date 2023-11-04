@@ -15,14 +15,14 @@ public class SpawnThings : MonoBehaviour
     void Start()
     {
         ins = this;
-        StartToSpawn();
     }
+
     public IEnumerator RandomSpawnToys()
     {
         while (true)
         {
-            yield return new WaitForSeconds(TimeSpawnToy);
             FallToys();
+            yield return new WaitForSeconds(TimeSpawnToy);
         }
     }
 

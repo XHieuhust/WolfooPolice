@@ -5,7 +5,7 @@ using UnityEngine;
 public class DragSprite : MonoBehaviour
 {
     Vector3 scaleNormal;
-    [SerializeField] Transform TruePosition;
+    [SerializeField] GameObject trueObject;
     private Vector3 startPos;
     bool isbeingHeld = false;
     private Vector3 offset;
@@ -18,7 +18,7 @@ public class DragSprite : MonoBehaviour
 
     private void Update()
     {
-        if (isbeingHeld && transform.position != TruePosition.position)
+        if (isbeingHeld && transform.position != trueObject.transform.position)
         {
             transform.localPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
         }
@@ -28,33 +28,29 @@ public class DragSprite : MonoBehaviour
     {   
         isbeingHeld = true;
         offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        transform.localScale = new Vector3(scaleNormal.x * 1.2f, scaleNormal.y * 1.2f, scaleNormal.z * 1.2f);
+        transform.localScale = trueObject.transform.localScale;
     }
 
     private void OnMouseUp()
     {
         isbeingHeld = false;
-        if(Mathf.Sqrt((transform.position.x - TruePosition.position.x) * (transform.position.x - TruePosition.position.x) + 
-            (transform.position.y - TruePosition.position.y) * (transform.position.x - TruePosition.position.x)) < minDist)
+        if(Mathf.Sqrt((transform.position.x - trueObject.transform.position.x) * (transform.position.x - trueObject.transform.position.x) + 
+            (transform.position.y - trueObject.transform.position.y) * (transform.position.x - trueObject.transform.position.x)) < minDist)
         {
-            transform.position = TruePosition.position;
-            RoundManager.ins.completedDrag++;
-            // Load NextScene
-            if(RoundManager.ins.completedDrag == 3)
-            {
-                StartCoroutine(StartToLoadNextScene());
-            }
-        }
-        else
-        {
+            transform.position = trueObject.transform.position;
+            QuanLyCacBoPhan.ins.UpdateCntTrueBoPhan();
+            Destroy(trueObject);
+        }else
+        {   
             StartCoroutine(StartToMoveBack());
         }
-        transform.localScale = scaleNormal;
+        
     }
 
     IEnumerator StartToMoveBack()
     {
-        float speedMoveBack = 10f;
+        transform.localScale = scaleNormal;
+        float speedMoveBack = 50f;
         Vector2 newPosition;
         while (transform.position != startPos)
         {
@@ -64,9 +60,4 @@ public class DragSprite : MonoBehaviour
         }
     }
 
-    IEnumerator StartToLoadNextScene()
-    {
-        yield return new WaitForSeconds(1);
-        ScenesManager.ins.LoadScene("Scene5");
-    }
 }

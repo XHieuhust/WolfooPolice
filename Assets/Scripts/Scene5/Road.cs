@@ -13,7 +13,7 @@ public class Road : MonoBehaviour
     }
     private void Update()
     {
-        if (!RoundManager.ins.isPlayerbeHitted) {
+        if (!GameScene5Manager.ins.isPlayerbeHitted && GameScene5Manager.ins.isPlayerStartToRun) {
             rigidBg.velocity = new Vector2(-speedMove, 0);
         }
         else

@@ -27,7 +27,7 @@ public class Toys : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(transform.position, fallPositison, speedFall);
             transform.localScale = new Vector2(transform.localScale.x + Time.deltaTime, transform.localScale.y + Time.deltaTime);
-        }else if(!RoundManager.ins.isPlayerbeHitted)
+        }else if(!GameScene5Manager.ins.isPlayerbeHitted)
         {   
             rigidToy.velocity = new Vector2(-speedMove, 0);
         }
@@ -46,14 +46,31 @@ public class Toys : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            RoundManager.ins.VpAnDuoc++;
-            if(RoundManager.ins.VpAnDuoc == 10)
-            {
-                GameManager.ins.CompleteMap();
-                ScenesManager.ins.LoadScene("SceneMenu");
-            }
-            Destroy(gameObject);
+            GameScene5Manager.ins.UpdateVpAnDuoc();
+            StartCoroutine(MoveToTuiSao());
         }
 
+        if (collision.gameObject.CompareTag("TuiSao"))
+        {
+            GameScene5Manager.ins.tuiSao.GetComponent<TuiSao>().UpdatePositionTuiSao();
+            GameScene5Manager.ins.bar.GetComponent<BarProgress>().UpdateBar();
+
+            Destroy(gameObject);
+        }
+    }
+
+    IEnumerator MoveToTuiSao()
+    {
+        float speedFly = 50;
+        while (gameObject)
+        {
+            Vector2 tmpPosition;
+            while (transform.position != GameScene5Manager.ins.tuiSao.transform.position)
+            {
+                tmpPosition = transform.position;
+                transform.position = Vector3.MoveTowards(tmpPosition, GameScene5Manager.ins.tuiSao.transform.position, speedFly * Time.deltaTime);
+                yield return new WaitForEndOfFrame();
+            }
+        }
     }
 }

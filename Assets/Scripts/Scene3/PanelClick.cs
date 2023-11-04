@@ -29,7 +29,11 @@ public class PanelClick : MonoBehaviour
 
     IEnumerator StartToNextTurn()
     {
+        // Cho mot chut roi tat turn hien tai -> turn tiep
         yield return new WaitForSeconds(0.4f);
         gameObject.SetActive(false);
+        // Update so turn da qua
+        GameScene3Manager.ins.UpdateCntCompleteTurn();
     }
+
 }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class IntroPanel : MonoBehaviour
 {
-    [SerializeField] public ButtonBoDam btnBoDam;
+    [SerializeField] public Button btnBoDam;
     void Start()
     {
         btnBoDam.GetComponent<Button>().onClick.AddListener(delegate

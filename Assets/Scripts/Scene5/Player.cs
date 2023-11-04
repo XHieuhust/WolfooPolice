@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] Vector3 positionStartToRun;
+    [SerializeField] float speedAnim;
     private int cntDirectionMove;
     [SerializeField] float distMove;
     bool isMoving;
@@ -12,15 +14,28 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        StartCoroutine(MoveToPositionStartToRun());
         newPosition = new Vector3(transform.position.x, transform.position.y, 0);
     }
     // Update is called once per frame
     void Update()
     {
         CheckIsMoving();
-        Move();
+        if(GameScene5Manager.ins.isPlayerStartToRun) Move();
     }
 
+    IEnumerator MoveToPositionStartToRun()
+    {
+        Vector2 tmpPosition;
+        while (transform.position != positionStartToRun)
+        {
+            tmpPosition = transform.position;
+            transform.position = Vector3.MoveTowards(tmpPosition, positionStartToRun, speedAnim * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+        }
+        GameScene5Manager.ins.isPlayerStartToRun = true;
+        newPosition = new Vector3(transform.position.x, transform.position.y, 0);
+    }
 
     float startMouse;
     float endMouse;
@@ -28,7 +43,7 @@ public class Player : MonoBehaviour
     void Move()
     {
         timeDelay += Time.deltaTime;
-        if (Input.GetMouseButton(0) && timeDelay > 0.5f && !RoundManager.ins.isPlayerbeHitted)
+        if (Input.GetMouseButton(0) && timeDelay > 0.5f && !GameScene5Manager.ins.isPlayerbeHitted)
         {
             endMouse = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
             float directY = (startMouse != 0 ? endMouse - startMouse : 0);

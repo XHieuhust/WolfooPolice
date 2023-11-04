@@ -12,7 +12,7 @@ public class Car : MonoBehaviour
     Rigidbody2D rigidCar;
     private float timeBoost = 1f;
     private float elapsed = 0f;
-    bool isOnObsacle;
+    int isOnObsacle;
 
     [SerializeField] Transform endPosition;
 
@@ -40,7 +40,7 @@ public class Car : MonoBehaviour
 
     private void Move()
     {   
-        rigidCar.velocity = new Vector2(1, 0) * speedCar;
+        rigidCar.velocity = new Vector2(speedCar, rigidCar.velocity.y) ;
         
     }
  
@@ -60,7 +60,7 @@ public class Car : MonoBehaviour
         while (elapsed <= timeBoost)
         {
             speedCar = speedNormal + speedBoost;
-            if(isOnObsacle && speedCar > speedNormal + speedBoost - speedReduce)
+            if(isOnObsacle == 1 && speedCar > speedNormal + speedBoost - speedReduce)
             {
                 speedCar = speedNormal + speedBoost - speedReduce;
             }
@@ -72,9 +72,9 @@ public class Car : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Obsacle"))
+        if (collision.gameObject.CompareTag("Obsacle") && isOnObsacle < 1)
         {
-            isOnObsacle = true;
+            isOnObsacle++;
             speedCar -= speedReduce;
         }
     }
@@ -83,7 +83,7 @@ public class Car : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Obsacle"))
         {
-            isOnObsacle = false;
+            isOnObsacle = 0;
             speedCar += speedReduce;     
         }
     }

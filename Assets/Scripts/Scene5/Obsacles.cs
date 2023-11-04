@@ -14,7 +14,7 @@ public class Obsacles : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!RoundManager.ins.isPlayerbeHitted)
+        if (!GameScene5Manager.ins.isPlayerbeHitted)
         {
          rigidObsacle.velocity = new Vector2(-speedMove, 0);
         }
@@ -32,7 +32,7 @@ public class Obsacles : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            RoundManager.ins.isPlayerbeHitted = true;
+            GameScene5Manager.ins.isPlayerbeHitted = true;
             StartCoroutine(DoAnimationHitted());
         }
 
@@ -42,7 +42,7 @@ public class Obsacles : MonoBehaviour
     {
         SpawnThings.ins.StopToSpawn();
         yield return new WaitForSeconds(1);
-        RoundManager.ins.isPlayerbeHitted = false;
+        GameScene5Manager.ins.isPlayerbeHitted = false;
         SpawnThings.ins.StartToSpawn();
         Destroy(gameObject);
     }
