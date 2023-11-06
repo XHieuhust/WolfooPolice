@@ -1,15 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DragSprite : MonoBehaviour
+public abstract class DragSprite : MonoBehaviour
 {
-    Vector3 scaleNormal;
-    [SerializeField] GameObject trueObject;
-    private Vector3 startPos;
+    bool isCorrectDrag;
+    protected Vector3 scaleNormal;
+    [SerializeField] protected List<GameObject>ListTrueObjects;
+    protected GameObject firstTrueObject;
+    public Vector3 startPos;
     bool isbeingHeld = false;
     private Vector3 offset;
     [SerializeField] float minDist;
+
     private void Start()
     {
         startPos = transform.position;
@@ -18,33 +22,66 @@ public class DragSprite : MonoBehaviour
 
     private void Update()
     {
-        if (isbeingHeld && transform.position != trueObject.transform.position)
+        if (isbeingHeld && !isCorrectDrag)
         {
             transform.localPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
+            ChangeScale();
         }
     }
+
+    public virtual void ChangeScale() { }
 
     private void OnMouseDown()
-    {   
-        isbeingHeld = true;
-        offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        transform.localScale = trueObject.transform.localScale;
+    {
+        if (!isCorrectDrag)
+        {
+            isbeingHeld = true;
+            offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            transform.localScale = ListTrueObjects[0].transform.localScale;
+            if (transform.parent)
+            {
+                offset -= transform.parent.position;
+            }
+
+        }
     }
 
-    private void OnMouseUp()
+    public void OnMouseUp()
     {
         isbeingHeld = false;
-        if(Mathf.Sqrt((transform.position.x - trueObject.transform.position.x) * (transform.position.x - trueObject.transform.position.x) + 
-            (transform.position.y - trueObject.transform.position.y) * (transform.position.x - trueObject.transform.position.x)) < minDist)
+        if (!isCorrectDrag)
         {
-            transform.position = trueObject.transform.position;
-            QuanLyCacBoPhan.ins.UpdateCntTrueBoPhan();
-            Destroy(trueObject);
-        }else
-        {   
-            StartCoroutine(StartToMoveBack());
+            foreach(GameObject ob in ListTrueObjects)
+            {
+                if(ThoaManDistance(gameObject, ob) && CheckTrangPhucDaDuocMac(ob))
+                {
+                    firstTrueObject = ob;
+                    CorrectDrag();
+                    break;
+                }
+            }
+            if(!isCorrectDrag) StartCoroutine(StartToMoveBack());
+        }   
+    }
+
+    bool ThoaManDistance(GameObject ob1, GameObject ob2)
+    {
+        if (ob2 != null)
+        {
+            if (Mathf.Sqrt((ob1.transform.position.x - ob2.transform.position.x) * (ob1.transform.position.x - ob2.transform.position.x) +
+             (ob1.transform.position.y - ob2.transform.position.y) * (ob1.transform.position.y - ob2.transform.position.y)) < minDist)
+            {
+                return true;
+            }
         }
-        
+        return false;
+    }
+
+
+    public virtual void CorrectDrag()
+    {
+        isCorrectDrag = true;
+        transform.position = firstTrueObject.transform.position;
     }
 
     IEnumerator StartToMoveBack()
@@ -58,6 +95,13 @@ public class DragSprite : MonoBehaviour
             transform.position = newPosition;
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    bool CheckTrangPhucDaDuocMac(GameObject ob)
+    {
+        if (QuanLyPolice.ins)
+            return (!QuanLyPolice.ins.CheckPoliceDaMacDo(ob));
+        return true;
     }
 
 }

@@ -5,8 +5,10 @@ using UnityEngine;
 public class QuanLyCacBoPhan : MonoBehaviour
 {
     public static QuanLyCacBoPhan ins;
-    [SerializeField] int cntTrueBoPhan;
+    int cntTrueBoPhan;
     [SerializeField] GameObject than;
+    [SerializeField] GameObject dau;
+    [SerializeField] GameObject duoi;
     private void Start()
     {
         ins = this;

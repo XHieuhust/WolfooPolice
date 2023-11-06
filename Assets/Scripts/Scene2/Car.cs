@@ -27,12 +27,12 @@ public class Car : MonoBehaviour
     {
         CheckBoost();
         Move();
-        CheckEndMinigame1();
+        StopCar();
     }
 
-    private void CheckEndMinigame1()
+    private void StopCar()
     {
-        if(transform.position.x >= Camera.main.transform.position.x + 5f)
+        if(transform.position.x >= Camera.main.transform.position.x + Camera.main.orthographicSize/3)
         {
             speedCar = 0;
         }
