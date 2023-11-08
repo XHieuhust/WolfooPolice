@@ -5,9 +5,7 @@ using UnityEngine;
 public class QuanLyPolice : MonoBehaviour
 {
     public static QuanLyPolice ins;
-    public List<GameObject> ListPoliceDaMacDo = new List<GameObject>(2);
-    [SerializeField] QuanLyTrangPhuc day1;
-    [SerializeField] QuanLyTrangPhuc day2;
+    public List<GameObject> ListPoliceDaMacDo;
 
     private void Start()
     {
@@ -16,7 +14,7 @@ public class QuanLyPolice : MonoBehaviour
 
     public bool CheckPoliceDaMacDo(GameObject ob)
     {
-       foreach (GameObject tmp in ListPoliceDaMacDo)
+        foreach (GameObject tmp in ListPoliceDaMacDo)
         {
             if (tmp == ob) return true;
         }
@@ -26,7 +24,7 @@ public class QuanLyPolice : MonoBehaviour
     public void AddPoliceDaMacDo(GameObject ob)
     {
         ListPoliceDaMacDo.Add(ob);
-        if(ListPoliceDaMacDo.Count == 2)
+        if (ListPoliceDaMacDo.Count == 2)
         {
             ListPoliceDaMacDo.Clear();
             GameScene22Manager.ins.UpdateTurn();

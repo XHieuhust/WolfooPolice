@@ -8,6 +8,8 @@ TagManager:
   - Car
   - WheelCar
   - TuiSao
+  - Bullet
+  - Cuop
   layers:
   - Default
   - TransparentFX

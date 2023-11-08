@@ -12,7 +12,7 @@ public class GameScene22Manager : MonoBehaviour
     private void Start()
     {
         ins = this;
-        StartTurn();
+        NextTurn();
     }
 
     public void UpdateTurn()
@@ -20,18 +20,25 @@ public class GameScene22Manager : MonoBehaviour
         cntTurn++;
         if (cntTurn == 4)
         {
-            Debug.Log("end");
+            EndScene();
         }
-        else 
-        { 
-            day2.InstantinateTrangPhuc(cntTurn);
-            day1.InstantinateTrangPhuc(cntTurn);
+        else
+        {
+            NextTurn();
         }
     }
 
-    void StartTurn()
+
+    void NextTurn()
     {
-        day2.InstantinateTrangPhuc(cntTurn);
-        day1.InstantinateTrangPhuc(cntTurn);
+        day1.isTrueTrangPhuc = false;
+        day2.isTrueTrangPhuc = false;
+        day2.InstantiateTrangPhuc(cntTurn);
+        day1.InstantiateTrangPhuc(cntTurn);
+    }
+
+    void EndScene()
+    {
+        ScenesManager.ins.LoadScene("Scene23");
     }
 }
