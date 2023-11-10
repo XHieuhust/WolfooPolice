@@ -1,0 +1,370 @@
+
+Janguar.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Criminal/Body
+  rotate: true
+  xy: 194, 119
+  size: 401, 396
+  orig: 401, 396
+  offset: 0, 0
+  index: -1
+Criminal/Eye_^/Eye___00001
+  rotate: false
+  xy: 497, 532
+  size: 185, 189
+  orig: 250, 250
+  offset: 37, 44
+  index: -1
+Criminal/Eye_^/Eye___00002
+  rotate: false
+  xy: 1009, 4
+  size: 185, 159
+  orig: 250, 250
+  offset: 37, 62
+  index: -1
+Criminal/Eye_^/Eye___00003
+  rotate: true
+  xy: 1180, 169
+  size: 185, 120
+  orig: 250, 250
+  offset: 37, 86
+  index: -1
+Criminal/Eye_^/Eye___00004
+  rotate: true
+  xy: 1279, 359
+  size: 185, 81
+  orig: 250, 250
+  offset: 37, 109
+  index: -1
+Criminal/Eye_^/Eye___00005
+  rotate: true
+  xy: 1284, 841
+  size: 183, 68
+  orig: 250, 250
+  offset: 39, 110
+  index: -1
+Criminal/Eye_^/Eye___00006
+  rotate: true
+  xy: 1204, 649
+  size: 185, 64
+  orig: 250, 250
+  offset: 37, 109
+  index: -1
+Criminal/Eye_v/Eye_v_00002
+  rotate: false
+  xy: 592, 121
+  size: 184, 145
+  orig: 250, 250
+  offset: 38, 49
+  index: -1
+Criminal/Eye_v/Eye_v_00003
+  rotate: true
+  xy: 1270, 651
+  size: 183, 109
+  orig: 250, 250
+  offset: 39, 61
+  index: -1
+Criminal/Eye_v/Eye_v_00004
+  rotate: true
+  xy: 1354, 842
+  size: 182, 96
+  orig: 250, 250
+  offset: 40, 72
+  index: -1
+Criminal/Eye_v/Eye_v_00005
+  rotate: false
+  xy: 1357, 561
+  size: 181, 88
+  orig: 250, 250
+  offset: 41, 81
+  index: -1
+Criminal/Eye_v/Eye_v_00006
+  rotate: true
+  xy: 1381, 659
+  size: 181, 86
+  orig: 250, 250
+  offset: 41, 85
+  index: -1
+Criminal/Head
+  rotate: true
+  xy: 0, 522
+  size: 502, 495
+  orig: 502, 495
+  offset: 0, 0
+  index: -1
+Criminal/Mieng_meu/MM_00002
+  rotate: true
+  xy: 1154, 603
+  size: 207, 48
+  orig: 300, 300
+  offset: 48, 131
+  index: -1
+Criminal/Mieng_meu/MM_00003
+  rotate: true
+  xy: 1118, 812
+  size: 212, 50
+  orig: 300, 300
+  offset: 45, 121
+  index: -1
+Criminal/Mieng_meu/MM_00004
+  rotate: true
+  xy: 1034, 807
+  size: 217, 82
+  orig: 300, 300
+  offset: 43, 101
+  index: -1
+Criminal/Mieng_meu/MM_00005
+  rotate: true
+  xy: 901, 541
+  size: 223, 116
+  orig: 300, 300
+  offset: 40, 80
+  index: -1
+Criminal/Mieng_meu/MM_00006
+  rotate: true
+  xy: 769, 534
+  size: 226, 130
+  orig: 300, 300
+  offset: 38, 72
+  index: -1
+Criminal/Mom_cuoi/Mom_cuoi_00001
+  rotate: false
+  xy: 1154, 546
+  size: 201, 55
+  orig: 300, 300
+  offset: 51, 137
+  index: -1
+Criminal/Mom_cuoi/Mom_cuoi_00002
+  rotate: true
+  xy: 1095, 327
+  size: 215, 68
+  orig: 300, 300
+  offset: 44, 130
+  index: -1
+Criminal/mom_nherang/MomNherang_00002
+  rotate: true
+  xy: 1095, 327
+  size: 215, 68
+  orig: 300, 300
+  offset: 44, 130
+  index: -1
+Criminal/Mom_cuoi/Mom_cuoi_00003
+  rotate: true
+  xy: 1019, 544
+  size: 232, 84
+  orig: 300, 300
+  offset: 35, 120
+  index: -1
+Criminal/mom_nherang/MomNherang_00003
+  rotate: true
+  xy: 1019, 544
+  size: 232, 84
+  orig: 300, 300
+  offset: 35, 120
+  index: -1
+Criminal/Mom_cuoi/Mom_cuoi_00004
+  rotate: true
+  xy: 921, 778
+  size: 246, 111
+  orig: 300, 300
+  offset: 28, 98
+  index: -1
+Criminal/Mom_cuoi/Mom_cuoi_00005
+  rotate: true
+  xy: 739, 273
+  size: 258, 134
+  orig: 300, 300
+  offset: 22, 78
+  index: -1
+Criminal/Mom_cuoi/Mom_cuoi_00006
+  rotate: true
+  xy: 638, 762
+  size: 262, 145
+  orig: 300, 300
+  offset: 20, 69
+  index: -1
+Criminal/Mom_giandu/Mom_nghienrang_00002
+  rotate: true
+  xy: 1105, 592
+  size: 213, 47
+  orig: 300, 300
+  offset: 45, 132
+  index: -1
+Criminal/Mom_giandu/Mom_nghienrang_00003
+  rotate: true
+  xy: 722, 533
+  size: 227, 45
+  orig: 300, 300
+  offset: 38, 124
+  index: -1
+Criminal/Mom_giandu/Mom_nghienrang_00004
+  rotate: false
+  xy: 94, 3
+  size: 241, 73
+  orig: 300, 300
+  offset: 31, 105
+  index: -1
+Criminal/Mom_giandu/Mom_nghienrang_00005
+  rotate: true
+  xy: 875, 280
+  size: 252, 105
+  orig: 300, 300
+  offset: 25, 84
+  index: -1
+Criminal/Mom_giandu/Mom_nghienrang_00006
+  rotate: false
+  xy: 337, 0
+  size: 258, 117
+  orig: 300, 300
+  offset: 22, 76
+  index: -1
+Criminal/banchan_phai
+  rotate: true
+  xy: 1196, 58
+  size: 109, 65
+  orig: 111, 67
+  offset: 1, 1
+  index: -1
+Criminal/banchan_trai
+  rotate: true
+  xy: 1263, 58
+  size: 109, 65
+  orig: 111, 67
+  offset: 1, 1
+  index: -1
+Criminal/bong
+  rotate: true
+  xy: 134, 107
+  size: 413, 58
+  orig: 415, 60
+  offset: 1, 1
+  index: -1
+Criminal/chan_phai
+  rotate: false
+  xy: 1107, 202
+  size: 71, 123
+  orig: 71, 123
+  offset: 0, 0
+  index: -1
+Criminal/chan_trai
+  rotate: false
+  xy: 935, 9
+  size: 72, 128
+  orig: 72, 128
+  offset: 0, 0
+  index: -1
+Criminal/duoi
+  rotate: false
+  xy: 778, 139
+  size: 205, 132
+  orig: 205, 132
+  offset: 0, 0
+  index: -1
+Criminal/hoatai
+  rotate: true
+  xy: 1452, 961
+  size: 63, 59
+  orig: 65, 61
+  offset: 1, 1
+  index: -1
+Criminal/kính râm
+  rotate: true
+  xy: 0, 78
+  size: 442, 132
+  orig: 442, 132
+  offset: 0, 0
+  index: -1
+Criminal/mep
+  rotate: true
+  xy: 497, 723
+  size: 301, 139
+  orig: 303, 141
+  offset: 1, 1
+  index: -1
+Criminal/mom_nherang/MomNherang_00004
+  rotate: true
+  xy: 982, 293
+  size: 246, 111
+  orig: 300, 300
+  offset: 28, 98
+  index: -1
+Criminal/mom_nherang/MomNherang_00005
+  rotate: true
+  xy: 785, 766
+  size: 258, 134
+  orig: 300, 300
+  offset: 22, 78
+  index: -1
+Criminal/mom_nherang/MomNherang_00006
+  rotate: true
+  xy: 592, 268
+  size: 262, 145
+  orig: 300, 300
+  offset: 20, 69
+  index: -1
+Criminal/mui
+  rotate: false
+  xy: 0, 2
+  size: 92, 74
+  orig: 94, 76
+  offset: 1, 1
+  index: -1
+Criminal/rai2
+  rotate: false
+  xy: 194, 86
+  size: 83, 31
+  orig: 83, 31
+  offset: 0, 0
+  index: -1
+Criminal/ria1
+  rotate: false
+  xy: 638, 729
+  size: 82, 31
+  orig: 82, 31
+  offset: 0, 0
+  index: -1
+Criminal/taisau_phai
+  rotate: true
+  xy: 597, 0
+  size: 119, 109
+  orig: 119, 109
+  offset: 0, 0
+  index: -1
+Criminal/taisau_trai
+  rotate: true
+  xy: 813, 7
+  size: 130, 120
+  orig: 130, 120
+  offset: 0, 0
+  index: -1
+Criminal/taitruoc_phai
+  rotate: true
+  xy: 708, 2
+  size: 117, 103
+  orig: 117, 103
+  offset: 0, 0
+  index: -1
+Criminal/taitruowc_trai
+  rotate: true
+  xy: 985, 165
+  size: 126, 120
+  orig: 128, 120
+  offset: 2, 0
+  index: -1
+Criminal/tay
+  rotate: true
+  xy: 1170, 836
+  size: 188, 112
+  orig: 188, 112
+  offset: 0, 0
+  index: -1
+Criminal/tay 2
+  rotate: true
+  xy: 1165, 356
+  size: 188, 112
+  orig: 188, 112
+  offset: 0, 0
+  index: -1
