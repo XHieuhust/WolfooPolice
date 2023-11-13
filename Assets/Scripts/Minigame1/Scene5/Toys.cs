@@ -79,16 +79,20 @@ public class Toys : MonoBehaviour
         float maxDist = Vector2.Distance(transform.position, tuiSao);
         float curDist;
         float newScale;
-        while (gameObject)
+        while (transform.position != tuiSao)
         {
-            while (transform.position != tuiSao)
+            transform.position = Vector3.MoveTowards(transform.position, tuiSao, speedFly * Time.deltaTime);
+            curDist = Vector2.Distance(transform.position, tuiSao);
+            if(maxDist != 0)
             {
-                transform.position = Vector3.MoveTowards(transform.position, tuiSao, speedFly * Time.deltaTime);
-                curDist = Vector2.Distance(transform.position, tuiSao);
                 newScale = curDist / maxDist * maxScale;
-                transform.localScale = new Vector2(newScale, newScale);
-                yield return new WaitForEndOfFrame();
             }
+            else
+            {
+                newScale = maxScale;
+            }
+            transform.localScale = new Vector2(newScale, newScale);
+            yield return new WaitForEndOfFrame();
         }
     }
 
