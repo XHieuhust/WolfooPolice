@@ -17,11 +17,13 @@ public class MayBanTocDo : MonoBehaviour
 
     public void UpdateEndLine(Transform enemyCar)
     {
-        StartCoroutine(StartToFollowEnemyCar(enemyCar));
+        StopFollowEnemyCar();
+        StartCoroutine(nameof(StartToFollowEnemyCar), enemyCar);
     }
 
     IEnumerator StartToFollowEnemyCar(Transform enemyCar)
     {
+
         float eslasped = 0;
         while(eslasped <= timeExist && enemyCar)
         {
@@ -32,4 +34,11 @@ public class MayBanTocDo : MonoBehaviour
         }
         lineRender.SetPosition(1, startLine.position);
     }
+
+    public void StopFollowEnemyCar()
+    {
+        StopCoroutine(nameof(StartToFollowEnemyCar));
+        lineRender.SetPosition(1, startLine.position);
+    }
+
 }

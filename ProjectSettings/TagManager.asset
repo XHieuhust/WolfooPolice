@@ -12,6 +12,7 @@ TagManager:
   - Cuop
   - ObsacleScene15
   - Toy
+  - CarChased
   layers:
   - Default
   - TransparentFX
