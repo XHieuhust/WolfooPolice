@@ -7,6 +7,7 @@ public class CarWash : MonoBehaviour
     [SerializeField] SpriteRenderer carBody;
     [SerializeField] SpriteRenderer waterSpriteCar;
     [SerializeField] Sprite cleanCar;
+
     public void ActivewaterSpriteCar()
     {
         waterSpriteCar.gameObject.SetActive(true);
@@ -15,6 +16,7 @@ public class CarWash : MonoBehaviour
     public void TransformCleanSpriteCar()
     {
         carBody.sprite = cleanCar;
+        carBody.transform.localScale = new Vector3(carBody.transform.localScale.x * 3/4, carBody.transform.localScale.y * 3 / 4);
     }
 
     public void ClearWaterSprite()
