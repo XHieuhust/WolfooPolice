@@ -23,7 +23,7 @@ public class SoapBall : MonoBehaviour
         {
             spriteSoap.enabled = true;
             isClean = true;
-            soapBallManager.UpdateCntCleanedSoapBall();
+            soapBallManager.UpdateEnableSoapBall();
         }
     }
 }

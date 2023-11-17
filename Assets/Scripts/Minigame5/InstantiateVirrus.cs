@@ -58,7 +58,7 @@ public class InstantiateVirrus : MonoBehaviour
         cntDiedVirrus += 1;
         if(cntDiedVirrus == SpritesOfVirrus.Count)
         {
-            Debug.Log("end");
+            ToolManager.ins.StartBubble();
         }
     }
 }

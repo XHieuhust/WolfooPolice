@@ -4,15 +4,51 @@ using UnityEngine;
 
 public class SoapBallManager : MonoBehaviour
 {
-    [SerializeField] List<SoapBall> SoapBalls;
-    int cntCleanedSoapBalls;
+    int enableSoapBalls;
+    int clearSoapBalls;
+    [SerializeField] List<GameObject> SoapBalls;
+    [SerializeField] float timeWashMax;
+    List<float> timeWash;
 
-    public void UpdateCntCleanedSoapBall()
+    private void Start()
     {
-        cntCleanedSoapBalls++;
-        if (cntCleanedSoapBalls == SoapBalls.Count)
+        timeWash = new List<float>(SoapBalls.Count);
+        for(int i = 0; i < SoapBalls.Count; i++)
         {
-            Debug.Log("end");
+            timeWash.Add(0);
+        }
+    }
+    public void UpdateEnableSoapBall()
+    {
+        enableSoapBalls++;
+        if (enableSoapBalls == SoapBalls.Count)
+        {
+            GameScene51Manager.ins.car.TransformCleanSpriteCar();
+            ToolManager.ins.StartShower();
+        }
+    }
+
+    public void CleanSoapBall(GameObject soapBall)
+    {
+        int index = SoapBalls.IndexOf(soapBall);
+        timeWash[index] += Time.deltaTime;
+        if (timeWash[index] >= timeWashMax)
+        {
+            Destroy(soapBall);
+            UpdateClearSoapBall();
+        }
+    }
+
+    private void UpdateClearSoapBall()
+    {
+        clearSoapBalls++;
+        if (clearSoapBalls == SoapBalls.Count / 2)
+        {
+            GameScene51Manager.ins.car.ActivewaterSpriteCar();
+        }
+        if (clearSoapBalls == SoapBalls.Count)
+        {
+            ToolManager.ins.StartTowel();
         }
     }
 }

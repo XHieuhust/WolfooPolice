@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bubble : MonoBehaviour
+public class Towel : MonoBehaviour
 {
     bool isbeingHeld;
     private Vector3 offset;
+    Vector3 startPos;
 
     private void OnEnable()
     {
@@ -27,25 +28,51 @@ public class Bubble : MonoBehaviour
         transform.position = endPos;
     }
 
+    private void Awake()
+    {
+        startPos = transform.position;
+    }
     private void Update()
     {
         if (isbeingHeld && ToolManager.ins.isStartTurn)
         {
             transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
+            CleanWater();
         }
+        
     }
     private void OnMouseDown()
     {
         isbeingHeld = true;
         offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //if (transform.parent)
-        //{
-        //    offset -= transform.parent.position;
-        //}
     }
 
     private void OnMouseUp()
     {
         isbeingHeld = false;
+        StartCoroutine(StartToMoveBack());
+    }   
+
+    void CleanWater()
+    {
+        if (Vector2.Distance(transform.position, GameScene51Manager.ins.car.transform.position) < 4f)
+        {
+            GameScene51Manager.ins.car.ClearWaterSprite();
+        }
+    }
+
+    IEnumerator StartToMoveBack()
+    {
+        float elapsedTime = 0;
+        float seconds = 0.25f;
+        Vector3 startingPos = transform.position;
+        while (elapsedTime < seconds)
+        {
+            transform.position = Vector3.Lerp(startingPos, startPos, (elapsedTime / seconds));
+            elapsedTime += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        transform.position = startPos;
+
     }
 }
