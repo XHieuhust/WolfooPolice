@@ -16,6 +16,7 @@ TagManager:
   - PoliceCarChase
   - Cano
   - Pit
+  - Buff
   layers:
   - Default
   - TransparentFX

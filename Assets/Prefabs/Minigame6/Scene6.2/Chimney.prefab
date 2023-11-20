@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6096218666101208790}
   - component: {fileID: 6096218666101208791}
   - component: {fileID: 6096218666101208784}
+  - component: {fileID: -8425556676228507378}
   m_Layer: 7
   m_Name: Chimney
   m_TagString: Obsacle
@@ -120,7 +121,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6096218666101208785}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -133,3 +134,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-8425556676228507378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6096218666101208785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fccf29b076cdf344aa6a8e790211c66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceFly: 1000
+  speedRotate: 20
