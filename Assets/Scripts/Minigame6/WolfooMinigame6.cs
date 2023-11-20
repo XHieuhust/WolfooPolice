@@ -132,7 +132,7 @@ public class WolfooMinigame6 : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Pit"))
         {
-            transform.position = new Vector3(collision.transform.position.x, transform.position.y, transform.position.z);
+            //transform.position = new Vector3(collision.transform.position.x, transform.position.y, transform.position.z);
             float sizePit = collision.collider.bounds.size.x/2;
             JumpBack(sizePit);
         }
