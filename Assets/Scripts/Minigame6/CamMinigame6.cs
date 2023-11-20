@@ -7,13 +7,15 @@ public class CamMinigame6 : MonoBehaviour
     [SerializeField] WolfooMinigame6 wolfoo;
 
     float lengthCam;
-    private void Start()
+    float startPos;
+    private void Awake()
     {
+        startPos = transform.position.x;
         lengthCam = Camera.main.orthographicSize * Camera.main.aspect;
     }
     private void Update()
     {
-        if (!wolfoo.isFallingDown)
+        if (!wolfoo.isFallingDown && wolfoo.transform.position.x >= startPos - lengthCam * 2 / 3 && !GameScene62Manager.ins.isEndGame)
         {
             transform.position = new Vector3(wolfoo.transform.position.x + lengthCam * 2 / 3, transform.position.y, transform.position.z);
         }

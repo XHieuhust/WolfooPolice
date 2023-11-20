@@ -13,7 +13,7 @@ public class WolfooMinigame6 : MonoBehaviour
     [SerializeField] private float speedNormal;
     [SerializeField] private float forceJump;
     bool isOnGround;
-    
+
     //System check falling down pit
     private float hightYonGround;
     public bool isFallingDown;
@@ -38,10 +38,17 @@ public class WolfooMinigame6 : MonoBehaviour
     public bool isBoosting;
     [SerializeField] private float speedBoost;
     [SerializeField] private float timeBoost;
+
+    //end
+    public Vector3 startPos;
+    public Vector3 endPos;
+
     private void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
         hightYonGround = transform.position.y;
+        startPos = new Vector3(-(Camera.main.orthographicSize * Camera.main.aspect * 2 / 3), transform.position.y, transform.position.z);
+        endPos = new Vector3(GameScene62Manager.ins.rihino.endPos.position.x - 2f, transform.position.y, transform.position.z);
     }
 
     private void Update()
@@ -49,6 +56,7 @@ public class WolfooMinigame6 : MonoBehaviour
         Move();
         Jump();
         CheckFallOnPit();
+        CheckEndGame();
     }
 
     bool CheckOnGround()
@@ -68,7 +76,7 @@ public class WolfooMinigame6 : MonoBehaviour
 
     private void Jump()
     {
-        if (Input.GetMouseButtonDown(0) && !isHitted)
+        if (Input.GetMouseButtonDown(0) && !isHitted && GameScene62Manager.ins.isStartGame && !GameScene62Manager.ins.isEndGame)
         {
             if (CheckOnGround())
             {
@@ -95,17 +103,17 @@ public class WolfooMinigame6 : MonoBehaviour
                     rigid.velocity = new Vector2(speed, 0);
                 }
             }
-        }else
+        } else
         {
             speed = 0;
         }
-        if (!CheckNearOb()) rigid.velocity = new Vector2(speed, rigid.velocity.y);
+        if (!CheckNearOb() && !GameScene62Manager.ins.isEndGame) rigid.velocity = new Vector2(speed, rigid.velocity.y);
         SetAnimRun();
     }
 
     private void SetAnimRun()
     {
-        if (transform.position.y - hightYonGround >= 0.1f && rigid.velocity.y < 0 && !isHitted)
+        if (transform.position.y - hightYonGround >= 0.1f && rigid.velocity.y < 0 && !isHitted && !GameScene62Manager.ins.isEndGame)
         {
             skeleton.AnimationState.SetAnimation(0, "Run_ninja", true);
         }
@@ -133,7 +141,7 @@ public class WolfooMinigame6 : MonoBehaviour
         if (collision.gameObject.CompareTag("Pit"))
         {
             //transform.position = new Vector3(collision.transform.position.x, transform.position.y, transform.position.z);
-            float sizePit = collision.collider.bounds.size.x/2;
+            float sizePit = collision.collider.bounds.size.x / 2;
             JumpBack(sizePit);
         }
 
@@ -200,6 +208,26 @@ public class WolfooMinigame6 : MonoBehaviour
         }
     }
 
+    void CheckEndGame()
+    {
+        if (GameScene62Manager.ins.rihino.transform.position.x - transform.position.x <= Camera.main.orthographicSize * Camera.main.aspect && !GameScene62Manager.ins.isEndGame)
+        {
+            GameScene62Manager.ins.isEndGame = true;
+            StartCoroutine(nameof(StartMoveToRihino));
+        }
+    }
 
-
+    IEnumerator StartMoveToRihino()
+    {
+        rigid.velocity = Vector2.zero;
+        Vector3 end = endPos;
+        
+        while (Vector2.Distance(transform.position, end) > 0.2f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, end, speedNormal * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+        }
+        skeleton.AnimationState.SetAnimation(0, "Cheer", true);
+        GameScene62Manager.ins.rihino.SetAnimCry();
+    }
 }
