@@ -14,15 +14,20 @@ public class Conveyors : MonoBehaviour
     {
         length = ListConveyor[0].GetComponent<SpriteRenderer>().size.x;
         minPos = Camera.main.transform.position.x - Camera.main.orthographicSize * Camera.main.aspect;
-        for (int i = 0; i < ListConveyor.Count; ++i)
-        {
-            ListConveyor[i].velocity = Vector2.left * speed;
-        }
     }
     private void Update()
     {
         for(int i = 0; i < ListConveyor.Count; ++i)
         {
+            if (!GameScene71Manager.ins.isFindingBanned)
+            {
+                ListConveyor[i].velocity = Vector2.left * speed;
+            }
+            else
+            {
+                ListConveyor[i].velocity = Vector2.zero;
+            }
+            
             if (ListConveyor[i].transform.position.x + length/2 < minPos)
             {
                 ListConveyor[i].transform.position = ListConveyor[(i - 1 + ListConveyor.Count) % ListConveyor.Count].transform.position + new Vector3(length - 0.05f, 0, 0);

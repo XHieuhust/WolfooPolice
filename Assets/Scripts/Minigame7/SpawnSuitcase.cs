@@ -19,12 +19,20 @@ public class SpawnSuitcase : MonoBehaviour
     {
         while (true)
         {
-            extras = Time.deltaTime;
+            if (!GameScene71Manager.ins.isFindingBanned)
+            {
+                extras = Time.deltaTime;
+            }
+            else
+            {
+                extras = 0;
+            }
             eslapsed += extras;
             if (eslapsed >= timeSpawn)
             {
                 Suitcase newSuit = Instantiate(suitcase, transform.position, Quaternion.identity);
-                newSuit.SetUp(Sprites[cnt++], cnt++ % 8 == 0);
+                newSuit.SetUp(Sprites[cnt % Sprites.Count], (cnt % 4 == 0 && cnt > 0));
+                cnt++;
                 eslapsed = 0;
             }
             yield return new WaitForEndOfFrame();

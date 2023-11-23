@@ -6,35 +6,59 @@ public class Suitcase : MonoBehaviour
 {
     [SerializeField] SpriteRenderer spriteSuitcase;
     BoxCollider2D collider;
-    bool isillegal;
+    bool isIllegal;
     bool isOnClick;
+    bool isCanClick;
+    [SerializeField] GameObject smell;
+
     private void Awake()
     {
         collider = GetComponent<BoxCollider2D>();
+    }
+
+    private void Update()
+    {
+        CheckDestroy();
     }
 
     public void SetUp(Sprite sprite, bool illegal)
     {
         spriteSuitcase.sprite = sprite;
         float sizeX = spriteSuitcase.sprite.bounds.size.x;
-        float sizey = spriteSuitcase.sprite.bounds.size.y;
-        collider.size = new Vector2(sizeX, sizey);
-        collider.offset = new Vector2(0, sizey / 2);
+        float sizeY = spriteSuitcase.sprite.bounds.size.y;
+        collider.size = new Vector2(sizeX, sizeY);
+        collider.offset = new Vector2(0, sizeY / 2);
 
-        isillegal = illegal;
+        isIllegal = illegal;
+
+        StartCoroutine(WaitToCanClick(sizeY));
+    }
+
+    IEnumerator WaitToCanClick(float sizeY)
+    {
+        yield return new WaitForSeconds(1.5f);
+        isCanClick = true;
+        if (isIllegal)
+        {
+            smell.SetActive(true);
+            smell.transform.localPosition = new Vector3(0, sizeY + 0.5f, 0);
+        }
     }
 
     private void OnMouseDown()
     {
-        if (!isOnClick)
+        if (!isOnClick && isCanClick && !GameScene71Manager.ins.isFindingBanned)
         {
-            if (isillegal)
+            if (isIllegal)
             {
-
+                isIllegal = false;
+                smell.SetActive(false);
+                GameScene71Manager.ins.StartTurn(this.gameObject);
             }
             else
             {
                 StartCoroutine(nameof(FalseClick));
+                GameScene71Manager.ins.Smile();
             }
         }
     }
@@ -95,5 +119,13 @@ public class Suitcase : MonoBehaviour
 
         // Complete onClick
         isOnClick = false;
+    }
+
+    void CheckDestroy()
+    {
+        if (transform.position.x < Camera.main.transform.position.x - Camera.main.orthographicSize * Camera.main.aspect - 2.5f)
+        {
+            Destroy(gameObject);
+        }
     }
 }

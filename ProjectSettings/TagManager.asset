@@ -17,6 +17,7 @@ TagManager:
   - Cano
   - Pit
   - Buff
+  - Banned
   layers:
   - Default
   - TransparentFX
