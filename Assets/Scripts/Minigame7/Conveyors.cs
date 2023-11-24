@@ -14,6 +14,7 @@ public class Conveyors : MonoBehaviour
     {
         length = ListConveyor[0].GetComponent<SpriteRenderer>().size.x;
         minPos = Camera.main.transform.position.x - Camera.main.orthographicSize * Camera.main.aspect;
+
     }
     private void Update()
     {

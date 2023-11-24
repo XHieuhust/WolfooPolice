@@ -38,9 +38,9 @@ public class GameScene71Manager : MonoBehaviour
         curTurn = Random.Range(0, ListTurns.Count);
         curTurnClick = ListTurns[curTurn];
 
-        dog.Reset();
+        //dog.Reset();
         dog.SetAnimationState("Run", true);
-        wolfoo.Reset();
+        //wolfoo.Reset();
         wolfoo.SetAnimationState("Idle", true);
 
         Vector3 start = dog.transform.position;
@@ -55,7 +55,7 @@ public class GameScene71Manager : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         dog.transform.position = end;
-        dog.Reset();
+        //dog.Reset();
         dog.SetAnimationState("Sit", true);
 
         yield return new WaitForSeconds(0.25f);
@@ -84,9 +84,8 @@ public class GameScene71Manager : MonoBehaviour
     {
         while (true)
         {
-            //reset
-            dog.Reset();
-            wolfoo.Reset();
+            //dog.Reset();
+            //wolfoo.Reset();
 
             dog.SetAnimationState("Idle", true);
             wolfoo.SetAnimationState("Idle", true);
@@ -112,8 +111,8 @@ public class GameScene71Manager : MonoBehaviour
 
     IEnumerator StartSmile()
     {
-        dog.Reset();
-        wolfoo.Reset();
+        //dog.Reset();
+        //wolfoo.Reset();
 
         dog.SetAnimationState("Happy3", true);
         wolfoo.SetAnimationState("Idle_Laugh", true);
@@ -125,8 +124,8 @@ public class GameScene71Manager : MonoBehaviour
     IEnumerator StartCompleteTurn()
     {
         dog.transform.position = startDog;
-        dog.Reset();
-        wolfoo.Reset();
+        //dog.Reset();
+        //wolfoo.Reset();
 
         dog.SetAnimationState("Jump", true);
         wolfoo.SetAnimationState("Yay_yay", true);

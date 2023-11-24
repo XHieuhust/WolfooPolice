@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class ClickIllegal : MonoBehaviour
 {
     Button button;
-    float startX;
     [SerializeField] Image posInBarBanned;
     bool isClicked;
     public float normalScale;
@@ -15,7 +14,6 @@ public class ClickIllegal : MonoBehaviour
     {
         button = GetComponent<Button>();
         button.onClick.AddListener(BeClicked);
-        startX = transform.position.x;
         normalScale = transform.localScale.x;
     }
 
@@ -35,6 +33,7 @@ public class ClickIllegal : MonoBehaviour
     }
     IEnumerator Shaking()
     {
+        float startX = transform.position.x;
         isClicked = true;
         transform.position = new Vector3(startX, transform.position.y, transform.position.z);
         float timeShake = 0.3f;

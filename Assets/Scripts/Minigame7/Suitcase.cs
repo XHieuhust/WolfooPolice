@@ -51,8 +51,8 @@ public class Suitcase : MonoBehaviour
         {
             if (isIllegal)
             {
-                isIllegal = false;
-                smell.SetActive(false);
+                StartCoroutine(nameof(TrueClick));
+                // Enable Turn Click
                 GameScene71Manager.ins.StartTurn(this.gameObject);
             }
             else
@@ -61,6 +61,33 @@ public class Suitcase : MonoBehaviour
                 GameScene71Manager.ins.Smile();
             }
         }
+    }
+
+    IEnumerator TrueClick()
+    {
+        // Enable isIllegal
+
+        float startScale = transform.localScale.x;
+        float newScale = 1.2f * startScale;
+        float speed = 0.8f;
+
+        while (transform.localScale.x <= newScale)
+        {
+            transform.localScale += new Vector3(speed * Time.deltaTime, speed * Time.deltaTime, speed * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+        }
+        transform.localScale = new Vector3(newScale, newScale, newScale);
+
+        while (transform.localScale.x >= startScale)
+        {
+            transform.localScale -= new Vector3(speed * Time.deltaTime, speed * Time.deltaTime, speed * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+        }
+
+        transform.localScale = new Vector3(startScale, startScale, startScale);
+
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
     }
 
     IEnumerator FalseClick()
