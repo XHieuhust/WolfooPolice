@@ -8,7 +8,7 @@ public class DogScene72 : MonoBehaviour
     [SerializeField] SkeletonAnimation skeleton;
 
     [SerializeField] float distMove;
-    Vector3 startPos;
+    public Vector3 startPos;
     Vector3 endPos;
     private void Start()
     {
@@ -57,5 +57,33 @@ public class DogScene72 : MonoBehaviour
     private void DogScene72_Complete(Spine.TrackEntry trackEntry)
     {
         skeleton.AnimationState.SetAnimation(1, "Idle", true);
+    }
+
+    public void StopMove()
+    {
+        StopCoroutine(nameof(StartMove));
+    }
+
+    public void Attack()
+    {
+        skeleton.AnimationState.SetAnimation(0, "Sit", true);
+        skeleton.AnimationState.SetAnimation(1, "Bark", true);
+    }
+
+    public void Reset()
+    {
+        StartCoroutine(nameof(StartMove));
+    }
+
+    public void SetAnimRun()
+    {
+        skeleton.AnimationState.SetAnimation(0, "Run", true);
+        skeleton.AnimationState.SetAnimation(1, "Idle", true);
+    }
+
+    public void EndScene()
+    {
+        skeleton.AnimationState.SetAnimation(0, "Sit", true);
+        skeleton.AnimationState.SetAnimation(1, "Bark", true);
     }
 }

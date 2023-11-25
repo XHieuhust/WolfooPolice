@@ -19,6 +19,7 @@ public class ListFragment : MonoBehaviour
             ob.GetComponent<SpriteRenderer>().sprite = ListSprites[i];
             ob.GetComponent<SpriteRenderer>().sortingOrder = 10;
             ob.transform.position = transform.position;
+            ob.transform.localScale = new Vector3 (scale, scale, scale);
             float direct = (2 * Mathf.PI / ListSprites.Count) * cnt;
             cnt++;
             StartCoroutine(StartFly(ob, direct));
@@ -27,9 +28,9 @@ public class ListFragment : MonoBehaviour
 
     IEnumerator StartFly(GameObject ob, float direct)
     {
-        float speed = 20f;
-        ob.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos(direct), 1).normalized * speed;
-        yield return new WaitForSeconds(1f);
+        float speed = 15f;
+        ob.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos(direct), Mathf.Sin(direct)).normalized * speed;
+        yield return new WaitForSeconds(0.25f);
         UpdateFragmentDestroy();
         Destroy(ob);
     }

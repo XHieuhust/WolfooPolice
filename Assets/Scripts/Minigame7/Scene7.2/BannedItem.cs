@@ -67,6 +67,7 @@ public class BannedItem : MonoBehaviour
     {
         ListFragment fragment = Instantiate(ListFragments[ran], transform.position, Quaternion.identity);
         fragment.FlyOut(transform.localScale.x);
+        GameScene72Manager.ins.UpDatePoint();
         Destroy(gameObject);
     }
 }

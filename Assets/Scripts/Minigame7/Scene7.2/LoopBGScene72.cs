@@ -16,14 +16,18 @@ public class LoopBGScene72 : MonoBehaviour
     }
     private void Update()
     {
-        for (int i = 0; i < ListBg.Count; ++i)
+        if (!GameScene72Manager.ins.isDogAttacking)
         {
-            ListBg[i].transform.position -= new Vector3(speed * Time.deltaTime, 0, 0);
-            if (ListBg[i].transform.position.x + length / 2 < minPos)
+            for (int i = 0; i < ListBg.Count; ++i)
             {
-                ListBg[i].transform.position = ListBg[(i - 1 + ListBg.Count) % ListBg.Count].transform.position + new Vector3(length - 0.05f, 0, 0);
+                ListBg[i].transform.position -= new Vector3(speed * Time.deltaTime, 0, 0);
+                if (ListBg[i].transform.position.x + length / 2 < minPos)
+                {
+                    ListBg[i].transform.position = ListBg[(i - 1 + ListBg.Count) % ListBg.Count].transform.position + new Vector3(length - 0.05f, 0, 0);
+                }
             }
         }
+
     }
 
 }
