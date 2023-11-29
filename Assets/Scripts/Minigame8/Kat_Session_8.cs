@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Kat_Session1_8 : MonoBehaviour
+public class Kat_Session_8 : MonoBehaviour
 {
     [SerializeField] SkeletonGraphic skeleton;
 
@@ -50,5 +50,28 @@ public class Kat_Session1_8 : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         skeleton.AnimationState.SetAnimation(0, "Like", true);
+    }
+
+    public void MoveLeft(float seconds)
+    {
+        StartCoroutine(StartMoveLeft(seconds));
+    }
+
+    IEnumerator StartMoveLeft(float seconds)
+    {
+        Vector3 end = transform.position;
+        Vector3 start = end + new Vector3(10, 0f, 0);
+
+        transform.position = start;
+        skeleton.AnimationState.SetAnimation(0, "Run_c", true);
+
+        float eslapsed = 0;
+        while (eslapsed <= seconds)
+        {
+            eslapsed += Time.deltaTime;
+            transform.position = Vector3.Lerp(start, end, eslapsed / seconds);
+            yield return new WaitForEndOfFrame();
+        }
+        skeleton.AnimationState.SetAnimation(0, "Cheer", true);
     }
 }

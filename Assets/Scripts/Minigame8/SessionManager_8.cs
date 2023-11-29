@@ -24,5 +24,10 @@ public class SessionManager_8 : MonoBehaviour
         }
     }
 
+    public GameObject GetCurListSession()
+    {
+        return ListSessions[complete_session];
+    }
+
 
 }

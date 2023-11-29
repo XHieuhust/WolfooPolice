@@ -11,9 +11,11 @@ public class Scan_SessionFoot_8 : MonoBehaviour, IDragHandler, IPointerDownHandl
     float startScale;
     [SerializeField] GameObject footPrint;
     [SerializeField] float minDist;
+
     bool isComplete;
     [SerializeField] Image whiteBg;
     [SerializeField] FootScan_SessionFoot_8 footScanImage;
+    
     private void Start()
     {
         rectTransform = GetComponent<RectTransform>();

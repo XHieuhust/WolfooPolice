@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Session1_8 : MonoBehaviour
 {
-    [SerializeField] Wolf_Session1_8 wolfoo;
-    [SerializeField] Kat_Session1_8 kat;
+    [SerializeField] Wolf_Session_8 wolfoo;
+    [SerializeField] Kat_Session_8 kat;
 
     [SerializeField] float timeMove;
 

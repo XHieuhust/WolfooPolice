@@ -33,6 +33,6 @@ public class PrintInBar_SessionFoot_8 : MonoBehaviour
             yield return new WaitForEndOfFrame();   
         }
         transform.localScale = new Vector3 (endScale, endScale, endScale);
-        Instantiate(trueTick, transform );
+        Instantiate(trueTick, transform);
     }
 }
