@@ -11,17 +11,31 @@ public class IntroPanel : MonoBehaviour
     [SerializeField] SkeletonGraphic wolfooNu;
     [SerializeField] Image screen;
     [SerializeField] Image bg;
+    [SerializeField] Image bodamBone;
 
     void Start()
     {
-        btnBoDam.GetComponent<Button>().onClick.AddListener(delegate
-        {
-            wolfooNam.AnimationState.SetAnimation(0, "Cheer", false);
-            wolfooNu.AnimationState.SetAnimation(0, "Cheer", false).Complete += IntroPanel_Complete; ;
-        });
+        btnBoDam.GetComponent<Button>().onClick.AddListener(OnClick);
     }
 
-    private void IntroPanel_Complete(Spine.TrackEntry trackEntry)
+    void OnClick()
+    {
+        StartCoroutine(StartOnClick());
+    }
+
+    IEnumerator StartOnClick()
+    {
+        Destroy(btnBoDam.gameObject);
+
+        wolfooNam.AnimationState.SetAnimation(0, "Sit_Phone", true);
+        bodamBone.gameObject.SetActive(true);
+        wolfooNu.AnimationState.SetAnimation(0, "Sit_Typing2", true);
+        yield return new WaitForSeconds(2f);
+        IntroPanel_Complete();
+    }
+
+
+    private void IntroPanel_Complete()
     {
         StartCoroutine(MoveDownCamera(this.gameObject));
         StartCoroutine(MoveDownCamera(wolfooNam.gameObject));

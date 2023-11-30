@@ -14,7 +14,12 @@ public class Car : MonoBehaviour
     private float elapsed = 0f;
     int isOnObsacle;
     bool isEndGame;
+    [SerializeField] WheelCar leftWheel;
+    [SerializeField] WheelCar rightWheel;
+    bool isBoosting;
+    [SerializeField] GameObject boostEffect;
 
+    [SerializeField] 
     private void Awake()
     {
         speedCar = speedNormal;
@@ -42,7 +47,8 @@ public class Car : MonoBehaviour
     private void Move()
     {   
         rigidCar.velocity = new Vector2(speedCar, rigidCar.velocity.y) ;
-        
+        leftWheel.RotateWheel(speedCar / speedNormal);
+        rightWheel.RotateWheel(speedCar / speedNormal);
     }
  
     void CheckBoost()
@@ -56,8 +62,9 @@ public class Car : MonoBehaviour
 
     private IEnumerator Boost()
     {
+        boostEffect.SetActive(true);
         elapsed = 0;
-
+        
         while (elapsed <= timeBoost)
         {
             speedCar = speedNormal + speedBoost;
@@ -69,14 +76,18 @@ public class Car : MonoBehaviour
             yield return null;
         }
         speedCar = speedNormal;
+        boostEffect.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Obsacle") && isOnObsacle < 1)
+        if (collision.gameObject.CompareTag("Obsacle"))
         {
             isOnObsacle++;
-            speedCar -= speedReduce;
+            if (isOnObsacle == 1)
+            {
+                speedCar -= speedReduce;
+            }
         }
     }
 
@@ -84,8 +95,9 @@ public class Car : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Obsacle"))
         {
-            isOnObsacle = 0;
-            speedCar += speedReduce;     
+            isOnObsacle --;
+            if (isOnObsacle == 0) speedCar += speedReduce;
+                
         }
     }
 

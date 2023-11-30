@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Wolfoo_SkeletonData
   m_EditorClassIdentifier: 
   atlasAssets:
-  - {fileID: 11400000, guid: fc5f3c1253b2d9747bafa6bb832820ba, type: 2}
+  - {fileID: 11400000, guid: 50abbeb81986e044a9ccd2c39a63bd92, type: 2}
   scale: 0.01
-  skeletonJSON: {fileID: 4900000, guid: 1c99c9e30b9eb404e8a47c8b9265d73d, type: 3}
+  skeletonJSON: {fileID: 4900000, guid: 91cd9e1e5f755bb47909060cf7eb2a7c, type: 3}
   isUpgradingBlendModeMaterials: 0
   blendModeMaterials:
     requiresBlendModeMaterials: 0

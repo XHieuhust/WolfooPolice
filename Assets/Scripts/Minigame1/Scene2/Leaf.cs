@@ -2,14 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Leaf : Obsacle
+public class Leaf : MonoBehaviour
 {
-    
-    public override void beHitted()
+    [SerializeField] List<GameObject> Leafs;
+    int cnt_hit;
+    [SerializeField] float forceFly;
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        rigidObsacle.isKinematic = false;
+        if (collision.gameObject.CompareTag("Car"))
+        {
+            cnt_hit++;
+            if (cnt_hit == 1)
+            {
+                beHitted();
+            }
+
+        }
+    }
+
+    private void beHitted()
+    {
+        for (int i = 0; i < Leafs.Count; ++i)
+        {
+            StartCoroutine(StartBeHitted(Leafs[i]));
+        }
+    }
+
+    IEnumerator StartBeHitted(GameObject leaf)
+    {
+        leaf.GetComponent<Rigidbody2D>().isKinematic = false;
         float directionX = Random.Range(-0.2f, 0.2f);
-        rigidObsacle.AddForce(new Vector2(directionX, 1) * ForceFly);
+        leaf.GetComponent<Rigidbody2D>().AddForce(new Vector2(directionX, 1) * forceFly);
+        yield return new WaitForSeconds(2f);
+        Destroy(leaf);
     }
 
 }

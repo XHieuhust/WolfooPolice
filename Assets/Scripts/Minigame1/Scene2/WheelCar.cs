@@ -7,15 +7,11 @@ public class WheelCar : MonoBehaviour
     [SerializeField] public float speedRotate;
     [SerializeField] GameObject car;
 
-    void Update()
-    {
-        RotateWheel();
-    }   
 
-    private void RotateWheel()
+    public void RotateWheel(float rate)
     {   
         if(car.GetComponent<Rigidbody2D>().velocity.x != 0)
-            transform.eulerAngles -= new Vector3(0, 0, speedRotate);
+            transform.eulerAngles -= new Vector3(0, 0, rate * speedRotate * Time.deltaTime);
     }
 
 }

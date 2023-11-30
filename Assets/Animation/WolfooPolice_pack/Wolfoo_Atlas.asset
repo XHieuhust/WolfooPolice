@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b194f808b1af6499c93410e504af42, type: 3}
   m_Name: Wolfoo_Atlas
   m_EditorClassIdentifier: 
-  atlasFile: {fileID: 4900000, guid: f248818dbddc00b48af441f5d9836fa0, type: 3}
+  atlasFile: {fileID: 4900000, guid: 75b4a7aa0ef441141933b2f541e5d691, type: 3}
   materials:
-  - {fileID: 2100000, guid: 000ac88ed772bb246896ce5a844acf6b, type: 2}
+  - {fileID: 2100000, guid: 2896ada586d6c384dbee9f502863bae0, type: 2}
