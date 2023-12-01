@@ -1,28 +1,76 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class ProgressBarScene13 : MonoBehaviour
 {
-    RectTransform rectBar;
-    [SerializeField] float speed;
+    [SerializeField] Image barFill;
+    [SerializeField] List<Image> ListStars;
+    [SerializeField] List<Sprite> ListcompleteSprites;
+    int curStar;
     private void Start()
     {
-        rectBar = GetComponent<RectTransform>();
+        StartGame();
+    }
+    void StartGame()
+    {
+        StartCoroutine(MoveRight());
     }
 
-    public void UpdateBar(float newScaleX)
+    IEnumerator MoveRight()
     {
-        StartCoroutine(ProgressUpdateBar(newScaleX));
-    }
+        Vector3 start = transform.position - new Vector3(Camera.main.orthographicSize * Camera.main.aspect, 0, 0);
+        Vector3 end = transform.position;
+        float eslapsed = 0f;
+        float seconds = 0.5f;
 
-    IEnumerator ProgressUpdateBar(float newScaleX)
-    {
-        while(rectBar.localScale.x <= newScaleX)
+        transform.position = start;
+        while(eslapsed <= seconds)
         {
-            rectBar.localScale += new Vector3(speed * Time.deltaTime, 0, 0);
+            eslapsed += Time.deltaTime;
+            transform.position = Vector3.Lerp(start, end, eslapsed / seconds);
             yield return new WaitForEndOfFrame();
         }
-        rectBar.localScale = new Vector3(newScaleX, rectBar.localScale.y, rectBar.localScale.z);
+        transform.position = end;
     }
+
+    public void UpdateBar(float rate, float seconds)
+    {
+        StartCoroutine(StartUpDateBar(rate, seconds));
+    }
+
+    IEnumerator StartUpDateBar(float rate, float seconds)
+    {
+        float eslapsed = 0f;
+        float start = barFill.fillAmount;
+        float end = rate;
+        while (eslapsed <= seconds)
+        {
+            eslapsed += Time.deltaTime;
+            barFill.fillAmount = start + (end - start) * eslapsed / seconds;
+            yield return new WaitForEndOfFrame();
+        }
+        barFill.fillAmount = end;
+        StartCoroutine(UpdateStar());
+    }
+
+    IEnumerator UpdateStar()
+    {
+        float eslapsed = 0;
+        float seconds = 0.2f;
+        float startScale = ListStars[curStar].transform.localScale.x;
+        float endScale = 1.2f * startScale;
+        ListStars[curStar].sprite = ListcompleteSprites[curStar];
+        while (eslapsed <= seconds)
+        {
+            eslapsed += Time.deltaTime;
+            ListStars[curStar].transform.localScale = new Vector3(startScale + (eslapsed/seconds) * (endScale - startScale), startScale + (eslapsed / seconds) * (endScale - startScale),
+                startScale + (eslapsed / seconds) * (endScale - startScale));
+            yield return new WaitForEndOfFrame();
+        }
+        ListStars[curStar].transform.localScale = new Vector3(startScale, startScale, startScale);
+        curStar++;
+    }
+
+
 }

@@ -13,34 +13,34 @@ public class Car : MonoBehaviour
     private float timeBoost = 1f;
     private float elapsed = 0f;
     int isOnObsacle;
-    bool isEndGame;
     [SerializeField] WheelCar leftWheel;
     [SerializeField] WheelCar rightWheel;
     bool isBoosting;
     [SerializeField] GameObject boostEffect;
 
-    [SerializeField] 
+    [SerializeField] SmokeCar smoke;
     private void Awake()
     {
         speedCar = speedNormal;
         rigidCar = GetComponent<Rigidbody2D>();
     }
 
+    [Obsolete]
     private void Update()
     {
         CheckBoost();
         Move();
-        StopCar();
+        CheckEndGame();
     }
 
-    private void StopCar()
+    [Obsolete]
+    private void CheckEndGame()
     {
-        // When cameta stop at endPosition
-        if(transform.position.x >= Camera.main.transform.position.x + Camera.main.orthographicSize * Camera.main.aspect / 2 * 4 / 5 && !isEndGame)
+        if (transform.position.x >= GameScene12Manager.ins.endPosition.position.x - 10f && !GameScene12Manager.ins.isEndGame)
         {
-            speedCar = 0;
-            isEndGame = true;
-            GameScene12Manager.ins.EndGame();
+            GameScene12Manager.ins.isEndGame = true;
+            StopAllCoroutines();
+            StartCoroutine(StartEndScene());
         }
     }
 
@@ -53,7 +53,7 @@ public class Car : MonoBehaviour
  
     void CheckBoost()
     {
-        if (Input.GetMouseButtonDown(0) && rigidCar.velocity.x != 0)
+        if (Input.GetMouseButtonDown(0) && !GameScene12Manager.ins.isEndGame)
         {
             StopCoroutine(nameof(Boost));
             StartCoroutine(nameof(Boost));
@@ -101,5 +101,49 @@ public class Car : MonoBehaviour
         }
     }
 
-    
+    [Obsolete]
+    IEnumerator StartEndScene()
+    {
+        //Scale cam
+        Camera cam = Camera.main;
+        float startSize = cam.orthographicSize;
+        float endSize = (4f / 5) * startSize;
+        float maxDist = (GameScene12Manager.ins.endPosition.position.x - transform.position.x);
+        float curDist;
+        boostEffect.SetActive(false);
+        while (transform.position.x <= GameScene12Manager.ins.endPosition.position.x)
+        {
+            speedCar = speedNormal;
+            curDist = GameScene12Manager.ins.endPosition.position.x - transform.position.x;
+            cam.orthographicSize = startSize + (endSize - startSize) * (1-curDist/maxDist);
+            yield return new WaitForEndOfFrame();
+        }
+        cam.orthographicSize = endSize;
+        GameScene12Manager.ins.shopKeeper.transform.eulerAngles += new Vector3(0, 180, 0);
+        speedCar = 0;
+
+        float eslapsed = 0;
+        float seconds = 1f;
+
+        Vector3 start = transform.position;
+        Vector3 end = new Vector3(GameScene12Manager.ins.endPosition.position.x + 2f + (3f / 4) * Camera.main.orthographicSize * Camera.main.aspect, transform.position.y, transform.position.z);
+
+        while(eslapsed <= seconds)
+        {
+            leftWheel.RotateWheel((speedNormal - speedReduce) / speedNormal);
+            rightWheel.RotateWheel((speedNormal - speedReduce) / speedNormal);
+            eslapsed += Time.deltaTime;
+            transform.position = Vector3.Lerp(start, end, eslapsed / seconds);
+            if (eslapsed >= seconds/4 && !smoke.gameObject.active)
+            {
+                smoke.gameObject.SetActive(true);
+                smoke.Enable(seconds - eslapsed);
+            }
+            yield return new WaitForEndOfFrame();
+        }
+        transform.position = end;
+        smoke.gameObject.SetActive(false);
+        GameScene12Manager.ins.EndScene();
+    }
+
 }

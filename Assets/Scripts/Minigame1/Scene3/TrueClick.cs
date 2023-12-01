@@ -1,17 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TrueClick : MonoBehaviour
 {
-    private void Start()
+    Image trueClick;
+    private void Awake()
     {
-        StartCoroutine(StartToDestroy());
+        trueClick = GetComponent<Image>();
     }
-    
-    IEnumerator StartToDestroy()
+    public void Enable(float seconds)
     {
-        yield return new WaitForSeconds(0.4f);
-        Destroy(gameObject);
+        StartCoroutine(StartEnable(seconds));
+    }
+    IEnumerator StartEnable(float seconds)
+    {
+        trueClick.fillAmount = 0;
+        float eslapsed = 0;
+        while (eslapsed <= seconds)
+        {
+            eslapsed += Time.deltaTime;
+            trueClick.fillAmount = eslapsed / seconds;
+            yield return new WaitForEndOfFrame();
+        }
+        trueClick.fillAmount = 1;
     }
 }

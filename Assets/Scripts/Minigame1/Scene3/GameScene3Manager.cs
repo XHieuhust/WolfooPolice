@@ -6,21 +6,33 @@ using UnityEngine.UI;
 public class GameScene3Manager : MonoBehaviour
 {
     public static GameScene3Manager ins;
-    [SerializeField] GameObject BarProgress;
-    int maxTurn = 3;
+    [SerializeField] ProgressBarScene13 BarProgress;
+    [SerializeField] List<GameObject> ListTurns;
     public int cntCompleteTurn;
+    int maxTurn;
     private void Start()
     {
         ins = this;
+        maxTurn = ListTurns.Count;
+        ListTurns[0].SetActive(true);
     }
 
-    public void UpdateCntCompleteTurn()
+    public void UpdateBar(float seconds)
     {
+        BarProgress.UpdateBar(1f * (cntCompleteTurn+1) / maxTurn, seconds);
+    }
+
+    public void UpdateTurn()
+    {
+        ListTurns[cntCompleteTurn].SetActive(false);
         cntCompleteTurn++;
-        BarProgress.GetComponent<ProgressBarScene13>().UpdateBar(1f * cntCompleteTurn / maxTurn);
         if (cntCompleteTurn == maxTurn)
         {
             StartCoroutine(EndScene());
+        }
+        else
+        {
+            ListTurns[cntCompleteTurn].SetActive(true);
         }
     }
 

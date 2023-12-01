@@ -10,8 +10,7 @@ public class WheelCar : MonoBehaviour
 
     public void RotateWheel(float rate)
     {   
-        if(car.GetComponent<Rigidbody2D>().velocity.x != 0)
-            transform.eulerAngles -= new Vector3(0, 0, rate * speedRotate * Time.deltaTime);
+        transform.eulerAngles -= new Vector3(0, 0, rate * speedRotate * Time.deltaTime);
     }
 
 }

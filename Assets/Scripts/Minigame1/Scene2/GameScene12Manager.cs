@@ -7,16 +7,30 @@ public class GameScene12Manager : MonoBehaviour
 {
     public static GameScene12Manager ins;
     [SerializeField] public GameObject road;
-    [SerializeField] GameObject wolfooNam;
-    [SerializeField] GameObject car;
+    [SerializeField] Police_Scene2_1 police;
+    [SerializeField] public GameObject car;
+    [SerializeField] public ShopKeeper shopKeeper;
     public Transform endPosition;
+    public bool isEndGame;
+    [SerializeField] GameObject coverShadeBg;
     private void Awake()
     {
         ins = this;
     }
-    public void EndGame()
+    public void EndScene()
     {
-        wolfooNam.SetActive(true);
+        StartCoroutine(StartEndScene());
+    }
+
+     
+    IEnumerator StartEndScene()
+    {
+        police.gameObject.SetActive(true);
+        police.Move(1.5f);
+        yield return new WaitForSeconds(1.5f + 2f);
+        coverShadeBg.SetActive(true);
+        yield return new WaitForSeconds(1);
+        LoadNextScene();
     }
 
     public void LoadNextScene()
