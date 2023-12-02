@@ -2386,7 +2386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4412de2c257e5254d92960b32980724f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BarProgress: {fileID: 2500780117472001523}
+  barProgress: {fileID: 2500780117472001523}
   ListTurns:
   - {fileID: 4591538739702892445}
   - {fileID: 4591538740275780937}

@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 881262706787709623}
   - component: {fileID: 881262706787709622}
   m_Layer: 0
-  m_Name: Trom
+  m_Name: Criminal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

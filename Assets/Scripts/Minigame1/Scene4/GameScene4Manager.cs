@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameScene4Manager : MonoBehaviour
 {
     public static GameScene4Manager ins;
+    [SerializeField] ShadeBg shadeBg;
 
     private void Start()
     {
@@ -18,7 +19,8 @@ public class GameScene4Manager : MonoBehaviour
 
     IEnumerator StartToNextScene()
     {
-        yield return new WaitForSeconds(0.5f);
+        shadeBg.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1f);
         ScenesManager.ins.LoadScene("Scene1.5");
     }
 }

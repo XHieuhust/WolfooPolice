@@ -15,13 +15,13 @@ public abstract class DragSprite : MonoBehaviour
     bool isbeingHeld = false;
     private Vector3 offset;
     [SerializeField] float minDist;
-
+    public bool isCanDrag;
 
     private void Update()
     {
         if (isbeingHeld && !isCorrectDrag)
         {
-            transform.localPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
+            transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
             ChangeScale();
         }
     }
@@ -30,10 +30,14 @@ public abstract class DragSprite : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!isCorrectDrag)
+        if (isCanDrag)
         {
-            DoSthingWhenOnMouseDown();
+            if (!isCorrectDrag)
+            {
+                DoSthingWhenOnMouseDown();
+            }
         }
+        
     }
 
     public virtual void DoSthingWhenOnMouseDown()
@@ -49,11 +53,15 @@ public abstract class DragSprite : MonoBehaviour
 
     public void OnMouseUp()
     {
-        isbeingHeld = false;
-        if (!isCorrectDrag)
+        if (isCanDrag)
         {
-            DoSthingWhenOnMouseUp();
+            isbeingHeld = false;
+            if (!isCorrectDrag)
+            {
+                DoSthingWhenOnMouseUp();
+            }
         }
+  
     }
 
     public virtual void DoSthingWhenOnMouseUp()

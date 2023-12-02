@@ -60,4 +60,5 @@ public class FalseTick : MonoBehaviour
         Destroy(gameObject);
     }
 
+
 }

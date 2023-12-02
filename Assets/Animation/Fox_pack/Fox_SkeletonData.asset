@@ -13,16 +13,18 @@ MonoBehaviour:
   m_Name: Fox_SkeletonData
   m_EditorClassIdentifier: 
   atlasAssets:
-  - {fileID: 11400000, guid: 02fcf6e7e38c8d348bba30cbda4cde77, type: 2}
+  - {fileID: 11400000, guid: 7a042950f7faf1743b024872fbac9618, type: 2}
   scale: 0.01
-  skeletonJSON: {fileID: 4900000, guid: de08a488e9ac11c43b5f40289df09494, type: 3}
+  skeletonJSON: {fileID: 4900000, guid: 4f46fb9bc61e7b24aa0f16818f9b3901, type: 3}
   isUpgradingBlendModeMaterials: 0
   blendModeMaterials:
-    requiresBlendModeMaterials: 0
+    requiresBlendModeMaterials: 1
     applyAdditiveMaterial: 1
     additiveMaterials: []
     multiplyMaterials: []
-    screenMaterials: []
+    screenMaterials:
+    - pageName: Fox.png
+      material: {fileID: 2100000, guid: 8dffa91d0fe276e4394f976affa2d479, type: 2}
   skeletonDataModifiers: []
   fromAnimation: []
   toAnimation: []

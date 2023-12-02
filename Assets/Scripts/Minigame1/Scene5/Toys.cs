@@ -67,7 +67,7 @@ public class Toys : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player"))
         {
-            GameScene5Manager.ins.UpdateVpAnDuoc();
+            //GameScene5Manager.ins.UpdateVpAnDuoc();
             StartMoveToTuiSao();
         }
     }

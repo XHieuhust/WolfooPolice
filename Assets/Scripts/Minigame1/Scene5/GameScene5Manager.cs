@@ -6,6 +6,8 @@ using UnityEngine;
 public class GameScene5Manager : MonoBehaviour
 {
     public static GameScene5Manager ins;
+    [SerializeField] ShadeBg shade;
+
     public int vpAnDuoc;
     [SerializeField] public GameObject tuiSao;
     [SerializeField] public GameObject bar;
@@ -14,10 +16,9 @@ public class GameScene5Manager : MonoBehaviour
     [SerializeField] public Thief thief;
     [SerializeField] public OtherPoliceScene15 otherPolice;
     public bool isPlayEndScene;
-    private void Start()
-    {
-        ins = this;
-    }
+
+
+
 
     public void UpdateVpAnDuoc()
     {
@@ -49,4 +50,6 @@ public class GameScene5Manager : MonoBehaviour
         GameManager.ins.CompleteMap();
         ScenesManager.ins.LoadScene("SceneMenu");
     }
+
+
 }

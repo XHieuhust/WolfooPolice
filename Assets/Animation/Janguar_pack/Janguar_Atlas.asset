@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b194f808b1af6499c93410e504af42, type: 3}
   m_Name: Janguar_Atlas
   m_EditorClassIdentifier: 
-  atlasFile: {fileID: 4900000, guid: 3281fb7fb7f2d6f4b92a0911c961a891, type: 3}
+  atlasFile: {fileID: 4900000, guid: 97e3c1e47701abd43a8a42fc20ed368a, type: 3}
   materials:
-  - {fileID: 2100000, guid: 3d689057ca00b2749a3b853a1c1dd17e, type: 2}
+  - {fileID: 2100000, guid: 02d705446e115444b98e9f370bf1139e, type: 2}

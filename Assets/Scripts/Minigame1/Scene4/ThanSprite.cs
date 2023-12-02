@@ -5,27 +5,33 @@ using UnityEngine;
 public class ThanSprite : MonoBehaviour
 {
     [SerializeField] List<Sprite> ListSprite;
-    [SerializeField] float speedReduceAlpha;
+    SpriteRenderer sprite;
+    private void Start()
+    {
+        sprite = GetComponent<SpriteRenderer>();
+    }
     IEnumerator NhapNhayThanSprite()
     {
         int cnt = 0;
         int soLuongSprite = ListSprite.Count;
         while (cnt < soLuongSprite)
         {
-            GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 1);
-            GetComponent<SpriteRenderer>().sprite = ListSprite[cnt];
+            sprite.color = new Color(255, 255, 255, 0);
+            sprite.sprite = ListSprite[cnt];
             cnt++;
             if(cnt == soLuongSprite)
             {
-                speedReduceAlpha = 0;
-                GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 1);
-                GameScene4Manager.ins.EndScene();
+                sprite.color = new Color(255, 255, 255, 1);
             }
-            while(GetComponent<SpriteRenderer>().color.a > 0)
+            float eslapsed = 0;
+            float seconds = 0.5f;
+            while(eslapsed <= seconds)
             {
-                GetComponent<SpriteRenderer>().color -= new Color(0, 0, 0, speedReduceAlpha * Time.deltaTime);
+                eslapsed += Time.deltaTime;
+                sprite.color = new Color(255, 255, 255, eslapsed/seconds);
                 yield return new WaitForEndOfFrame();
             }
+            sprite.color = new Color(255, 255, 255, 1);
             
         }
     }

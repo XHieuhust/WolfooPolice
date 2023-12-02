@@ -72,5 +72,28 @@ public class ProgressBarScene13 : MonoBehaviour
         curStar++;
     }
 
+    public void MoveLeft()
+    {
+        StartCoroutine(StartMoveLeft());
+    }
+
+    IEnumerator StartMoveLeft()
+    {
+        Vector3 start = transform.position;
+        Vector3 end = transform.position - new Vector3(Camera.main.orthographicSize * Camera.main.aspect, 0, 0);
+        float eslapsed = 0f;
+        float seconds = 0.5f;
+
+        transform.position = start;
+        while (eslapsed <= seconds)
+        {
+            eslapsed += Time.deltaTime;
+            transform.position = Vector3.Lerp(start, end, eslapsed / seconds);
+            yield return new WaitForEndOfFrame();
+        }
+        transform.position = end;
+    }
+
+
 
 }

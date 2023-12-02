@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameScene3Manager : MonoBehaviour
 {
     public static GameScene3Manager ins;
-    [SerializeField] ProgressBarScene13 BarProgress;
+    [SerializeField] ProgressBarScene13 barProgress;
     [SerializeField] List<GameObject> ListTurns;
     public int cntCompleteTurn;
     int maxTurn;
@@ -19,7 +19,7 @@ public class GameScene3Manager : MonoBehaviour
 
     public void UpdateBar(float seconds)
     {
-        BarProgress.UpdateBar(1f * (cntCompleteTurn+1) / maxTurn, seconds);
+       barProgress.UpdateBar(1f * (cntCompleteTurn+1) / maxTurn, seconds);
     }
 
     public void UpdateTurn()
@@ -38,7 +38,8 @@ public class GameScene3Manager : MonoBehaviour
 
     IEnumerator EndScene()
     {
-        yield return new WaitForSeconds(0.4f);
+        barProgress.MoveLeft();
+        yield return new WaitForSeconds(0.5f);
         ScenesManager.ins.LoadScene("Scene1.4");
     }
 }
