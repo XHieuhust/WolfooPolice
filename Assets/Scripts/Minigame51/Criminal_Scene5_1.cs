@@ -33,6 +33,8 @@ public class Criminal_Scene5_1 : MonoBehaviour
         transform.position = end;
     }
 
+    IEnumerator StartMove
+
     IEnumerator StartRandomMove()
     {
         skeleton.AnimationState.SetAnimation(0, "Run_c", true);
