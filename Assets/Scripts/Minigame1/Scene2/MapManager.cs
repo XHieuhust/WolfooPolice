@@ -17,7 +17,8 @@ public class MapManager : MonoBehaviour
 
     public void LoadMap()
     {
-        int curMap = PlayerPrefs.GetInt("currentMap", 0);
-        Instantiate(ListMap[curMap % numOfMap], transform.position, Quaternion.identity);
+        string curMinigame = PlayerPrefs.GetString("curMinigame");
+        int curLevel = LevelManager.ins.GetLevel(curMinigame);
+        Instantiate(ListMap[curLevel % numOfMap], transform.position, Quaternion.identity);
     }
 }

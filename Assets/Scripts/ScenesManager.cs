@@ -6,8 +6,9 @@ using UnityEngine.SceneManagement;
 public class ScenesManager : MonoBehaviour
 {
     public static ScenesManager ins;
-    void Start()
+    private void Awake()
     {
+        DontDestroyOnLoad(this);
         ins = this;
     }
 

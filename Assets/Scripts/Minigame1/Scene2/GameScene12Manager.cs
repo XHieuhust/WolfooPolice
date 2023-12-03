@@ -38,11 +38,11 @@ public class GameScene12Manager : MonoBehaviour
         string newScene = PlayerPrefs.GetString("curMinigame");
         if (newScene.Equals("Scene1"))
         {
-            ScenesManager.ins.LoadScene("Scene1.3");
+            ScenesManager.ins.LoadScene(newScene + ".3");
         }
         else
         {
-            ScenesManager.ins.LoadScene("Scene2.4");
+            ScenesManager.ins.LoadScene(newScene + ".4");
         }
     }
 }

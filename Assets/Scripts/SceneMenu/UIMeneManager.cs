@@ -13,13 +13,22 @@ public class UIMeneManager : MonoBehaviour
         button1.onClick.AddListener(delegate
         {
             PlayerPrefs.SetString("curMinigame", "Scene1");
-            ScenesManager.ins.LoadScene("Scene1.1");
+            PlayMinigame();
         });
 
         button2.onClick.AddListener(delegate
         {
             PlayerPrefs.SetString("curMinigame", "Scene2");
-            ScenesManager.ins.LoadScene("Scene2.1");
+            PlayMinigame();
         });
+
+    }
+
+
+    private void PlayMinigame()
+    {
+        string curMinigame = PlayerPrefs.GetString("curMinigame");
+        ScenesManager.ins.LoadScene(curMinigame + ".1");
+
     }
 }

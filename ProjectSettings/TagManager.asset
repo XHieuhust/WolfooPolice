@@ -18,6 +18,7 @@ TagManager:
   - Pit
   - Buff
   - Banned
+  - LimitScene
   layers:
   - Default
   - TransparentFX

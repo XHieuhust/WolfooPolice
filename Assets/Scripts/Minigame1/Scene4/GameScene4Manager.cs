@@ -21,6 +21,8 @@ public class GameScene4Manager : MonoBehaviour
     {
         shadeBg.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
-        ScenesManager.ins.LoadScene("Scene1.5");
+        string newScene = PlayerPrefs.GetString("curMinigame");
+
+        ScenesManager.ins.LoadScene(newScene + ".5");
     }
 }
