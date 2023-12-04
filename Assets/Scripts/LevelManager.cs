@@ -15,7 +15,7 @@ public class LevelManager : MonoBehaviour
     public void UpdateLevel(string Minigame)
     {
         int curLevel = PlayerPrefs.GetInt("Level" + Minigame, 0);
-        PlayerPrefs.SetInt("Level" + Minigame, curLevel + 1);   
+        PlayerPrefs.SetInt("Level" + Minigame, curLevel + 1);
     }
 
     public int GetLevel(string Minigame)

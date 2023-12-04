@@ -8,6 +8,7 @@ public class TrangPhucCanhSat : DragSprite
     public void Start()
     {
         scaleNormal = transform.localScale;
+        isCanDrag = true;
     }
     public override void CorrectDrag()
     {

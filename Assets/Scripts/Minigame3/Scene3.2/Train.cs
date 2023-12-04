@@ -19,7 +19,7 @@ public class Train : MonoBehaviour
         sizeTrain = GetComponent<Collider2D>().bounds.size.y;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Move();
     }

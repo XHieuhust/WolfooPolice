@@ -18,7 +18,13 @@ public class GameScene24Manager : MonoBehaviour
         point++;
         if(point == maxPoint)
         {
-            ScenesManager.ins.LoadScene("Scene2.5");
+            LoadNewScene();
         }
+    }
+
+    private void LoadNewScene()
+    {
+        string newScene = PlayerPrefs.GetString("curMinigame");
+        ScenesManager.ins.LoadScene(newScene + ".5");
     }
 }

@@ -30,10 +30,6 @@ public class DragToys : MonoBehaviour
         offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.localScale = new Vector3(scaleNormal.x * 1.2f, scaleNormal.y * 1.2f, scaleNormal.z * 1.2f);
         transform.SetAsLastSibling();
-        //if (transform.parent)
-        //{
-        //    offset -= transform.parent.position;
-        //}
     }
 
     public void OnMouseUp()

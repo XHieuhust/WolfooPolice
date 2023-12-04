@@ -13,7 +13,6 @@ public class ScanningBtn : MonoBehaviour
     float lengthScan;
     float endPos;
 
-    bool isEndGame;
     private void Start()
     {
         lengthScan = GetComponent<Collider2D>().bounds.extents.y * 2;
@@ -21,15 +20,19 @@ public class ScanningBtn : MonoBehaviour
     }
     private void OnMouseDrag()
     {
-        ScanBar.transform.position -= new Vector3(0, speed * Time.deltaTime, 0);
-        
-        vanTayCompleted.fillAmount = (startVtay.position.y - ScanBar.transform.position.y) / (startVtay.position.y - endVtay.position.y);
-
-        if(ScanBar.transform.position.y <= endPos && !isEndGame)
+        if (!GameScene31Manager.ins.isEndGame)
         {
-            isEndGame = true;
-            Debug.Log("End Game");
+            ScanBar.transform.position -= new Vector3(0, speed * Time.deltaTime, 0);
+
+            float newValue = (startVtay.position.y - ScanBar.transform.position.y) / (startVtay.position.y - endVtay.position.y);
+            vanTayCompleted.fillAmount = newValue;
+
+            if (ScanBar.transform.position.y <= endPos)
+            {
+                GameScene31Manager.ins.CompleteScene();
+            }
         }
+
     }
 
 }

@@ -19,6 +19,7 @@ TagManager:
   - Buff
   - Banned
   - LimitScene
+  - Police
   layers:
   - Default
   - TransparentFX

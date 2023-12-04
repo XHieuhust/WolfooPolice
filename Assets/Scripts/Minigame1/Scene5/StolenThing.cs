@@ -72,8 +72,9 @@ public class StolenThing : MonoBehaviour
         float eslapsed = 0;
         float seconds = 0.25f;
 
+        Vector3 posIcon = UIManager_Scene5_1.ins.barPanel.icon.transform.position;
         Vector3 start = transform.position;
-        Vector3 end = new Vector3(BarProgress_Scene5_1.ins.icon.transform.position.x, BarProgress_Scene5_1.ins.icon.transform.position.y, transform.position.z);
+        Vector3 end = new Vector3(posIcon.x, posIcon.y, transform.position.z);
 
         while (eslapsed <= seconds)
         {

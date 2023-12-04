@@ -9,12 +9,12 @@ public class Police_Scene4_1 : MonoBehaviour
     [SerializeField] SkeletonAnimation kat;
 
    private void Awake()
-    {
+   {
         wolfoo.transform.position = wolfoo.transform.position - new Vector3(0, Camera.main.orthographicSize, 0);
         kat.transform.position = kat.transform.position - new Vector3(0, Camera.main.orthographicSize, 0);
         wolfoo.AnimationState.SetAnimation(0, "Idle", true);
         kat.AnimationState.SetAnimation(0, "Idle", true);
-    }
+   }
 
 
     public void MoveUp()

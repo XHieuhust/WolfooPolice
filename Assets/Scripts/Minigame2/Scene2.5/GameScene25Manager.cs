@@ -22,5 +22,11 @@ public class GameScene25Manager : MonoBehaviour
         }
     }
 
+    private void CompleteMinigame()
+    {
+        string curMinigame = PlayerPrefs.GetString("curMinigame");
+        LevelManager.ins.UpdateLevel(curMinigame);
+        ScenesManager.ins.LoadScene("SceneMenu");
+    }
 
 }

@@ -10,6 +10,7 @@ public class GameScene31Manager : MonoBehaviour
     [SerializeField] GameObject MayQuetVanTay;
     public int point = 0;
     int maxPoint = 3;
+    public bool isEndGame;
     private void Start()
     {
         ins = this;
@@ -37,5 +38,14 @@ public class GameScene31Manager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         wolfoo.StartQuetVanTay();
         MayQuetVanTay.SetActive(true);
+    }
+
+    public void CompleteScene()
+    {
+        isEndGame = true;
+        //Load new Scene
+
+        string curMinigame = PlayerPrefs.GetString("curMinigame");
+        ScenesManager.ins.LoadScene(curMinigame + ".2");
     }
 }

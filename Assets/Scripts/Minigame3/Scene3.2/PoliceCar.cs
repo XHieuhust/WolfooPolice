@@ -11,14 +11,20 @@ public class PoliceCar : MonoBehaviour
     [SerializeField] float timeMove;
     IEnumerator co;
     Image imgCar;
+    public bool isCanMove;
     public void Start()
     {
+        isCanMove = true;
         imgCar = GetComponent<Image>();
     }
     public void Move(int newRow, int newCol, Vector3 newPos)
     {
-        co = MoveToNewPosition(newRow, newCol, newPos);
-        StartCoroutine(co);
+        if (isCanMove)
+        {
+            co = MoveToNewPosition(newRow, newCol, newPos);
+            StartCoroutine(co);
+        }
+
     }
     
     IEnumerator MoveToNewPosition(int newRow, int newCol, Vector3 newPos)
@@ -67,6 +73,7 @@ public class PoliceCar : MonoBehaviour
 
     IEnumerator Flicker()
     {
+        isCanMove = false;
         float eslapsed = 0;
         float timeFlick = 2f;
         float speedFlick = 1f;
@@ -81,5 +88,6 @@ public class PoliceCar : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         imgCar.color = new Color(imgCar.color.r, imgCar.color.g, imgCar.color.b, 1);
+        isCanMove = true;
     }
 }

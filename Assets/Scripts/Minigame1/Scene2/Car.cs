@@ -53,7 +53,7 @@ public class Car : MonoBehaviour
  
     void CheckBoost()
     {
-        if (Input.GetMouseButtonDown(0) && !GameScene12Manager.ins.isEndGame)
+        if (Input.GetMouseButtonDown(0) && !GameScene12Manager.ins.isEndGame && transform.position.x >= 0)
         {
             StopCoroutine(nameof(Boost));
             StartCoroutine(nameof(Boost));

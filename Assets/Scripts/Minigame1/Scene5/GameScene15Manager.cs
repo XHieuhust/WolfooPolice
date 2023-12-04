@@ -16,7 +16,7 @@ public class GameScene15Manager : MonoBehaviour
     [SerializeField] int maxPoint;
     [SerializeField] float timeMax;
     float eslapsedTime;
-    private int curPoint;
+    public int curPoint;
     public bool isEndGame;
     public float level;
     [SerializeField] List<float> levelScale;
@@ -77,13 +77,17 @@ public class GameScene15Manager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         cam.ScaleUp(1f);
         yield return new WaitForSeconds(2f);
-        shade.gameObject.SetActive(true);
-        yield return new WaitForSeconds(1f);
+        UIManager_Scene5_1.ins.TurnOnPointPanel();
+        yield return new WaitForSeconds(2f);
+/*        shade.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1f);*/
         CompleteMiniGame1();
     }
 
     private void CompleteMiniGame1()
     {
+        string curMinigame = PlayerPrefs.GetString("curMinigame");
+        LevelManager.ins.UpdateLevel(curMinigame);
         ScenesManager.ins.LoadScene("SceneMenu");
     }
 
@@ -124,6 +128,6 @@ public class GameScene15Manager : MonoBehaviour
         {
             curPoint = maxPoint;
         }
-        BarProgress_Scene5_1.ins.UpdateBar(1.0f * curPoint/maxPoint);
+        UIManager_Scene5_1.ins.barPanel.UpdateBar(1.0f * curPoint/maxPoint);
     }
 }

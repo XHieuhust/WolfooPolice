@@ -15,7 +15,7 @@ public class InstantiateMapScene3 : MonoBehaviour
 
     public void LoadMap()
     {
-        string curMinigame = PlayerPrefs.GetString("currentMinigame");
+        string curMinigame = PlayerPrefs.GetString("curMinigame");
         int curLevel = LevelManager.ins.GetLevel(curMinigame);
         Image mapCur = Instantiate(ListMap[curLevel % numOfMap], transform.position, Quaternion.identity);
         mapCur.transform.SetParent(transform, false);

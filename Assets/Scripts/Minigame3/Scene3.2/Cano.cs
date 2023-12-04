@@ -17,7 +17,7 @@ public class Cano : MonoBehaviour
         startPos = transform.position;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Move();
     }

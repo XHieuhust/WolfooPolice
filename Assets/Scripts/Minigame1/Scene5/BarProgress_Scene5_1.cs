@@ -5,17 +5,16 @@ using UnityEngine.UI;
 
 public class BarProgress_Scene5_1 : MonoBehaviour
 {
-    public static BarProgress_Scene5_1 ins;
     [SerializeField] Image barFill;
     [SerializeField] public Image icon;
     [SerializeField] List<Image> ListStars;
     [SerializeField] Sprite completeStar;
+    public int cntCompleteStar;
     Vector3 startPosIcon;
     private float size;
     private float scaleIcon;
     private void Awake()
     {
-        ins = this;
         SetUpBar();
     }
 
@@ -46,21 +45,21 @@ public class BarProgress_Scene5_1 : MonoBehaviour
         CheckCompleteStar();
     }
 
-    int cntStar;
+
     void CheckCompleteStar()
     {
-        if (cntStar < ListStars.Count)
+        if (cntCompleteStar < ListStars.Count)
         {
-            if (Mathf.Abs(icon.transform.position.x - ListStars[cntStar].transform.position.x) <= 0.05f || icon.transform.position.x >= ListStars[cntStar].transform.position.x)
+            if (Mathf.Abs(icon.transform.position.x - ListStars[cntCompleteStar].transform.position.x) <= 0.05f || icon.transform.position.x >= ListStars[cntCompleteStar].transform.position.x)
             {
-                StartCoroutine(StartCompleteStar(ListStars[cntStar]));
+                StartCoroutine(StartCompleteStar(ListStars[cntCompleteStar]));
             }
         }
     }
 
     IEnumerator StartCompleteStar(Image star)
     {
-        cntStar++;
+        cntCompleteStar++;
 
         float scale = star.transform.localScale.x;
         star.sprite = completeStar;
@@ -70,9 +69,9 @@ public class BarProgress_Scene5_1 : MonoBehaviour
         star.transform.localScale = new Vector3(scale, scale, scale);
         star.transform.SetAsFirstSibling();
 
-        if (cntStar < ListStars.Count)
+        if (cntCompleteStar < ListStars.Count)
         {
-            GameScene15Manager.ins.UpdateLevel(cntStar);
+            GameScene15Manager.ins.UpdateLevel(cntCompleteStar);
         }
     }
 }
