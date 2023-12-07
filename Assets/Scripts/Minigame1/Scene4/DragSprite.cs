@@ -45,10 +45,7 @@ public abstract class DragSprite : MonoBehaviour
         isbeingHeld = true;
         offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.localScale = ListTrueObjects[0].transform.localScale;
-        //if (transform.parent)
-        //{
-        //    offset -= transform.parent.position;
-        //}
+
     }
 
     public void OnMouseUp()
@@ -69,7 +66,7 @@ public abstract class DragSprite : MonoBehaviour
         
         foreach (GameObject ob in ListTrueObjects)
         {
-            if (ThoaManDistance(gameObject, ob) && CheckTrangPhucDaDuocMac(ob))
+            if (ThoaManDistance(gameObject, ob))
             {
                 firstTrueObject = ob;
                 CorrectDrag();
@@ -115,11 +112,5 @@ public abstract class DragSprite : MonoBehaviour
 
     }
 
-    bool CheckTrangPhucDaDuocMac(GameObject ob)
-    {
-        if (QuanLyPolice.ins)
-            return (!QuanLyPolice.ins.CheckPoliceDaMacDo(ob));
-        return true;
-    }
 
 }

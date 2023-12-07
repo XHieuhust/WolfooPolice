@@ -15,45 +15,44 @@ public class Bullet : MonoBehaviour
 
     IEnumerator StartMoveToGoalPosition(Vector3 goalPosition)
     {
-        while (Mathf.Sqrt((transform.position.x - goalPosition.x) * (transform.position.x - goalPosition.x) +
-            (transform.position.y - goalPosition.y) * (transform.position.y - goalPosition.y)) >= 0.1f)
+        Vector3 end = new Vector3(goalPosition.x, goalPosition.y, transform.position.z);
+        while (Vector2.Distance(transform.position, end) >= 0.1f)
         {
-            transform.position = Vector2.MoveTowards(transform.position, goalPosition, speedShot * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, end, speedShot * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
-        Instantiate(bulletBroken, transform.position, Quaternion.identity);
-        CheckToDestroyCuop();
-        Destroy(gameObject);
+        transform.position = end;
+        CheckToDestroyCriminal();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Cuop"))
+        if (collision.gameObject.CompareTag("Criminal"))
         {
             ListBulletGoThrough.Add(collision.gameObject);
         }
     }
 
-    void CheckToDestroyCuop()
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Criminal"))
+        {
+            ListBulletGoThrough.Remove(collision.gameObject);
+        }
+    }
+
+    private void CheckToDestroyCriminal()
     {
         int index = 0;
-        float minDist = 100000;
-        if (ListBulletGoThrough.Count == 0) return;
-        for(int i = 0; i < ListBulletGoThrough.Count; ++i)
-        {
-            float dis = Mathf.Sqrt((transform.position.x - ListBulletGoThrough[i].transform.position.x) * (transform.position.x - ListBulletGoThrough[i].transform.position.x) +
-            (transform.position.y - ListBulletGoThrough[i].transform.position.y) * (transform.position.y - ListBulletGoThrough[i].transform.position.y));
-            if(dis < minDist)
-            {
-                minDist = dis;
-                index = i;
-            }
-        }
         if (isOfPolice)
         {
-            Destroy(ListBulletGoThrough[index]);
-            GameScene24Manager.ins.UpdatePoint();
+            if (ListBulletGoThrough.Count != 0)
+            {
+                ListBulletGoThrough[index].GetComponent<Criminal_SceneBank>().BeShooted();
+                GameScene24Manager.ins.UpdatePoint();
+            }
         }
-
+        Instantiate(bulletBroken, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 }

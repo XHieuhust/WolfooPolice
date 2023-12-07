@@ -6,7 +6,7 @@ public class BulletBroken : MonoBehaviour
 {
     [SerializeField] float timeExist;
     float eslapsed;
-    void Update()
+    private void Update()
     {
         eslapsed += Time.deltaTime;
         if (eslapsed >= timeExist)

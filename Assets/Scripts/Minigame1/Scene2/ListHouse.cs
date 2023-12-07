@@ -10,11 +10,11 @@ public class ListHouse : MonoBehaviour
     [SerializeField] Transform endHouse;
     private void Awake()
     {
-        GameScene12Manager.ins.endPosition = endHouse;
+        GameScenePoliceCarManager.ins.endPosition = endHouse;
         int cnt_sprite = spritesHouse.Count;
         int cnt = 0;
-        float centerPositionY = GameScene12Manager.ins.road.transform.position.y;
-        float sizeRoad = GameScene12Manager.ins.road.GetComponent<SpriteRenderer>().size.y / 2;
+        float centerPositionY = GameScenePoliceCarManager.ins.road.transform.position.y;
+        float sizeRoad = GameScenePoliceCarManager.ins.road.GetComponent<SpriteRenderer>().size.y / 2;
         foreach (GameObject house in houses)
         {
             house.GetComponent<SpriteRenderer>().sprite = spritesHouse[(cnt++) % cnt_sprite];

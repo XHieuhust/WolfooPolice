@@ -8,7 +8,7 @@ public class ShopKeeper : MonoBehaviour
     private void Start()
     {
         skeleton.AnimationState.SetAnimation(0, "Waving", true);
-        GameScene12Manager.ins.shopKeeper = this;
+        GameScenePoliceCarManager.ins.shopKeeper = this;
     }
 
     public void Idle_Talk()

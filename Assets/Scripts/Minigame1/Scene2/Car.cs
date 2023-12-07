@@ -36,9 +36,9 @@ public class Car : MonoBehaviour
     [Obsolete]
     private void CheckEndGame()
     {
-        if (transform.position.x >= GameScene12Manager.ins.endPosition.position.x - 10f && !GameScene12Manager.ins.isEndGame)
+        if (transform.position.x >= GameScenePoliceCarManager.ins.endPosition.position.x - 15f && !GameScenePoliceCarManager.ins.isEndGame)
         {
-            GameScene12Manager.ins.isEndGame = true;
+            GameScenePoliceCarManager.ins.isEndGame = true;
             StopAllCoroutines();
             StartCoroutine(StartEndScene());
         }
@@ -53,7 +53,7 @@ public class Car : MonoBehaviour
  
     void CheckBoost()
     {
-        if (Input.GetMouseButtonDown(0) && !GameScene12Manager.ins.isEndGame && transform.position.x >= 0)
+        if (Input.GetMouseButtonDown(0) && !GameScenePoliceCarManager.ins.isEndGame && transform.position.x >= 0)
         {
             StopCoroutine(nameof(Boost));
             StartCoroutine(nameof(Boost));
@@ -108,25 +108,25 @@ public class Car : MonoBehaviour
         Camera cam = Camera.main;
         float startSize = cam.orthographicSize;
         float endSize = (4f / 5) * startSize;
-        float maxDist = (GameScene12Manager.ins.endPosition.position.x - transform.position.x);
+        float maxDist = (GameScenePoliceCarManager.ins.endPosition.position.x - transform.position.x);
         float curDist;
         boostEffect.SetActive(false);
-        while (transform.position.x <= GameScene12Manager.ins.endPosition.position.x)
+        while (transform.position.x <= GameScenePoliceCarManager.ins.endPosition.position.x)
         {
             speedCar = speedNormal;
-            curDist = GameScene12Manager.ins.endPosition.position.x - transform.position.x;
+            curDist = GameScenePoliceCarManager.ins.endPosition.position.x - transform.position.x;
             cam.orthographicSize = startSize + (endSize - startSize) * (1-curDist/maxDist);
             yield return new WaitForEndOfFrame();
         }
         cam.orthographicSize = endSize;
-        GameScene12Manager.ins.shopKeeper.transform.eulerAngles += new Vector3(0, 180, 0);
+        GameScenePoliceCarManager.ins.shopKeeper.transform.eulerAngles += new Vector3(0, 180, 0);
         speedCar = 0;
 
         float eslapsed = 0;
         float seconds = 1f;
 
         Vector3 start = transform.position;
-        Vector3 end = new Vector3(GameScene12Manager.ins.endPosition.position.x + 2f + (3f / 4) * Camera.main.orthographicSize * Camera.main.aspect, transform.position.y, transform.position.z);
+        Vector3 end = new Vector3(GameScenePoliceCarManager.ins.endPosition.position.x + 2f + (3f / 4) * Camera.main.orthographicSize * Camera.main.aspect, transform.position.y, transform.position.z);
 
         while(eslapsed <= seconds)
         {
@@ -143,7 +143,7 @@ public class Car : MonoBehaviour
         }
         transform.position = end;
         smoke.gameObject.SetActive(false);
-        GameScene12Manager.ins.EndScene();
+        GameScenePoliceCarManager.ins.EndScene();
     }
 
 }

@@ -15,13 +15,13 @@ public class Police_Scene2_1 : MonoBehaviour
     }
     IEnumerator StartMove(float seconds)
     {
-        transform.position = new Vector3(GameScene12Manager.ins.car.transform.position.x + 2f, transform.position.y, transform.position.z);
+        transform.position = new Vector3(GameScenePoliceCarManager.ins.car.transform.position.x + 2f, transform.position.y, transform.position.z);
 
         wolfoo.AnimationState.SetAnimation(0, "Run_Ninja2", true);
         kat.AnimationState.SetAnimation(0, "Run_Ninja2", true);
         float elapsedTime = 0;
         Vector3 startingPos = transform.position;
-        Vector3 endPosition = new Vector3(GameScene12Manager.ins.endPosition.position.x + 1.5f, transform.position.y, transform.position.z);
+        Vector3 endPosition = new Vector3(GameScenePoliceCarManager.ins.endPosition.position.x + 1.5f, transform.position.y, transform.position.z);
         while (elapsedTime <= seconds)
         {
             elapsedTime += Time.deltaTime;
@@ -31,7 +31,7 @@ public class Police_Scene2_1 : MonoBehaviour
         transform.position = endPosition;
         wolfoo.AnimationState.SetAnimation(0, "Idle_Talk", true);
         kat.AnimationState.SetAnimation(0, "Idle_Talk", true);
-        GameScene12Manager.ins.shopKeeper.Idle_Talk();
+        GameScenePoliceCarManager.ins.shopKeeper.Idle_Talk();
     }
 
 

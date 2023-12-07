@@ -11,7 +11,7 @@ public class CameraSetting : MonoBehaviour
     {
         // Camera in car
         if (car.transform.position.x >= 0) {
-            if(GameScene12Manager.ins.endPosition && car.transform.position.x <= GameScene12Manager.ins.endPosition.position.x+2f){
+            if(GameScenePoliceCarManager.ins.endPosition && car.transform.position.x <= GameScenePoliceCarManager.ins.endPosition.position.x+2f){
                 this.transform.position = new Vector3(car.transform.position.x, transform.position.y, transform.position.z);
             }
         }

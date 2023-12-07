@@ -9,8 +9,6 @@ TagManager:
   - WheelCar
   - TuiSao
   - Bullet
-  - Cuop
-  - ObsacleScene15
   - Toy
   - CarChased
   - PoliceCarChase
@@ -20,6 +18,7 @@ TagManager:
   - Banned
   - LimitScene
   - Police
+  - Criminal
   layers:
   - Default
   - TransparentFX
