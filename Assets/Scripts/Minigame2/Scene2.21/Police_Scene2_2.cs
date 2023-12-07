@@ -40,6 +40,7 @@ public class Police_Scene2_2 : MonoBehaviour
     public void EquipTheDevice()
     {
         isEquipped = true;
+        StopCoroutine(nameof(StartEquip));
         StartCoroutine(nameof(StartEquip));
     }
 
@@ -50,6 +51,7 @@ public class Police_Scene2_2 : MonoBehaviour
         skeleton.AnimationState.SetAnimation(0, "Dressing" + (index + 1).ToString(), true);
 
         yield return new WaitForSeconds(1.5f);
+        skeleton.AnimationState.SetAnimation(0, "Idle", true);
         
     }
 

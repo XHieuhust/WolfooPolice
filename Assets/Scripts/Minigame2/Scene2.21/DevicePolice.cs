@@ -5,17 +5,20 @@ using UnityEngine;
 public class DevicePolice : MonoBehaviour
 {
     private Vector3 scaleNormal;
-    private Vector3 startPos;
+    public Vector3 belowPos;
+    public Vector3 abovePos;
+    public bool sideDevice;
+    public float timeMove;
+
     bool isbeingHeld = false;
     private Vector3 offset;
-    [SerializeField] float minDist;
     private bool isCanDrag;
     Police_Scene2_2 police;
-    [SerializeField] Rope_Scene2_2 rope;
+
+
     private void Start()
     {
         isCanDrag = true;
-        startPos = rope.belowPos;
         scaleNormal = transform.localScale;
     }
     private void Update()
@@ -30,6 +33,11 @@ public class DevicePolice : MonoBehaviour
     {
         if (isCanDrag)
         {
+            if (isbeingHeld != true)
+            {
+                Rope_Scene2_2.deviceOnClick?.Invoke(sideDevice);
+            }
+            transform.SetParent(null);
             isbeingHeld = true;
             offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.localScale = new Vector3(scaleNormal.x * 1.2f, scaleNormal.y * 1.2f, scaleNormal.z * 1.2f);
@@ -39,19 +47,27 @@ public class DevicePolice : MonoBehaviour
 
     public void OnMouseUp()
     {
-        transform.localScale = scaleNormal;
+        isCanDrag = true;
         isbeingHeld = false;
+        bool isTrueDrop = false;
         if (police != null)
         {
-            if (Vector2.Distance(transform.position, police.transform.position) <= minDist)
+            if (!police.isEquipped)
             {
-                if (!police.isEquipped)
-                {
-                    Destroy(gameObject);
-                }
+                isTrueDrop = true;
+                Rope_Scene2_2.deviceTrueDrop?.Invoke(sideDevice);
+                police.EquipTheDevice();
+                Destroy(gameObject);    
             }
         }
-        StartCoroutine(StartToMoveBack());
+
+        if (!isTrueDrop)
+        {
+            Rope_Scene2_2.deviceOffClick?.Invoke(sideDevice);
+            StopCoroutine(nameof(StartToMoveBack));
+            StartCoroutine(nameof(StartToMoveBack));
+        }
+
 
     }
 
@@ -73,17 +89,19 @@ public class DevicePolice : MonoBehaviour
 
     IEnumerator StartToMoveBack()
     {
-        isCanDrag = false;
+        transform.localScale = scaleNormal;
+
         float elapsedTime = 0;
-        float seconds = 0.25f;
-        Vector3 startingPos = transform.position;
+        float seconds = timeMove;
+        Vector3 start = transform.position;
+        Vector3 end = belowPos;
         while (elapsedTime < seconds)
         {
-            transform.position = Vector3.Lerp(startingPos, startPos, (elapsedTime / seconds));
+            transform.position = Vector3.Lerp(start, end, (elapsedTime / seconds));
             elapsedTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
-        transform.position = startPos;
-        isCanDrag = true;
+        transform.position = end;
+        transform.SetParent(transform.parent, true);
     }
 }

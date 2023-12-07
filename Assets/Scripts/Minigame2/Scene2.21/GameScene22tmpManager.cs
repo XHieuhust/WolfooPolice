@@ -18,13 +18,13 @@ public class GameScene22tmpManager : MonoBehaviour
     {
         policeManager.StartScene(2f);
         yield return new WaitForSeconds(2f);
-        ropeManager.StartTurn(0.25f);
+        ropeManager.StartTurn();
 
     }
 
     public void UpdateTurn()
     {
         cntTurn++;
-        ropeManager.StartTurn(0.25f);
+        ropeManager.StartTurn();
     }
 }
