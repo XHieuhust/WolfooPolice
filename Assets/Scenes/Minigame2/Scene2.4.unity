@@ -690,6 +690,7 @@ MonoBehaviour:
   maxPoint: 30
   police: {fileID: 1429487024}
   spawnManager: {fileID: 1852112528}
+  pointUpLevel: 1
 --- !u!4 &1843885241
 Transform:
   m_ObjectHideFlags: 0
