@@ -21,11 +21,13 @@ public class CriminalGun_SceneBank : Criminal_SceneBank
     private void OnEnable()
     {
         Police_SceneBank.canBeShooted += CheckToShoot;
+        GameScene24Manager.ins.endScene += EndScene;
     }
 
     private void OnDestroy()
     {
         Police_SceneBank.canBeShooted -= CheckToShoot;
+        GameScene24Manager.ins.endScene += EndScene;
     }
 
     private void CheckToShoot()
@@ -70,7 +72,7 @@ public class CriminalGun_SceneBank : Criminal_SceneBank
         if (!isShooting && !isBeShooted)
         {
             transform.position += new Vector3(directX * speedMove * Time.deltaTime, 0, 0);
-            transform.eulerAngles = new Vector3(0, (directX == 0) ? 0 : 180);
+            transform.eulerAngles = new Vector3(0, (directX == -1) ? 0 : 180);
         }
 
     }

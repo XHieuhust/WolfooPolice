@@ -9,6 +9,18 @@ public class Criminal_SceneBank : MonoBehaviour
     public float directX;
     [SerializeField] protected SkeletonAnimation skeleton;
     protected bool isBeShooted;
+    private bool isEndGame;
+
+    private void OnEnable()
+    {
+        GameScene24Manager.ins.endScene += EndScene;
+    }
+
+    private void OnDestroy()
+    {
+        GameScene24Manager.ins.endScene -= EndScene;
+    }
+
     private void Start()
     {
         skeleton.AnimationState.SetAnimation(0, "Walk_CarryMoney", true);
@@ -22,7 +34,7 @@ public class Criminal_SceneBank : MonoBehaviour
 
     protected virtual void Move()
     {
-        if (!isBeShooted)
+        if (!isBeShooted && !isEndGame)
         {
             transform.position += new Vector3(directX * speedMove * Time.deltaTime, 0, 0);
             transform.eulerAngles = new Vector3(0, (directX == -1) ? 0 : 180);
@@ -33,7 +45,7 @@ public class Criminal_SceneBank : MonoBehaviour
 
     public void BeShooted()
     {
-        if (!isBeShooted)
+        if (!isBeShooted && !isEndGame)
         {
             StartCoroutine(StartBeShooted());
         }
@@ -66,11 +78,20 @@ public class Criminal_SceneBank : MonoBehaviour
         skeleton.gameObject.GetComponent<MeshRenderer>().sortingOrder += 2;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("LimitScene"))
         {
             Destroy(gameObject);
         }
     }
+
+    protected void EndScene()
+    {
+        isEndGame = true;
+        speedMove = 0;
+        skeleton.AnimationState.SetAnimation(0, "Kneel", true);
+    }
+
+    
 }

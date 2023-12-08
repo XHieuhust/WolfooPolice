@@ -9,7 +9,11 @@ public class GameScene24Manager : MonoBehaviour
     [SerializeField] int maxPoint;
     [SerializeField] public Police_SceneBank police;
     [SerializeField] SpawnCriminal_SceneBank spawnManager;
-    [SerializeField] int pointUpLevel;
+    [SerializeField] int pointAppearCriminalGun;
+    private bool isEndGame;
+    public delegate void EndScene();
+    public event EndScene endScene;
+
     private void Awake()
     {
         ins = this;
@@ -17,15 +21,29 @@ public class GameScene24Manager : MonoBehaviour
 
     public void UpdatePoint()
     {
-        point++;
-        if (point == pointUpLevel)
+        if (!isEndGame)
         {
-            spawnManager.StartSpawnCriminalGun();
+            point++;
+            BarPanel_SceneBank.ins.UpdateBar(1.0f * point / maxPoint);
+            if (point == pointAppearCriminalGun)
+            {
+                spawnManager.StartSpawnCriminalGun();
+            }
+            if (point == maxPoint)
+            {
+                isEndGame = true;
+                StartCoroutine(StartEndScene());
+            }
         }
-        if(point == maxPoint)
-        {
-            LoadNewScene();
-        }
+
+    }
+
+    IEnumerator StartEndScene()
+    {
+        yield return new WaitForSeconds(1f);
+        endScene?.Invoke();
+        yield return new WaitForSeconds(2f);
+        LoadNewScene();
     }
 
     private void LoadNewScene()

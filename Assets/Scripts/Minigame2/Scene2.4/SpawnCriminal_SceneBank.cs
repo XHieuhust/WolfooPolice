@@ -14,22 +14,26 @@ public class SpawnCriminal_SceneBank : MonoBehaviour
 
     public delegate void SpawnCriminalGun();
     public static SpawnCriminalGun spawnCriminalGun;
-
+    Vector3 spawnUp, spawnUnder;
     public void Start()
     {
+        float sizeCam = Camera.main.orthographicSize * Camera.main.aspect;
+        spawnUp = new Vector3(-sizeCam - 2f, roadUp.position.y, roadUp.position.z);
+        spawnUnder = new Vector3(sizeCam + 2f, roadUnder.position.y, roadUnder.position.z);
         StartToSpawn();
     }
 
     private void OnEnable()
     {
         spawnCriminalGun += StartSpawnCriminalGun;
+        GameScene24Manager.ins.endScene += EndScene; 
     }
 
-    void InstantiateCriminal(GameObject typeCriminal, Transform road, float directX)
+    void InstantiateCriminal(GameObject typeCriminal, Vector3 posSpawn, float directX)
     {
-        GameObject newCrim = Instantiate(typeCriminal, road.position, Quaternion.identity);
+        GameObject newCrim = Instantiate(typeCriminal, posSpawn, Quaternion.identity);
         newCrim.GetComponent<Criminal_SceneBank>().directX = directX;
-        if (road == roadUnder)
+        if (posSpawn == spawnUnder)
         {
             newCrim.GetComponent<Criminal_SceneBank>().IncreaseOrderLayer();
         }
@@ -38,13 +42,13 @@ public class SpawnCriminal_SceneBank : MonoBehaviour
     IEnumerator SpawnCriminal1()
     {
         int cnt = 0;
-        int maxInTurn = 10;
-        while (true)
+        while (cnt <= maxInTurn)
         {
-            InstantiateCriminal(criminal, roadUnder, -1);
-            InstantiateCriminal(criminal, roadUp, 1);
+            cnt++;
+            InstantiateCriminal(criminal, spawnUnder, -1);
+            InstantiateCriminal(criminal, spawnUp, 1);
             yield return new WaitForSeconds(timeDelay1);
-            InstantiateCriminal(criminal, roadUnder, -1);
+            InstantiateCriminal(criminal, spawnUnder, -1);
             yield return new WaitForSeconds(timeSpawn);
         }
         StartCoroutine(nameof(SpawnCriminal2));
@@ -54,12 +58,13 @@ public class SpawnCriminal_SceneBank : MonoBehaviour
     {
         int cnt = 0;
 
-        while (true)
+        while (cnt <= maxInTurn)
         {
-            InstantiateCriminal(criminal, roadUp, 1);
-            InstantiateCriminal(criminal, roadUnder, -1);
+            cnt++;
+            InstantiateCriminal(criminal, spawnUp, 1);
+            InstantiateCriminal(criminal, spawnUnder, -1);
             yield return new WaitForSeconds(timeDelay1);
-            InstantiateCriminal(criminal, roadUp, 1);
+            InstantiateCriminal(criminal, spawnUp, 1);
             yield return new WaitForSeconds(timeSpawn);
         }
         StartCoroutine(nameof(SpawnCriminal1));
@@ -72,7 +77,7 @@ public class SpawnCriminal_SceneBank : MonoBehaviour
         while (cnt <= maxInTurn)
         {
             cnt++;
-            InstantiateCriminal(criminalGun, roadUp, 1);
+            InstantiateCriminal(criminalGun, spawnUp, 1);
             yield return new WaitForSeconds(timeSpawn);
         }
         StartCoroutine(nameof(SpawnCriminalGun2));
@@ -85,7 +90,8 @@ public class SpawnCriminal_SceneBank : MonoBehaviour
         int cnt = 0;
         while (cnt <= maxInTurn)
         {
-            InstantiateCriminal(criminalGun, roadUnder, 1);
+            cnt++;
+            InstantiateCriminal(criminalGun, spawnUnder, -1);
             yield return new WaitForSeconds(timeSpawn);
         }
         StartCoroutine(nameof(SpawnCriminalGun1));
@@ -100,5 +106,10 @@ public class SpawnCriminal_SceneBank : MonoBehaviour
     public void StartSpawnCriminalGun()
     {
         StartCoroutine(nameof(SpawnCriminalGun1));
+    }
+
+    private void EndScene()
+    {
+        StopAllCoroutines();
     }
 }

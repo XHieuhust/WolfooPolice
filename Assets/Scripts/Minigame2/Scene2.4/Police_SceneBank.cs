@@ -17,10 +17,13 @@ public class Police_SceneBank : MonoBehaviour
     [SerializeField] public Transform posHeadPolice;
     public delegate void CanBeShooted();
     public static event CanBeShooted canBeShooted;
+    private bool isEndGame;
     private void Start()
     {
         skeleton.AnimationState.SetAnimation(0, "Sit_Hide", true);
+        GameScene24Manager.ins.endScene += EndScene;
     }
+
     private void Update()
     {
         CheckShot();
@@ -28,7 +31,7 @@ public class Police_SceneBank : MonoBehaviour
 
     private void CheckShot()
     {
-        if (Input.GetMouseButtonDown(0) && !isShooting && !isBeShooted)
+        if (Input.GetMouseButtonDown(0) && !isShooting && !isBeShooted && !isEndGame)
         {
             Vector3 goalPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if(goalPosition.x > limitPosXCanShot.position.x && goalPosition.y > transform.position.y)
@@ -91,5 +94,12 @@ public class Police_SceneBank : MonoBehaviour
         
         skeleton.AnimationState.SetAnimation(0, "Sit_Hide", true);
 
+    }
+
+    private void EndScene()
+    {
+        isEndGame = true;
+        StopAllCoroutines();
+        skeleton.AnimationState.SetAnimation(0, "Jump_Win", true);
     }
 }

@@ -5,28 +5,29 @@ using UnityEngine;
 public class GameScene25Manager : MonoBehaviour
 {
     public static GameScene25Manager ins;
-    public int point;
-    public int maxPoint;
-    [SerializeField] ProgressBarScene25 BarProgress;
-    private void Start()
+    public delegate void StartTurn(float time);
+    public static event StartTurn startTurn;
+    [SerializeField] float timeStartTurn;
+    [SerializeField] int maxPoint;
+    [SerializeField] int madPoint;
+    int curPoint;
+    [SerializeField] Criminal_Scene5_2 criminal;
+    private void Awake()
     {
         ins = this;
     }
+
+    public void StartNewTurn()
+    {
+        startTurn?.Invoke(timeStartTurn);
+    }
+
     public void UpdatePoint()
     {
-        point++;
-        BarProgress.UpdateBar(1.0f * point / maxPoint);
-        if(point == maxPoint)
+        curPoint++;
+        if (curPoint % madPoint == 0)
         {
-            ScenesManager.ins.LoadScene("SceneMenu");
+            criminal.GetMad();
         }
     }
-
-    private void CompleteMinigame()
-    {
-        string curMinigame = PlayerPrefs.GetString("curMinigame");
-        LevelManager.ins.UpdateLevel(curMinigame);
-        ScenesManager.ins.LoadScene("SceneMenu");
-    }
-
 }
