@@ -1,5 +1,6 @@
 using Spine.Unity;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Criminal_Scene5_2 : MonoBehaviour
@@ -14,14 +15,21 @@ public class Criminal_Scene5_2 : MonoBehaviour
     [SerializeField] Transform end;
     [SerializeField] float rateAttack;
     [SerializeField] bool isAttacking;
+    [SerializeField] float minDistBeAttacked;
     [SerializeField] float timeBeAttacked;
     [SerializeField] float timeDecreaseWhenBeAttacked;
+    [SerializeField] private int madBullet;
+    [SerializeField] BgAttack_Scene5_2 bgAttack;
+    [SerializeField] float timeAttack;
+    [SerializeField] public Transform headPos;
+    [SerializeField] List<int> markChangeSkins;
+    private int curSkin;
+    private int cntBullet;
+    private int curBullet;
     public delegate void CriminalAttack();
     public static event CriminalAttack criminalAttack;
-
+    GameObject bulletCheck = null;
     private bool isGetMad;
-    private int cnttBullet;
-
 
     private void Awake()
     {
@@ -37,6 +45,8 @@ public class Criminal_Scene5_2 : MonoBehaviour
     private void OnEnable()
     {
         GameScene25Manager.startTurn += NewTurn;
+        Gun_Scene5_2.stopShoot += Surrender;
+        Bullet_Scene5_2.bulletBroken += CheckBeShooted;
     }
 
     IEnumerator StartScaleUp()
@@ -62,7 +72,7 @@ public class Criminal_Scene5_2 : MonoBehaviour
         } while (eslapsed <= seconds);
         transform.position = end;
         SetScale(1);
-        SetAnimAttack();
+        Attack();
         //
     }
 
@@ -71,10 +81,20 @@ public class Criminal_Scene5_2 : MonoBehaviour
         transform.localScale = new Vector3(startScale + (endScale - startScale) * rate, startScale + (endScale - startScale) * rate, startScale + (endScale - startScale) * rate);
     }
 
-    private void SetAnimAttack()
+    IEnumerator StartAttack()
     {
-        isAttacking = false;
-        skeleton.AnimationState.SetAnimation(0, "Attack", false).Complete += Criminal_Scene5_2_Complete;
+        curBullet = 0;
+        BgAttack_Scene5_2 newAttack = Instantiate(bgAttack, Vector3.zero, Quaternion.identity);
+        newAttack.Enable(timeAttack);
+        skeleton.AnimationState.SetAnimation(0, "Attack", false);
+        yield return new WaitForSeconds(timeAttack);
+        GameScene25Manager.ins.StartNewTurn();
+
+    }
+    private void Attack()
+    {
+        StartCoroutine(StartAttack());
+
     }
 
     private void NewTurn(float timeStartTurn)
@@ -83,27 +103,65 @@ public class Criminal_Scene5_2 : MonoBehaviour
     }
     IEnumerator StartNewTurn(float timeStartTurn)
     {
+        isAttacking = false;
         eslapsed = 0;
         transform.position = startPos;
         SetScale(0);
+        skeleton.AnimationState.SetAnimation(0, "Walk_Angry", true);
         yield return new WaitForSeconds(timeStartTurn);
         isGetMad = false;
         StartCoroutine(nameof(StartScaleUp));
     }
 
-    private void Criminal_Scene5_2_Complete(Spine.TrackEntry trackEntry)
-    {
-        GameScene25Manager.ins.StartNewTurn();
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // when bullet broken
-        if (collision.gameObject.CompareTag("Bullet") && !isGetMad)
+        if (collision.gameObject.CompareTag("Bullet"))
         {
+            bulletCheck = collision.gameObject;
+        }
+        // when bullet broken
+/*        if (collision.gameObject.CompareTag("Bullet") && !isGetMad && !GameScene25Manager.ins.isEndGame)
+        {   
             BeAttacked();
+        }*/
+
+/*        if (GameScene25Manager.ins.isEndGame)
+        {
+            BeAttackedWhenEndGame();
+        }*/
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        bulletCheck = null;
+
+    }
+    private void CheckBeShooted(GameObject bullet)
+    {
+        if (bulletCheck != null)
+        {
+            if (bulletCheck == bullet)
+            {
+                if (!isGetMad && !GameScene25Manager.ins.isEndGame)
+                {
+                    BeAttacked();
+                }
+                if (GameScene25Manager.ins.isEndGame)
+                {
+                    BeAttackedWhenEndGame();
+                }
+            }
         }
     }
+
+
+
+    private void BeAttackedWhenEndGame()
+    {
+        StopAllCoroutines();
+        skeleton.AnimationState.SetAnimation(0, "Hit", true);
+
+    }
+
 
     private void BeAttacked()
     {
@@ -114,10 +172,16 @@ public class Criminal_Scene5_2 : MonoBehaviour
 
     IEnumerator StartBeAttacked()
     {
-        skeleton.AnimationState.SetAnimation(0, "Hit", false);
         StopCoroutine(nameof(StartScaleUp));
-        cnttBullet++;
         GameScene25Manager.ins.UpdatePoint();
+        curBullet++;
+        cntBullet++;
+        CheckChangeSkin();
+        skeleton.AnimationState.SetAnimation(0, "Hit", false);
+        if (curBullet == madBullet)
+        {
+            GetMad();
+        }
         eslapsed -= timeDecreaseWhenBeAttacked;
         if (eslapsed <= 0)
         {
@@ -132,8 +196,27 @@ public class Criminal_Scene5_2 : MonoBehaviour
 
     public void GetMad()
     {
+        curBullet = 0;
         StopCoroutine(nameof(StartBeAttacked));
         isGetMad = true;
         StartCoroutine(nameof(StartScaleUp));
+    }
+
+    private void Surrender()
+    {
+        skeleton.AnimationState.SetAnimation(0, "Kneel", true);
+    }
+
+    private void CheckChangeSkin()
+    {
+        if (curSkin < markChangeSkins.Count)
+        {
+            if (markChangeSkins[curSkin] == cntBullet)
+            {
+                skeleton.initialSkinName = "Dirty" + curSkin.ToString();
+                skeleton.Initialize(true);
+                curSkin++;
+            }
+        }
     }
 }

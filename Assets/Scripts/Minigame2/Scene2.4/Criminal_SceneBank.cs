@@ -9,7 +9,7 @@ public class Criminal_SceneBank : MonoBehaviour
     public float directX;
     [SerializeField] protected SkeletonAnimation skeleton;
     protected bool isBeShooted;
-    private bool isEndGame;
+    protected bool isEndGame;
 
     private void OnEnable()
     {
@@ -64,7 +64,7 @@ public class Criminal_SceneBank : MonoBehaviour
             skeleton.Skeleton.A = (1 - eslasped / seconds);
             yield return new WaitForEndOfFrame();
         }
-        skeleton.Skeleton.A = 0;
+        //skeleton.Skeleton.A = 0;
         Destroy(gameObject);
     }
 
@@ -90,7 +90,10 @@ public class Criminal_SceneBank : MonoBehaviour
     {
         isEndGame = true;
         speedMove = 0;
-        skeleton.AnimationState.SetAnimation(0, "Kneel", true);
+        if (skeleton != null)
+        {
+            skeleton.AnimationState.SetAnimation(0, "Kneel", true);
+        }
     }
 
     

@@ -51,6 +51,21 @@ public class GameSceneDressingManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         policeManager.EndScene(2f);
         endShade.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        LoadNewScene();
+    }
 
+    private void LoadNewScene()
+    {
+        string curMinigame = PlayerPrefs.GetString("curMinigame");
+        if (curMinigame.Equals("Scene2"))
+        {
+            ScenesManager.ins.LoadScene(curMinigame + ".3");
+        }
+
+        if (curMinigame.Equals("Scene4"))
+        {
+            ScenesManager.ins.LoadScene(curMinigame + ".2");
+        }
     }
 }

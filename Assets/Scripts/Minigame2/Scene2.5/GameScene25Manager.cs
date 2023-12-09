@@ -7,14 +7,22 @@ public class GameScene25Manager : MonoBehaviour
     public static GameScene25Manager ins;
     public delegate void StartTurn(float time);
     public static event StartTurn startTurn;
+    public delegate void EndGame(float time);
+    public static event EndGame endGame;
+
     [SerializeField] float timeStartTurn;
+    [SerializeField] float timeEndGame;
     [SerializeField] int maxPoint;
-    [SerializeField] int madPoint;
     int curPoint;
-    [SerializeField] Criminal_Scene5_2 criminal;
+    [SerializeField] public Criminal_Scene5_2 criminal;
+    [SerializeField] ShadeBg startShade;
+    [SerializeField] ShadeBg endShade;
+
+    public bool isEndGame;
     private void Awake()
     {
         ins = this;
+        startShade.gameObject.SetActive(true);
     }
 
     public void StartNewTurn()
@@ -25,9 +33,30 @@ public class GameScene25Manager : MonoBehaviour
     public void UpdatePoint()
     {
         curPoint++;
-        if (curPoint % madPoint == 0)
+        BarPanel_Scene5_2.ins.UpdateBar(1.0f * curPoint/maxPoint);
+        if (curPoint == maxPoint)
         {
-            criminal.GetMad();
+            StartCoroutine(StartEndGame());     
         }
+    }
+
+    IEnumerator StartEndGame()
+    {
+        BarPanel_Scene5_2.ins.EndGame();
+        yield return new WaitForSeconds(0.25f);
+        isEndGame = true;
+        endGame?.Invoke(timeEndGame);
+        yield return new WaitForSeconds(timeEndGame + 2f);
+        endShade.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        CompleteMiniGame2();
+        
+    }
+
+    private void CompleteMiniGame2()
+    {
+        string curMinigame = PlayerPrefs.GetString("curMinigame");
+        LevelManager.ins.UpdateLevel(curMinigame);
+        ScenesManager.ins.LoadScene("SceneMenu");
     }
 }

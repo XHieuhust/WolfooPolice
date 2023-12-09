@@ -5,6 +5,8 @@ using UnityEngine;
 public class Bullet_Scene5_2 : MonoBehaviour
 {
     [SerializeField] GameObject broken;
+    public delegate void BulletBroken(GameObject ob);
+    public static event BulletBroken bulletBroken;
     public void ShootIntoGoalPos(float timeMove, Vector3 goalPos, int isRight) {
         StartCoroutine(StartMove(timeMove, goalPos, isRight));
     }
@@ -23,6 +25,7 @@ public class Bullet_Scene5_2 : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         transform.position = end;
+        bulletBroken?.Invoke(gameObject);
         Instantiate(broken, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }

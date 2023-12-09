@@ -9,6 +9,7 @@ public class Gun_Scene5_2 : MonoBehaviour
     [SerializeField] float timeShooting;
     [SerializeField] float maxRotateShooting;
     [SerializeField] RayGun_Scene5_2 rayGun;
+    [SerializeField] float timeDelayEndGame;
     public bool isRightGun;
     bool isShooting;
     [SerializeField] Bullet_Scene5_2 bullet;
@@ -17,6 +18,9 @@ public class Gun_Scene5_2 : MonoBehaviour
     Vector3 underPos;
     bool isBeAttacked;
     bool isReady;
+
+    public delegate void StopShoot();
+    public static event StopShoot stopShoot;
 
     private void Awake()
     {
@@ -31,6 +35,8 @@ public class Gun_Scene5_2 : MonoBehaviour
     {
         Criminal_Scene5_2.criminalAttack += BeAttacked;
         GameScene25Manager.startTurn += NewTurn;
+        GameScene25Manager.endGame += EndGame;
+
     }
     private void Update()
     {
@@ -44,19 +50,24 @@ public class Gun_Scene5_2 : MonoBehaviour
             posMouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if (((posMouse.x >= 0 && !isRightGun) || (posMouse.x < 0 && isRightGun)) && !isShooting)
             {
-                StartCoroutine(nameof(StartShooting), (isRightGun ? 1 : -1));
+                Shooting(posMouse);
             }
         }
     }
 
-    IEnumerator StartShooting(int isRight)
+    private void Shooting(Vector3 goalPos)
+    {
+        StartCoroutine(StartShooting((isRightGun ? 1 : -1), goalPos));
+    }
+
+    IEnumerator StartShooting(int isRight, Vector3 goalPos)
     {
         Quaternion rayQuater = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z, 0);
         RayGun_Scene5_2 newRay = Instantiate(rayGun, headGun.position, rayQuater, transform);
         newRay.Fade(timeShooting);
 
         Bullet_Scene5_2 newBullet = Instantiate(bullet, headGun.position, Quaternion.identity);
-        newBullet.ShootIntoGoalPos(timeShooting, posMouse, isRight);
+        newBullet.ShootIntoGoalPos(timeShooting, goalPos, isRight);
 
         isShooting = true;
         float eslapsed = 0;
@@ -102,7 +113,6 @@ public class Gun_Scene5_2 : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         transform.position = end;
-        isBeAttacked = false;
     }
 
     private void NewTurn(float timeStartTurn)
@@ -111,6 +121,7 @@ public class Gun_Scene5_2 : MonoBehaviour
     }
     IEnumerator StartNewTurn(float timeStartTurn)
     {
+        isBeAttacked = false;
         isReady = false;
         isShooting = false;
         float eslapsed = 0;
@@ -126,5 +137,29 @@ public class Gun_Scene5_2 : MonoBehaviour
         }
         transform.position = end;
         isReady = true;
+    }
+
+    private void EndGame(float timeEndGame)
+    {
+        StartCoroutine (nameof(StartEndGame), timeEndGame);  
+    }
+
+    IEnumerator StartEndGame(float timeEndGame)
+    {
+        float eslapsed = 0;
+        if (isRightGun)
+        {
+            yield return new WaitForSeconds(timeShooting/2);
+        }
+        while (eslapsed <= timeEndGame)
+        {
+            Shooting(GameScene25Manager.ins.criminal.headPos.position);
+            yield return new WaitForSeconds(timeShooting);
+            eslapsed += timeShooting;
+        }
+        if (isRightGun)
+        {
+            stopShoot?.Invoke();
+        }
     }
 }

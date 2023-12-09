@@ -11,7 +11,7 @@ public class SpawnEnemyCar : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(nameof(SpawnCar));
+        StartCoroutine(SpawnCar());
     }
 
     IEnumerator SpawnCar()
@@ -27,10 +27,5 @@ public class SpawnEnemyCar : MonoBehaviour
             Instantiate(ListEnemyCars[cnt_car], ListPosSpawn[cnt_pos].position, Quaternion.Euler(0, 180 ,0), transform);
             yield return new WaitForSeconds(timeSpawn);
         }
-    }
-
-    public void StopSpawn()
-    {
-        StopCoroutine(nameof(SpawnCar));
     }
 }

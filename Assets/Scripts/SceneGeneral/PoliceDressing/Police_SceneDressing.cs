@@ -8,8 +8,10 @@ public class Police_SceneDressing : MonoBehaviour
     [SerializeField] SkeletonAnimation skeleton;
     public bool isEquipped;
     int cntEquip;
+    bool isRightPos; //tmp change skin
     public void MoveRight(float seconds, bool isRight)
     {
+        isRightPos = isRight;
         StartCoroutine(StartMoveRight(seconds, isRight));
     }
 
@@ -48,7 +50,26 @@ public class Police_SceneDressing : MonoBehaviour
     {
         cntEquip++;
         isEquipped = true;
-        skeleton.initialSkinName = "Swat" + (cntEquip).ToString();
+
+        string SceneSkin = null;
+        string curMinigame = PlayerPrefs.GetString("curMinigame");
+        if (curMinigame == "Scene2")
+        {
+            SceneSkin = "Swat";
+        }
+
+        if (curMinigame == "Scene4")
+        {
+            if (isRightPos)
+            {
+                SceneSkin = "TrafficPoliceman";
+            }
+            else
+            {
+                SceneSkin = "TraficPoliceman";
+            }
+        }
+        skeleton.initialSkinName = SceneSkin + (cntEquip).ToString();
         skeleton.Initialize(true);
         skeleton.AnimationState.SetAnimation(0, "Dressing" + (cntEquip).ToString(), true);
 

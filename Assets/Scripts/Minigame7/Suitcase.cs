@@ -96,7 +96,6 @@ public class Suitcase : MonoBehaviour
         isOnClick = true;
 
         float newY;
-        Vector3 newPos;
         float speed = 10;
         
         newY = spriteSuitcase.transform.position.y + 1f;
