@@ -18,6 +18,9 @@ public class Cell : MonoBehaviour
     }
     private void OnClick()
     {
-        Map.ins.car.Move(indexRow, indexCol, transform.position);
+        if (!GameScene32Manager.ins.isMovingCam)
+        {
+            Map.ins.car.Move(indexRow, indexCol, transform.position);
+        }
     }
 }

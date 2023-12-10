@@ -66,87 +66,113 @@ extern void Physics2D_Raycast_m56E5CBDA49BD64A3A775F4850F18F66A07D1085B (void);
 extern void Physics2D_Raycast_m65A222170C18F173E06309A784D736E5C6EB32D6 (void);
 // 0x0000001B System.Int32 UnityEngine.Physics2D::Raycast(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.ContactFilter2D,System.Collections.Generic.List`1<UnityEngine.RaycastHit2D>,System.Single)
 extern void Physics2D_Raycast_mB49B869989A276E025785C0FB53443551B3C8B17 (void);
-// 0x0000001C UnityEngine.RaycastHit2D[] UnityEngine.Physics2D::GetRayIntersectionAll(UnityEngine.Ray)
+// 0x0000001C UnityEngine.RaycastHit2D[] UnityEngine.Physics2D::RaycastAll(UnityEngine.Vector2,UnityEngine.Vector2,System.Single,System.Int32)
+extern void Physics2D_RaycastAll_m06B06279D4E05F05198F57F4E35DEED4A5CF37E6 (void);
+// 0x0000001D UnityEngine.RaycastHit2D[] UnityEngine.Physics2D::RaycastAll_Internal(UnityEngine.PhysicsScene2D,UnityEngine.Vector2,UnityEngine.Vector2,System.Single,UnityEngine.ContactFilter2D)
+extern void Physics2D_RaycastAll_Internal_m784DCB1C06F42FD24B62917ADB7DBFD5B108F82F (void);
+// 0x0000001E UnityEngine.RaycastHit2D[] UnityEngine.Physics2D::GetRayIntersectionAll(UnityEngine.Ray)
 extern void Physics2D_GetRayIntersectionAll_mE44882D00E63761758A1C10D8579F5AD5A027C14 (void);
-// 0x0000001D UnityEngine.RaycastHit2D[] UnityEngine.Physics2D::GetRayIntersectionAll(UnityEngine.Ray,System.Single)
+// 0x0000001F UnityEngine.RaycastHit2D[] UnityEngine.Physics2D::GetRayIntersectionAll(UnityEngine.Ray,System.Single)
 extern void Physics2D_GetRayIntersectionAll_m71F010CB1DF9881A6AEC32123FFD7BFDE32A59EA (void);
-// 0x0000001E UnityEngine.RaycastHit2D[] UnityEngine.Physics2D::GetRayIntersectionAll(UnityEngine.Ray,System.Single,System.Int32)
+// 0x00000020 UnityEngine.RaycastHit2D[] UnityEngine.Physics2D::GetRayIntersectionAll(UnityEngine.Ray,System.Single,System.Int32)
 extern void Physics2D_GetRayIntersectionAll_m1584C9C6ABD1AAEB6235830DC16D05C4566EB80D (void);
-// 0x0000001F UnityEngine.RaycastHit2D[] UnityEngine.Physics2D::GetRayIntersectionAll_Internal(UnityEngine.PhysicsScene2D,UnityEngine.Vector3,UnityEngine.Vector3,System.Single,System.Int32)
+// 0x00000021 UnityEngine.RaycastHit2D[] UnityEngine.Physics2D::GetRayIntersectionAll_Internal(UnityEngine.PhysicsScene2D,UnityEngine.Vector3,UnityEngine.Vector3,System.Single,System.Int32)
 extern void Physics2D_GetRayIntersectionAll_Internal_m98C9407CC390AA4F560D4BAFE3D35FE06DD3400C (void);
-// 0x00000020 System.Int32 UnityEngine.Physics2D::GetRayIntersectionNonAlloc(UnityEngine.Ray,UnityEngine.RaycastHit2D[])
+// 0x00000022 System.Int32 UnityEngine.Physics2D::GetRayIntersectionNonAlloc(UnityEngine.Ray,UnityEngine.RaycastHit2D[])
 extern void Physics2D_GetRayIntersectionNonAlloc_mC17430C3F478EAB0F15D96D10F25CE5E42579A5C (void);
-// 0x00000021 System.Int32 UnityEngine.Physics2D::GetRayIntersectionNonAlloc(UnityEngine.Ray,UnityEngine.RaycastHit2D[],System.Single)
+// 0x00000023 System.Int32 UnityEngine.Physics2D::GetRayIntersectionNonAlloc(UnityEngine.Ray,UnityEngine.RaycastHit2D[],System.Single)
 extern void Physics2D_GetRayIntersectionNonAlloc_m77BF66F763DE34E2BA96789FC7AC5C2797037228 (void);
-// 0x00000022 System.Int32 UnityEngine.Physics2D::GetRayIntersectionNonAlloc(UnityEngine.Ray,UnityEngine.RaycastHit2D[],System.Single,System.Int32)
+// 0x00000024 System.Int32 UnityEngine.Physics2D::GetRayIntersectionNonAlloc(UnityEngine.Ray,UnityEngine.RaycastHit2D[],System.Single,System.Int32)
 extern void Physics2D_GetRayIntersectionNonAlloc_mB7942B73C8B86F369262FC3B87F080132E7A369C (void);
-// 0x00000023 System.Void UnityEngine.Physics2D::.cctor()
+// 0x00000025 System.Void UnityEngine.Physics2D::.cctor()
 extern void Physics2D__cctor_m7B7A8EEEE744CE27534A7ADF12F31A4E376544E8 (void);
-// 0x00000024 UnityEngine.RaycastHit2D[] UnityEngine.Physics2D::GetRayIntersectionAll_Internal_Injected(UnityEngine.PhysicsScene2D&,UnityEngine.Vector3&,UnityEngine.Vector3&,System.Single,System.Int32)
+// 0x00000026 UnityEngine.RaycastHit2D[] UnityEngine.Physics2D::RaycastAll_Internal_Injected(UnityEngine.PhysicsScene2D&,UnityEngine.Vector2&,UnityEngine.Vector2&,System.Single,UnityEngine.ContactFilter2D&)
+extern void Physics2D_RaycastAll_Internal_Injected_m5F20D58815E964575E7A0B36C54B735B0CFA7311 (void);
+// 0x00000027 UnityEngine.RaycastHit2D[] UnityEngine.Physics2D::GetRayIntersectionAll_Internal_Injected(UnityEngine.PhysicsScene2D&,UnityEngine.Vector3&,UnityEngine.Vector3&,System.Single,System.Int32)
 extern void Physics2D_GetRayIntersectionAll_Internal_Injected_mB7BCACD0A0B90CCD4CD4041764BD19B95D553E2B (void);
-// 0x00000025 System.Void UnityEngine.ContactFilter2D::CheckConsistency()
+// 0x00000028 System.Void UnityEngine.ContactFilter2D::CheckConsistency()
 extern void ContactFilter2D_CheckConsistency_mD918F11F977EA35E87CF491F7AE8794F5D01DF72 (void);
-// 0x00000026 System.Void UnityEngine.ContactFilter2D::SetLayerMask(UnityEngine.LayerMask)
+// 0x00000029 System.Void UnityEngine.ContactFilter2D::SetLayerMask(UnityEngine.LayerMask)
 extern void ContactFilter2D_SetLayerMask_mC3FBC2D806C1A3ACB2D060CE48F8157505E42F9B (void);
-// 0x00000027 System.Void UnityEngine.ContactFilter2D::SetDepth(System.Single,System.Single)
+// 0x0000002A System.Void UnityEngine.ContactFilter2D::SetDepth(System.Single,System.Single)
 extern void ContactFilter2D_SetDepth_mE614DDDDAEA489D150E61D2DF8104F9292236F18 (void);
-// 0x00000028 UnityEngine.ContactFilter2D UnityEngine.ContactFilter2D::CreateLegacyFilter(System.Int32,System.Single,System.Single)
+// 0x0000002B UnityEngine.ContactFilter2D UnityEngine.ContactFilter2D::CreateLegacyFilter(System.Int32,System.Single,System.Single)
 extern void ContactFilter2D_CreateLegacyFilter_m7DF755B13D055FA510CB7F57A2CA5B45EAD161E2 (void);
-// 0x00000029 System.Void UnityEngine.ContactFilter2D::CheckConsistency_Injected(UnityEngine.ContactFilter2D&)
+// 0x0000002C System.Void UnityEngine.ContactFilter2D::CheckConsistency_Injected(UnityEngine.ContactFilter2D&)
 extern void ContactFilter2D_CheckConsistency_Injected_mE330C47C2583E5057F24B9E7B2D8F4B63B2B7A7C (void);
-// 0x0000002A UnityEngine.Vector2 UnityEngine.RaycastHit2D::get_point()
+// 0x0000002D UnityEngine.Collider2D UnityEngine.Collision2D::get_collider()
+extern void Collision2D_get_collider_m90FA98F6619E9F1E2EFAE8132EDB6ECA1A2C4F37 (void);
+// 0x0000002E UnityEngine.Rigidbody2D UnityEngine.Collision2D::get_rigidbody()
+extern void Collision2D_get_rigidbody_mD763F2D56BF538A94AD62379D22E42335A67B60D (void);
+// 0x0000002F UnityEngine.GameObject UnityEngine.Collision2D::get_gameObject()
+extern void Collision2D_get_gameObject_mE4B3D56F3477F7D2D6D7B217DF5488DA1D13204C (void);
+// 0x00000030 UnityEngine.Vector2 UnityEngine.RaycastHit2D::get_point()
 extern void RaycastHit2D_get_point_mB35E988E9E04328EFE926228A18334326721A36B (void);
-// 0x0000002B UnityEngine.Vector2 UnityEngine.RaycastHit2D::get_normal()
+// 0x00000031 UnityEngine.Vector2 UnityEngine.RaycastHit2D::get_normal()
 extern void RaycastHit2D_get_normal_m75F1EBDE347BACEB5A6A6AA72543C740806AB5F2 (void);
-// 0x0000002C System.Single UnityEngine.RaycastHit2D::get_distance()
+// 0x00000032 System.Single UnityEngine.RaycastHit2D::get_distance()
 extern void RaycastHit2D_get_distance_mD0FE1482E2768CF587AFB65488459697EAB64613 (void);
-// 0x0000002D UnityEngine.Collider2D UnityEngine.RaycastHit2D::get_collider()
+// 0x00000033 UnityEngine.Collider2D UnityEngine.RaycastHit2D::get_collider()
 extern void RaycastHit2D_get_collider_mB56DFCD16B708852EEBDBB490BC8665DBF7487FD (void);
-// 0x0000002E System.Void UnityEngine.Rigidbody2D::set_position(UnityEngine.Vector2)
+// 0x00000034 System.Boolean UnityEngine.RaycastHit2D::op_Implicit(UnityEngine.RaycastHit2D)
+extern void RaycastHit2D_op_Implicit_mBEF99A746116664D68B1398D58CA247550980A11 (void);
+// 0x00000035 System.Void UnityEngine.Rigidbody2D::set_position(UnityEngine.Vector2)
 extern void Rigidbody2D_set_position_m03C92F26F561D48050FBA840754F584AA7F415EF (void);
-// 0x0000002F System.Void UnityEngine.Rigidbody2D::set_rotation(System.Single)
+// 0x00000036 System.Void UnityEngine.Rigidbody2D::set_rotation(System.Single)
 extern void Rigidbody2D_set_rotation_m2B5A1F0A973B47E2CFED94B3C01CA523938BF8A0 (void);
-// 0x00000030 System.Void UnityEngine.Rigidbody2D::MovePosition(UnityEngine.Vector2)
+// 0x00000037 System.Void UnityEngine.Rigidbody2D::MovePosition(UnityEngine.Vector2)
 extern void Rigidbody2D_MovePosition_m7F24879BB78DA0587168B257C56DCFD248A90895 (void);
-// 0x00000031 UnityEngine.Vector2 UnityEngine.Rigidbody2D::get_velocity()
+// 0x00000038 UnityEngine.Vector2 UnityEngine.Rigidbody2D::get_velocity()
 extern void Rigidbody2D_get_velocity_mBD8AC6F93F0E24CC41D2361BCEF74F81303720EF (void);
-// 0x00000032 System.Void UnityEngine.Rigidbody2D::set_velocity(UnityEngine.Vector2)
+// 0x00000039 System.Void UnityEngine.Rigidbody2D::set_velocity(UnityEngine.Vector2)
 extern void Rigidbody2D_set_velocity_m9335C5883B218F6FCDF7E229AC96232FCBAC4CE6 (void);
-// 0x00000033 System.Void UnityEngine.Rigidbody2D::set_gravityScale(System.Single)
+// 0x0000003A System.Void UnityEngine.Rigidbody2D::set_gravityScale(System.Single)
 extern void Rigidbody2D_set_gravityScale_mAFD1A72661304467D20971BBCAA7E04B418F80FD (void);
-// 0x00000034 System.Void UnityEngine.Rigidbody2D::set_bodyType(UnityEngine.RigidbodyType2D)
+// 0x0000003B System.Void UnityEngine.Rigidbody2D::set_bodyType(UnityEngine.RigidbodyType2D)
 extern void Rigidbody2D_set_bodyType_mE2FAC2D78B06B445BD2AD58F87AC5B1865B23248 (void);
-// 0x00000035 System.Void UnityEngine.Rigidbody2D::set_isKinematic(System.Boolean)
+// 0x0000003C System.Void UnityEngine.Rigidbody2D::set_isKinematic(System.Boolean)
 extern void Rigidbody2D_set_isKinematic_m7C68AB4CFB6D301F0EDF0BFF66FB121ED3CC7853 (void);
-// 0x00000036 System.Void UnityEngine.Rigidbody2D::AddForce(UnityEngine.Vector2)
+// 0x0000003D System.Void UnityEngine.Rigidbody2D::AddForce(UnityEngine.Vector2)
 extern void Rigidbody2D_AddForce_mC635C76F94D56891007700CA0E653EB269E955CB (void);
-// 0x00000037 System.Void UnityEngine.Rigidbody2D::AddForce(UnityEngine.Vector2,UnityEngine.ForceMode2D)
+// 0x0000003E System.Void UnityEngine.Rigidbody2D::AddForce(UnityEngine.Vector2,UnityEngine.ForceMode2D)
 extern void Rigidbody2D_AddForce_mDD5CAE0137A42660C2D585B090D7E24496976E1B (void);
-// 0x00000038 System.Void UnityEngine.Rigidbody2D::.ctor()
+// 0x0000003F System.Void UnityEngine.Rigidbody2D::.ctor()
 extern void Rigidbody2D__ctor_mFF16B8ADAAE2FFD5FD4FBE3F412FC9E8FBBDBC88 (void);
-// 0x00000039 System.Void UnityEngine.Rigidbody2D::set_position_Injected(UnityEngine.Vector2&)
+// 0x00000040 System.Void UnityEngine.Rigidbody2D::set_position_Injected(UnityEngine.Vector2&)
 extern void Rigidbody2D_set_position_Injected_m5D2AC2F0F4D41BA17BCA48FF18263F7728C6871C (void);
-// 0x0000003A System.Void UnityEngine.Rigidbody2D::MovePosition_Injected(UnityEngine.Vector2&)
+// 0x00000041 System.Void UnityEngine.Rigidbody2D::MovePosition_Injected(UnityEngine.Vector2&)
 extern void Rigidbody2D_MovePosition_Injected_m7B6D07CFCE2E864C008AB5CED9EF1C8231D95386 (void);
-// 0x0000003B System.Void UnityEngine.Rigidbody2D::get_velocity_Injected(UnityEngine.Vector2&)
+// 0x00000042 System.Void UnityEngine.Rigidbody2D::get_velocity_Injected(UnityEngine.Vector2&)
 extern void Rigidbody2D_get_velocity_Injected_m980E2BA9FA750BA922DD2F79CEEA1CFF0B9B5D08 (void);
-// 0x0000003C System.Void UnityEngine.Rigidbody2D::set_velocity_Injected(UnityEngine.Vector2&)
+// 0x00000043 System.Void UnityEngine.Rigidbody2D::set_velocity_Injected(UnityEngine.Vector2&)
 extern void Rigidbody2D_set_velocity_Injected_m060C7F62A3A0280CC02594A15E7DE4486D1BE05E (void);
-// 0x0000003D System.Void UnityEngine.Rigidbody2D::AddForce_Injected(UnityEngine.Vector2&,UnityEngine.ForceMode2D)
+// 0x00000044 System.Void UnityEngine.Rigidbody2D::AddForce_Injected(UnityEngine.Vector2&,UnityEngine.ForceMode2D)
 extern void Rigidbody2D_AddForce_Injected_mC5372C179362B25CA579A94DBB11C5719F16452F (void);
-// 0x0000003E System.Void UnityEngine.Collider2D::set_isTrigger(System.Boolean)
+// 0x00000045 System.Void UnityEngine.Collider2D::set_isTrigger(System.Boolean)
 extern void Collider2D_set_isTrigger_m19D5227BAB5D41F212D515C1E2CA433C2FEF7A48 (void);
-// 0x0000003F System.Void UnityEngine.PolygonCollider2D::SetPath(System.Int32,UnityEngine.Vector2[])
+// 0x00000046 System.Void UnityEngine.Collider2D::set_offset(UnityEngine.Vector2)
+extern void Collider2D_set_offset_m416A5FDD11A7E07322418D1869AEFF9F1295913F (void);
+// 0x00000047 UnityEngine.Bounds UnityEngine.Collider2D::get_bounds()
+extern void Collider2D_get_bounds_m74F65CE702BA9D9EED05B870325B4FE3B2401B5E (void);
+// 0x00000048 System.Void UnityEngine.Collider2D::set_offset_Injected(UnityEngine.Vector2&)
+extern void Collider2D_set_offset_Injected_m9C48213A56B5D2DA5DC8873D650E602ECBCFCC96 (void);
+// 0x00000049 System.Void UnityEngine.Collider2D::get_bounds_Injected(UnityEngine.Bounds&)
+extern void Collider2D_get_bounds_Injected_mB3F24D39428D3C8E314CC6452878BD9A62C216E4 (void);
+// 0x0000004A System.Void UnityEngine.BoxCollider2D::set_size(UnityEngine.Vector2)
+extern void BoxCollider2D_set_size_mA69E48F639FFB614B5FC083D3FEED3DF78A9FF46 (void);
+// 0x0000004B System.Void UnityEngine.BoxCollider2D::set_size_Injected(UnityEngine.Vector2&)
+extern void BoxCollider2D_set_size_Injected_mE40FB02D46FAF468524BBC5BDF7BE468E7F85B9E (void);
+// 0x0000004C System.Void UnityEngine.PolygonCollider2D::SetPath(System.Int32,UnityEngine.Vector2[])
 extern void PolygonCollider2D_SetPath_mDF03B6FDAE81E25C985F9BA6D372D949A6D9A1C1 (void);
-// 0x00000040 System.Void UnityEngine.PolygonCollider2D::SetPath_Internal(System.Int32,UnityEngine.Vector2[])
+// 0x0000004D System.Void UnityEngine.PolygonCollider2D::SetPath_Internal(System.Int32,UnityEngine.Vector2[])
 extern void PolygonCollider2D_SetPath_Internal_m868D93E9467A88558DD0E5D66797186B9FA82C4D (void);
-// 0x00000041 UnityEngine.Rigidbody2D UnityEngine.Joint2D::get_connectedBody()
+// 0x0000004E UnityEngine.Rigidbody2D UnityEngine.Joint2D::get_connectedBody()
 extern void Joint2D_get_connectedBody_m2ACC7B59AFFF74F080B96DBBC42866B15F6EA125 (void);
-// 0x00000042 UnityEngine.Vector2 UnityEngine.AnchoredJoint2D::get_connectedAnchor()
+// 0x0000004F UnityEngine.Vector2 UnityEngine.AnchoredJoint2D::get_connectedAnchor()
 extern void AnchoredJoint2D_get_connectedAnchor_mCE5550E89AA68AC0C17DA51A7B6F11F43457FC83 (void);
-// 0x00000043 System.Void UnityEngine.AnchoredJoint2D::get_connectedAnchor_Injected(UnityEngine.Vector2&)
+// 0x00000050 System.Void UnityEngine.AnchoredJoint2D::get_connectedAnchor_Injected(UnityEngine.Vector2&)
 extern void AnchoredJoint2D_get_connectedAnchor_Injected_m5A960B4774F642CB34B009D69776ED9A10F735F7 (void);
-static Il2CppMethodPointer s_methodPointers[67] = 
+static Il2CppMethodPointer s_methodPointers[80] = 
 {
 	PhysicsScene2D_ToString_mACA22EF575F7544176360B16D431F2BB1DEBB307,
 	PhysicsScene2D_GetHashCode_mD45B3437D088C66A35AE20066AD632D1D0858B1E,
@@ -175,6 +201,8 @@ static Il2CppMethodPointer s_methodPointers[67] =
 	Physics2D_Raycast_m56E5CBDA49BD64A3A775F4850F18F66A07D1085B,
 	Physics2D_Raycast_m65A222170C18F173E06309A784D736E5C6EB32D6,
 	Physics2D_Raycast_mB49B869989A276E025785C0FB53443551B3C8B17,
+	Physics2D_RaycastAll_m06B06279D4E05F05198F57F4E35DEED4A5CF37E6,
+	Physics2D_RaycastAll_Internal_m784DCB1C06F42FD24B62917ADB7DBFD5B108F82F,
 	Physics2D_GetRayIntersectionAll_mE44882D00E63761758A1C10D8579F5AD5A027C14,
 	Physics2D_GetRayIntersectionAll_m71F010CB1DF9881A6AEC32123FFD7BFDE32A59EA,
 	Physics2D_GetRayIntersectionAll_m1584C9C6ABD1AAEB6235830DC16D05C4566EB80D,
@@ -183,16 +211,21 @@ static Il2CppMethodPointer s_methodPointers[67] =
 	Physics2D_GetRayIntersectionNonAlloc_m77BF66F763DE34E2BA96789FC7AC5C2797037228,
 	Physics2D_GetRayIntersectionNonAlloc_mB7942B73C8B86F369262FC3B87F080132E7A369C,
 	Physics2D__cctor_m7B7A8EEEE744CE27534A7ADF12F31A4E376544E8,
+	Physics2D_RaycastAll_Internal_Injected_m5F20D58815E964575E7A0B36C54B735B0CFA7311,
 	Physics2D_GetRayIntersectionAll_Internal_Injected_mB7BCACD0A0B90CCD4CD4041764BD19B95D553E2B,
 	ContactFilter2D_CheckConsistency_mD918F11F977EA35E87CF491F7AE8794F5D01DF72,
 	ContactFilter2D_SetLayerMask_mC3FBC2D806C1A3ACB2D060CE48F8157505E42F9B,
 	ContactFilter2D_SetDepth_mE614DDDDAEA489D150E61D2DF8104F9292236F18,
 	ContactFilter2D_CreateLegacyFilter_m7DF755B13D055FA510CB7F57A2CA5B45EAD161E2,
 	ContactFilter2D_CheckConsistency_Injected_mE330C47C2583E5057F24B9E7B2D8F4B63B2B7A7C,
+	Collision2D_get_collider_m90FA98F6619E9F1E2EFAE8132EDB6ECA1A2C4F37,
+	Collision2D_get_rigidbody_mD763F2D56BF538A94AD62379D22E42335A67B60D,
+	Collision2D_get_gameObject_mE4B3D56F3477F7D2D6D7B217DF5488DA1D13204C,
 	RaycastHit2D_get_point_mB35E988E9E04328EFE926228A18334326721A36B,
 	RaycastHit2D_get_normal_m75F1EBDE347BACEB5A6A6AA72543C740806AB5F2,
 	RaycastHit2D_get_distance_mD0FE1482E2768CF587AFB65488459697EAB64613,
 	RaycastHit2D_get_collider_mB56DFCD16B708852EEBDBB490BC8665DBF7487FD,
+	RaycastHit2D_op_Implicit_mBEF99A746116664D68B1398D58CA247550980A11,
 	Rigidbody2D_set_position_m03C92F26F561D48050FBA840754F584AA7F415EF,
 	Rigidbody2D_set_rotation_m2B5A1F0A973B47E2CFED94B3C01CA523938BF8A0,
 	Rigidbody2D_MovePosition_m7F24879BB78DA0587168B257C56DCFD248A90895,
@@ -210,6 +243,12 @@ static Il2CppMethodPointer s_methodPointers[67] =
 	Rigidbody2D_set_velocity_Injected_m060C7F62A3A0280CC02594A15E7DE4486D1BE05E,
 	Rigidbody2D_AddForce_Injected_mC5372C179362B25CA579A94DBB11C5719F16452F,
 	Collider2D_set_isTrigger_m19D5227BAB5D41F212D515C1E2CA433C2FEF7A48,
+	Collider2D_set_offset_m416A5FDD11A7E07322418D1869AEFF9F1295913F,
+	Collider2D_get_bounds_m74F65CE702BA9D9EED05B870325B4FE3B2401B5E,
+	Collider2D_set_offset_Injected_m9C48213A56B5D2DA5DC8873D650E602ECBCFCC96,
+	Collider2D_get_bounds_Injected_mB3F24D39428D3C8E314CC6452878BD9A62C216E4,
+	BoxCollider2D_set_size_mA69E48F639FFB614B5FC083D3FEED3DF78A9FF46,
+	BoxCollider2D_set_size_Injected_mE40FB02D46FAF468524BBC5BDF7BE468E7F85B9E,
 	PolygonCollider2D_SetPath_mDF03B6FDAE81E25C985F9BA6D372D949A6D9A1C1,
 	PolygonCollider2D_SetPath_Internal_m868D93E9467A88558DD0E5D66797186B9FA82C4D,
 	Joint2D_get_connectedBody_m2ACC7B59AFFF74F080B96DBBC42866B15F6EA125,
@@ -243,89 +282,102 @@ static Il2CppTokenAdjustorThunkPair s_adjustorThunks[16] =
 	{ 0x06000008, PhysicsScene2D_Raycast_m004884696543F60917C1ED72374C1528207229C3_AdjustorThunk },
 	{ 0x0600000A, PhysicsScene2D_Raycast_m541841D244633BA234ED72B01204161686D6B3B9_AdjustorThunk },
 	{ 0x0600000C, PhysicsScene2D_GetRayIntersection_mF3E0EC0D4F5A4B8C063E735979C851ED5B4B4C2E_AdjustorThunk },
-	{ 0x06000025, ContactFilter2D_CheckConsistency_mD918F11F977EA35E87CF491F7AE8794F5D01DF72_AdjustorThunk },
-	{ 0x06000026, ContactFilter2D_SetLayerMask_mC3FBC2D806C1A3ACB2D060CE48F8157505E42F9B_AdjustorThunk },
-	{ 0x06000027, ContactFilter2D_SetDepth_mE614DDDDAEA489D150E61D2DF8104F9292236F18_AdjustorThunk },
-	{ 0x0600002A, RaycastHit2D_get_point_mB35E988E9E04328EFE926228A18334326721A36B_AdjustorThunk },
-	{ 0x0600002B, RaycastHit2D_get_normal_m75F1EBDE347BACEB5A6A6AA72543C740806AB5F2_AdjustorThunk },
-	{ 0x0600002C, RaycastHit2D_get_distance_mD0FE1482E2768CF587AFB65488459697EAB64613_AdjustorThunk },
-	{ 0x0600002D, RaycastHit2D_get_collider_mB56DFCD16B708852EEBDBB490BC8665DBF7487FD_AdjustorThunk },
+	{ 0x06000028, ContactFilter2D_CheckConsistency_mD918F11F977EA35E87CF491F7AE8794F5D01DF72_AdjustorThunk },
+	{ 0x06000029, ContactFilter2D_SetLayerMask_mC3FBC2D806C1A3ACB2D060CE48F8157505E42F9B_AdjustorThunk },
+	{ 0x0600002A, ContactFilter2D_SetDepth_mE614DDDDAEA489D150E61D2DF8104F9292236F18_AdjustorThunk },
+	{ 0x06000030, RaycastHit2D_get_point_mB35E988E9E04328EFE926228A18334326721A36B_AdjustorThunk },
+	{ 0x06000031, RaycastHit2D_get_normal_m75F1EBDE347BACEB5A6A6AA72543C740806AB5F2_AdjustorThunk },
+	{ 0x06000032, RaycastHit2D_get_distance_mD0FE1482E2768CF587AFB65488459697EAB64613_AdjustorThunk },
+	{ 0x06000033, RaycastHit2D_get_collider_mB56DFCD16B708852EEBDBB490BC8665DBF7487FD_AdjustorThunk },
 };
-static const int32_t s_InvokerIndices[67] = 
+static const int32_t s_InvokerIndices[80] = 
 {
-	3517,
-	3497,
-	2103,
-	2107,
+	3536,
+	3516,
+	2120,
+	2124,
+	556,
 	555,
-	554,
-	3971,
+	3992,
 	271,
-	3779,
+	3798,
 	271,
-	3779,
-	522,
-	3780,
-	3807,
-	3770,
-	3770,
-	3771,
-	5455,
-	5433,
-	4886,
-	4482,
-	4203,
-	3972,
-	3800,
-	4151,
-	3941,
-	3941,
-	5238,
-	4866,
-	4470,
-	3969,
-	4809,
-	4408,
-	4150,
-	5478,
-	3944,
-	3599,
-	2902,
-	1699,
-	4355,
-	5369,
-	3590,
-	3590,
-	3552,
-	3517,
-	2977,
-	2944,
-	2977,
-	3590,
-	2977,
-	2944,
-	2896,
-	2857,
-	2977,
-	1717,
-	3599,
-	2849,
-	2849,
-	2849,
-	2849,
-	1374,
-	2857,
-	1544,
-	1544,
-	3517,
-	3590,
-	2849,
+	3798,
+	523,
+	3799,
+	3826,
+	3789,
+	3789,
+	3790,
+	5482,
+	5460,
+	4911,
+	4507,
+	4227,
+	3993,
+	3819,
+	4172,
+	3960,
+	3960,
+	4225,
+	3989,
+	5265,
+	4891,
+	4495,
+	3990,
+	4834,
+	4433,
+	4171,
+	5505,
+	3963,
+	3964,
+	3618,
+	2919,
+	1715,
+	4379,
+	5396,
+	3536,
+	3536,
+	3536,
+	3609,
+	3609,
+	3571,
+	3536,
+	5132,
+	2994,
+	2961,
+	2994,
+	3609,
+	2994,
+	2961,
+	2913,
+	2874,
+	2994,
+	1733,
+	3618,
+	2866,
+	2866,
+	2866,
+	2866,
+	1389,
+	2874,
+	2994,
+	3477,
+	2866,
+	2866,
+	2994,
+	2866,
+	1559,
+	1559,
+	3536,
+	3609,
+	2866,
 };
 IL2CPP_EXTERN_C const Il2CppCodeGenModule g_UnityEngine_Physics2DModule_CodeGenModule;
 const Il2CppCodeGenModule g_UnityEngine_Physics2DModule_CodeGenModule = 
 {
 	"UnityEngine.Physics2DModule.dll",
-	67,
+	80,
 	s_methodPointers,
 	16,
 	s_adjustorThunks,

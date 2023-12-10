@@ -27,5 +27,13 @@ public class GameScene62Manager : MonoBehaviour
         }
     }
 
+    public void LoadNewScene()
+    {
+        string newScene = PlayerPrefs.GetString("curMinigame");
+
+        ScenesManager.ins.LoadScene(newScene + ".3");
+
+    }
+
 
 }

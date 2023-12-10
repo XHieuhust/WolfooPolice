@@ -1452,7 +1452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   starManager: {fileID: 238970306}
   barManager: {fileID: 1882514787}
-  maxPoint: 10
+  maxPoint: 50
   isEndGame: 0
   policeStation: {fileID: 126964860}
   timeEndScene: 0.5

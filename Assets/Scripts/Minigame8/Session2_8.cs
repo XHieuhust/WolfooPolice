@@ -174,8 +174,9 @@ public class Session2_8 : MonoBehaviour
         wolf.MoveRight(1f);
         kat.MoveLeft(1f);
         yield return new WaitForSeconds(3f);
-        Debug.Log("end");
+        GameScene84Manager.ins.LoadNewScene();
     }
 
+    
 
 }

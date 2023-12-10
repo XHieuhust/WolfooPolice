@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameScene32Manager: MonoBehaviour
 {
     public static GameScene32Manager ins;
-
+    public bool isMovingCam;
     private void Awake()
     {
         ins = this;

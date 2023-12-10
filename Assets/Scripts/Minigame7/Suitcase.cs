@@ -47,7 +47,7 @@ public class Suitcase : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!isOnClick && isCanClick && !GameScene71Manager.ins.isFindingBanned)
+        if (!isOnClick && isCanClick && !GameScene71Manager.ins.isFindingBanned && !GameScene71Manager.ins.isEndgame)
         {
             if (isIllegal)
             {
@@ -149,7 +149,7 @@ public class Suitcase : MonoBehaviour
 
     void CheckDestroy()
     {
-        if (transform.position.x < Camera.main.transform.position.x - Camera.main.orthographicSize * Camera.main.aspect - 2.5f)
+        if (transform.position.x < Camera.main.transform.position.x - Camera.main.orthographicSize * Camera.main.aspect - 2.5f || GameScene71Manager.ins.isEndgame)
         {
             Destroy(gameObject);
         }

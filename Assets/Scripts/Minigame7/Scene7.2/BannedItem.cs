@@ -57,9 +57,13 @@ public class BannedItem : MonoBehaviour
         transform.position = endPos;
         transform.localScale = new Vector3(maxScale, maxScale, maxScale);
 
-        Broken newBroke = Instantiate(broken, transform.position, Quaternion.identity);
-        newBroke.SetIndex(ran);
-        GameScene72Manager.ins.dog.BeHitted();
+        if (!GameScene72Manager.ins.isDogAttacking)
+        {
+            Broken newBroke = Instantiate(broken, transform.position, Quaternion.identity);
+            newBroke.SetIndex(ran);
+            GameScene72Manager.ins.dog.BeHitted();
+        }
+
         Destroy(gameObject);
     }
 

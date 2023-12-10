@@ -32,11 +32,11 @@ public class UIMeneManager : MonoBehaviour
             PlayerPrefs.SetString("curMinigame", "Scene3");
             PlayMinigame();
         });
-        button4.onClick.AddListener(delegate
+/*        button4.onClick.AddListener(delegate
         {
             PlayerPrefs.SetString("curMinigame", "Scene4");
             PlayMinigame();
-        });
+        });*/
         button5.onClick.AddListener(delegate
         {
             PlayerPrefs.SetString("curMinigame", "Scene5");

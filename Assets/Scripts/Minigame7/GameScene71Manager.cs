@@ -17,7 +17,7 @@ public class GameScene71Manager : MonoBehaviour
     Vector3 startDog;
     [SerializeField] Dog dog;
     [SerializeField] WolfooMinigame7 wolfoo;
-
+    public bool isEndgame;
     private void Awake()
     {
         startDog = dog.transform.position;
@@ -142,7 +142,13 @@ public class GameScene71Manager : MonoBehaviour
 
 
     public void EndScene()
+    {   
+        StartCoroutine(StartEndScene());
+    }
+
+    IEnumerator StartEndScene()
     {
+        isEndgame = true;
         dog.Reset();
         wolfoo.Reset();
         dog.transform.position = new Vector3(Camera.main.transform.position.x - 0.75f, dog.transform.position.y, dog.transform.position.z);
@@ -150,7 +156,12 @@ public class GameScene71Manager : MonoBehaviour
 
         dog.SetAnimationState("Jump", true);
         wolfoo.SetAnimationState("Cheer", true);
-
-        Debug.Log("end");
+        yield return new WaitForSeconds(2f);
+        LoadNewScene();
+    }
+    private void LoadNewScene()
+    {
+        string newScene = PlayerPrefs.GetString("curMinigame");
+        ScenesManager.ins.LoadScene(newScene + ".2");
     }
 }

@@ -46,6 +46,8 @@ public class WolfooMinigame6 : MonoBehaviour
     private void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
+        skeleton.AnimationState.SetAnimation(0, "Run_Ninja", true);
+
         hightYonGround = transform.position.y;
         startPos = new Vector3(-(Camera.main.orthographicSize * Camera.main.aspect * 2 / 3), transform.position.y, transform.position.z);
         endPos = new Vector3(GameScene62Manager.ins.rihino.endPos.position.x - 2f, transform.position.y, transform.position.z);
@@ -115,7 +117,7 @@ public class WolfooMinigame6 : MonoBehaviour
     {
         if (transform.position.y - hightYonGround >= 0.1f && rigid.velocity.y < 0 && !isHitted && !GameScene62Manager.ins.isEndGame)
         {
-            skeleton.AnimationState.SetAnimation(0, "Run_ninja", true);
+            skeleton.AnimationState.SetAnimation(0, "Run_Ninja", true);
         }
     }
 
@@ -196,7 +198,7 @@ public class WolfooMinigame6 : MonoBehaviour
         isHitted = true;
         skeleton.AnimationState.SetAnimation(0, "Surprise_Idle", true);
         yield return new WaitForSeconds(timeBeHitted);
-        skeleton.AnimationState.SetAnimation(0, "Run_ninja", true);
+        skeleton.AnimationState.SetAnimation(0, "Run_Ninja", true);
         isHitted = false;
     }
 
@@ -229,5 +231,7 @@ public class WolfooMinigame6 : MonoBehaviour
         }
         skeleton.AnimationState.SetAnimation(0, "Cheer", true);
         GameScene62Manager.ins.rihino.SetAnimCry();
+        yield return new WaitForSeconds(2f);
+        GameScene62Manager.ins.LoadNewScene();
     }
 }

@@ -35,13 +35,18 @@ public class CameraSet : MonoBehaviour
     IEnumerator MoveCam(Vector3 newPos)
     {
         Vector3 startingPos = transform.position;
-        Time.timeScale = 0;
-        while (transform.position != newPos)
+        float eslapsed = 0;
+        float second = 0.5f;
+        GameScene32Manager.ins.isMovingCam = true;
+        while (eslapsed <= second)
         {
-            transform.position = Vector3.MoveTowards(transform.position, newPos, speed);
+            eslapsed += Time.deltaTime;
+            transform.position = Vector3.Lerp(startingPos, newPos, eslapsed/second);
             yield return new WaitForEndOfFrame();
         }
-        Time.timeScale = 1;
+        transform.position = newPos;
+        GameScene32Manager.ins.isMovingCam = false;
+
     }
 }
 

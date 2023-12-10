@@ -32,6 +32,13 @@ public class Rope_SceneDressing : MonoBehaviour
         deviceTrueDrop += RemoveDevice;
     }
 
+    private void OnDestroy()
+    {
+        deviceOnClick -= MoveUp;
+        deviceOffClick -= MoveDown;
+        deviceTrueDrop -= RemoveDevice;
+    }
+
     private void SetUpDevices()
     {
         foreach (DevicePolice_SceneDressing device in ListDevices)

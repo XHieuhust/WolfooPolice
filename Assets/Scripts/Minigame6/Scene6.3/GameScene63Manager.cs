@@ -105,7 +105,15 @@ public class GameScene63Manager : MonoBehaviour
         policeCar.Skeleton.SetToSetupPose();
         policeCar.AnimationState.SetAnimation(0, "Cheer", true);
 
-        Debug.Log("Endgame");
+        yield return new WaitForSeconds(2f);
+        CompleteMinigame6();    
+    }
+
+    private void CompleteMinigame6()
+    {
+        string curMinigame = PlayerPrefs.GetString("curMinigame");
+        LevelManager.ins.UpdateLevel(curMinigame);
+        ScenesManager.ins.LoadScene("SceneMenu");
     }
 
 }

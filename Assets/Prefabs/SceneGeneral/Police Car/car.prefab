@@ -620,9 +620,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f0048ee78d9e74880aac3794456426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedNormal: 15
+  speedNormal: 12
   speedBoost: 5
-  speedCar: 15
+  speedCar: 12
   leftWheel: {fileID: 2190891673221423751}
   rightWheel: {fileID: 2190891671599337678}
   boostEffect: {fileID: 1492718881}

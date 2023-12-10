@@ -67,5 +67,10 @@ public class GameSceneDressingManager : MonoBehaviour
         {
             ScenesManager.ins.LoadScene(curMinigame + ".2");
         }
+
+        if (curMinigame.Equals("Scene8"))
+        {
+            ScenesManager.ins.LoadScene(curMinigame + ".3");
+        }
     }
 }

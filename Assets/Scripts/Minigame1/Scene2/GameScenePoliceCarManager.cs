@@ -40,6 +40,13 @@ public class GameScenePoliceCarManager : MonoBehaviour
         {
             ScenesManager.ins.LoadScene(newScene + ".3");
         }
+        else if (newScene.Equals("Scene6"))
+        {
+            ScenesManager.ins.LoadScene(newScene + ".2");
+        }else if (newScene.Equals("Scene8"))
+        {
+            ScenesManager.ins.LoadScene(newScene + ".4");
+        }
         else
         {
             ScenesManager.ins.LoadScene(newScene + ".4");

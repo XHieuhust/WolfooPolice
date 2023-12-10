@@ -12,4 +12,23 @@ public class GameScene86Manager : MonoBehaviour
     {
         ins = this;
     }
+
+    public void EndGame()
+    {
+        StartCoroutine(StartEndGame());
+    }
+
+    IEnumerator StartEndGame()
+    {
+        isEndGame = true;
+        yield return new WaitForSeconds(2f);
+        CompleteMinigame8();
+    }
+
+    private void CompleteMinigame8()
+    {
+        string curMinigame = PlayerPrefs.GetString("curMinigame");
+        LevelManager.ins.UpdateLevel(curMinigame);
+        ScenesManager.ins.LoadScene("SceneMenu");
+    }
 }

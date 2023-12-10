@@ -25,7 +25,7 @@ public class CarWash : MonoBehaviour
         waterSpriteCar.color -= new Color(0, 0, 0, speed * Time.deltaTime);
         if (waterSpriteCar.color.a <= 0)
         {
-            Debug.Log("end");
+            GameScene51Manager.ins.LoadNewScene();
         }
     }
 }

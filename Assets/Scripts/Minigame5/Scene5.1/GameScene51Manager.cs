@@ -10,4 +10,10 @@ public class GameScene51Manager : MonoBehaviour
     {
         ins = this;
     }
+
+    public void LoadNewScene()
+    {
+        string curMinigame = PlayerPrefs.GetString("curMinigame");
+        ScenesManager.ins.LoadScene(curMinigame + ".2");
+    }
 }

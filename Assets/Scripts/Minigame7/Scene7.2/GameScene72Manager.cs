@@ -108,6 +108,7 @@ public class GameScene72Manager : MonoBehaviour
         dog.StopMove();
         criminal.StopSpawn();
 
+        isDogAttacking = true;
 
         Vector3 start, end;
         start = dog.transform.position;
@@ -140,12 +141,11 @@ public class GameScene72Manager : MonoBehaviour
         dog.transform.position = end;
         Camera.main.orthographicSize = endSize;
 
-        isDogAttacking = true;
         dog.EndScene();
         criminal.EndScene();
 
-
-        Debug.Log("end");
+        yield return new WaitForSeconds(2f);
+        CompleteMinigame7();
     }
 
     IEnumerator MoveBarProgress()
@@ -164,5 +164,12 @@ public class GameScene72Manager : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
+    }
+
+    private void CompleteMinigame7()
+    {
+        string curMinigame = PlayerPrefs.GetString("curMinigame");
+        LevelManager.ins.UpdateLevel(curMinigame);
+        ScenesManager.ins.LoadScene("SceneMenu");
     }
 }

@@ -56,9 +56,7 @@ public class Police_SceneDressing : MonoBehaviour
         if (curMinigame == "Scene2")
         {
             SceneSkin = "Swat";
-        }
-
-        if (curMinigame == "Scene4")
+        }else
         {
             if (isRightPos)
             {
@@ -69,6 +67,8 @@ public class Police_SceneDressing : MonoBehaviour
                 SceneSkin = "TraficPoliceman";
             }
         }
+
+        
         skeleton.initialSkinName = SceneSkin + (cntEquip).ToString();
         skeleton.Initialize(true);
         skeleton.AnimationState.SetAnimation(0, "Dressing" + (cntEquip).ToString(), true);

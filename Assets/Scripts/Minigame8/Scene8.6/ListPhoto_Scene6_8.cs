@@ -36,8 +36,7 @@ public class ListPhoto_Scene6_8 : MonoBehaviour
         if (index == Photos.Count)
         {
             GameScene86Manager.ins.criminal.Scare();
-            GameScene86Manager.ins.isEndGame = true;
-            Debug.Log("end");
+            GameScene86Manager.ins.EndGame();
         }
 
     }

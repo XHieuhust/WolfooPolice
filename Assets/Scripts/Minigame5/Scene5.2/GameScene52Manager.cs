@@ -74,5 +74,14 @@ public class GameScene52Manager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         policeStation.SetActive(true);
         steering.EndScene();
+        yield return new WaitForSeconds(2f);
+        CompleteMinigame5();
+    }
+
+    public void CompleteMinigame5()
+    {
+        string curMinigame = PlayerPrefs.GetString("curMinigame");
+        LevelManager.ins.UpdateLevel(curMinigame);
+        ScenesManager.ins.LoadScene("SceneMenu");
     }
 }

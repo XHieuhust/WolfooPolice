@@ -212,7 +212,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 26489082}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66a1bcf371539214c99b7a26b43ea6e0, type: 3}
+  m_Script: {fileID: 11500000, guid: 7672fb7dc1d9ee64a8fd6801c7553b74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   startLine: {fileID: 36991687}
@@ -409,7 +409,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &58879097
 RectTransform:
   m_ObjectHideFlags: 0
@@ -472,6 +472,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 58879096}
   m_CullTransparentMesh: 1
+--- !u!1 &68856153
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 68856155}
+  - component: {fileID: 68856154}
+  m_Layer: 0
+  m_Name: UIManagerScene42
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &68856154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68856153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a16906f9fc34594b96675a5644c58a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &68856155
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68856153}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.1797158, y: -1.4826068, z: 126.678276}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &160584158
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,16 +618,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 181531322}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40ba329e9463f384ea10a5fcd9003ca9, type: 3}
+  m_Script: {fileID: 11500000, guid: 3bfd4e27c63d84542bcb49b8c218a176, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxPoint: 10
+  maxPoint: 12
   barProgress: {fileID: 786678536}
   wolfoo: {fileID: 2024794131}
-  mayBanToc: {fileID: 26489087}
-  spawnEnemy: {fileID: 383783580}
-  enemyCarChased: {fileID: 1893776836049225330}
-  NoticeEnemyCarChased: {fileID: 8936725002394878469}
+  spawnEnemyCar: {fileID: 383783580}
+  carBeChased: {fileID: 8411889555111280210}
+  wolf: {fileID: 2024794131}
 --- !u!4 &181531324
 Transform:
   m_ObjectHideFlags: 0
@@ -813,7 +856,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &350287158
 RectTransform:
   m_ObjectHideFlags: 0
@@ -888,13 +931,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45bb9ac956bceb0498fc9d661bca7941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ListRoad:
-  - {fileID: 351230141}
-  - {fileID: 700649363}
-  carViPham: {fileID: 1598636342}
-  isEndGame: 0
-  endTime: 15
-  isStopGame: 0
 --- !u!1 &351230137
 GameObject:
   m_ObjectHideFlags: 0
@@ -985,8 +1021,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b336f1218cccde74c80211b9313e09c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BackPos: {fileID: 700649360}
-  speedNormal: 1500
 --- !u!50 &351230142
 Rigidbody2D:
   serializedVersion: 4
@@ -1097,23 +1131,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 383783576}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b00037da3e539a458a73e7d14fc5a9c, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ebe0eb47b1b3064a9d5a60a850a2223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeSpawn: 1.2
+  timeSpawn: 2
   ListEnemyCars:
-  - {fileID: 1622498803129063343, guid: a6b748baf134d5245817031d23569fd6, type: 3}
-  - {fileID: 5672201088075380092, guid: 8312b857b3827e14190994be40e5f222, type: 3}
-  - {fileID: 1490607397933705683, guid: 5d7aea0210ab31b428386a8a4b702992, type: 3}
-  - {fileID: 7156924436532216123, guid: 24982b9574220364b9fbb93fd77e178c, type: 3}
-  - {fileID: 8948715524066125249, guid: 07bbd50f199c3544c8a91ea790c98dfa, type: 3}
-  - {fileID: 7865563577876327559, guid: 0f02df8624d1a7d4eb5502b24bdd112d, type: 3}
-  - {fileID: 1687341490813433533, guid: b9eda1c24d354cd47a831e2427801153, type: 3}
-  - {fileID: 1819542639484669314, guid: c3c4b28ce7f57ed4982faf6cc9eed8f5, type: 3}
+  - {fileID: 4270986799609857252, guid: 1fa43b9001d62bd4d8fb32265e2ae8c8, type: 3}
+  - {fileID: 3987310845196200503, guid: db70ac3e6ef4b64428caf4c804ffcd35, type: 3}
+  - {fileID: 7738329225880241446, guid: d6dfb2cc013a74f43a5af4d020a79a29, type: 3}
+  - {fileID: 24372543206088390, guid: 6c052d6e5813c4f4aa9266b75b7236ba, type: 3}
+  - {fileID: 6185276230420422332, guid: 460507879819e8c4181a4fbd055094b2, type: 3}
+  - {fileID: 6728676673415678673, guid: 264b66c2e7fb96541855403dff9afef7, type: 3}
+  - {fileID: 4641605024135255367, guid: 81dee56b2fc9fa844a9d9183394379c0, type: 3}
+  - {fileID: 8070807940955400392, guid: 74d08e11178a8d0418f8a9d906972f5a, type: 3}
   ListPosSpawn:
-  - {fileID: 1189113924}
-  - {fileID: 160584159}
   - {fileID: 1241397433}
+  - {fileID: 160584159}
+  - {fileID: 1189113924}
 --- !u!1 &450168184
 GameObject:
   m_ObjectHideFlags: 0
@@ -1392,8 +1426,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b336f1218cccde74c80211b9313e09c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BackPos: {fileID: 351230138}
-  speedNormal: 1500
 --- !u!50 &700649364
 Rigidbody2D:
   serializedVersion: 4
@@ -1513,8 +1545,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.49999997, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1202307386}
+  m_Children: []
   m_Father: {fileID: 1721884531}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
@@ -1570,10 +1601,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 786678532}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01dbb97cdc69fa44cb1ed4678f9e89b3, type: 3}
+  m_Script: {fileID: 11500000, guid: dab2271171e71f6418fe319cec20e297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 1202307384}
+  lengthBar: 556
 --- !u!1 &904162215
 GameObject:
   m_ObjectHideFlags: 0
@@ -2109,17 +2141,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1202307383}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.49999988, z: 1}
+  m_LocalScale: {x: 0.4999999, y: 0.49999988, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 786678533}
-  m_RootOrder: 0
+  m_Father: {fileID: 1721884531}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -556.60004, y: 0.000061035156}
+  m_AnchoredPosition: {x: -0.000061035156, y: -269}
   m_SizeDelta: {x: 204, y: 208}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1241397432
@@ -2249,16 +2281,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caf8900510830ac4eacff0fe3f3a5089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ListSpriteCars:
-  - {fileID: 21300000, guid: 9489cb0b7baed6241a631550fc60c31d, type: 3}
-  - {fileID: 21300000, guid: fb29f29770c73854391025fa4cbfe4bd, type: 3}
-  - {fileID: 21300000, guid: 39fa214c126ca384dadbd2a833290938, type: 3}
-  car: {fileID: 8749418453153289101, guid: 3e25158722e7f3641b148311c283c0fa, type: 3}
-  ListPosSpawn:
-  - {fileID: 337741394}
-  - {fileID: 184061937}
-  - {fileID: 1828836160}
-  timeSpawn: 3
 --- !u!114 &1375158210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2519,14 +2541,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 738ad381a2c11c5458ebbd10acc5f478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cntDirectionMove: 0
-  CarPositions:
-  - {fileID: 1828836160}
-  - {fileID: 184061937}
-  - {fileID: 337741394}
-  speedStraightNormal: 25
-  speedWhenCarHit: 0
-  speedMoveUpDown: 10
 --- !u!50 &1598636343
 Rigidbody2D:
   serializedVersion: 4
@@ -2670,6 +2684,7 @@ RectTransform:
   - {fileID: 1883469617}
   - {fileID: 904162216}
   - {fileID: 786678533}
+  - {fileID: 1202307386}
   m_Father: {fileID: 58879097}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2739,12 +2754,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d3ad8cc7428cc41bae9b01ee94b1ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cntDirectionMove: 0
-  speedMoveUpDown: 10
-  CarPositions:
-  - {fileID: 1828836160}
-  - {fileID: 184061937}
-  - {fileID: 337741394}
 --- !u!114 &1767065191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3113,11 +3122,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2024794129}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fd6049b1cc7b6c43a3d170c412159ca, type: 3}
+  m_Script: {fileID: 11500000, guid: 644c77fbcc9b899499f3a5c1a242a367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   skeWolfoo: {fileID: 1458232131}
-  ray: {fileID: 1038888566}
   ListNoticeBoards:
   - {fileID: 21300000, guid: 9a68e3e85c974874a965761a4d2114e7, type: 3}
   - {fileID: 21300000, guid: 826fe0ff4e87bcb4bbf0ab7cc8eb04b2, type: 3}
@@ -3289,16 +3297,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 8411889555111280210}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2b22dc3182c44c4fac88aabc4b6868d, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d5baffc159114b49aebec4b9439bdf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedAllow: 8
-  speedIllegal: 13
+  speedAllow: 300
+  speedIllegal: 800
   wheelCar1: {fileID: 1009073642852725271}
   wheelCar2: {fileID: 2010576832414457210}
-  speedRotateWheelNormal: 1
+  speedRotateWheelNormal: 120
   smoke: {fileID: 477915905385026048}
-  isIllegal: 0
+  isIllegal: 1
 --- !u!114 &1893776836049225330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3471,7 +3479,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7251480a1c77da04bbae9c425f34e680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeExist: 1
 --- !u!224 &5892189105584570554
 RectTransform:
   m_ObjectHideFlags: 0
