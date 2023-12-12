@@ -74,4 +74,5 @@ public class BannedItem : MonoBehaviour
         GameScene72Manager.ins.UpDatePoint();
         Destroy(gameObject);
     }
+
 }

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Lucy_SkeletonData
   m_EditorClassIdentifier: 
   atlasAssets:
-  - {fileID: 11400000, guid: aa686f58882fd2447881cdaefa55a867, type: 2}
+  - {fileID: 11400000, guid: 90de626f8f3dd704a91a6a6f5692edda, type: 2}
   scale: 0.01
-  skeletonJSON: {fileID: 4900000, guid: ae7f15cc74afa0c4e93a269d54d20240, type: 3}
+  skeletonJSON: {fileID: 4900000, guid: 2f0ce201d6d26fe40b6ad9c92195a309, type: 3}
   isUpgradingBlendModeMaterials: 0
   blendModeMaterials:
     requiresBlendModeMaterials: 0

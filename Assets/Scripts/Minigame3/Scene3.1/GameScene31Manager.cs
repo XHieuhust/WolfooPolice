@@ -5,11 +5,8 @@ using Spine.Unity;
 public class GameScene31Manager : MonoBehaviour
 {
     public static GameScene31Manager ins;
-    [SerializeField] GameObject dia;
-    [SerializeField] WolfooAstray wolfoo;
-    [SerializeField] GameObject MayQuetVanTay;
-    public int point = 0;
-    int maxPoint = 3;
+    private int point = 0;
+    [SerializeField] int maxPoint;
     public bool isEndGame;
     private void Start()
     {
@@ -19,26 +16,12 @@ public class GameScene31Manager : MonoBehaviour
     public void UpdatePoint()
     {
         point++;
-        wolfoo.Laugh();
         if(point == maxPoint)
         {
-            Destroy(dia);
-            ActiveMayQuetVanTay();
+            UIManager_Scene1_3.ins.ActiveFingerScaning();
         }
     }
 
-    void ActiveMayQuetVanTay()
-    {
-        
-        StartCoroutine(StartActiveMayQuetVanTay());
-    }
-
-    IEnumerator StartActiveMayQuetVanTay()
-    {
-        yield return new WaitForSeconds(2f);
-        wolfoo.StartQuetVanTay();
-        MayQuetVanTay.SetActive(true);
-    }
 
     public void CompleteScene()
     {
@@ -47,5 +30,10 @@ public class GameScene31Manager : MonoBehaviour
 
         string curMinigame = PlayerPrefs.GetString("curMinigame");
         ScenesManager.ins.LoadScene(curMinigame + ".2");
+    }
+
+    public int GetPoint()
+    {
+        return point;
     }
 }
