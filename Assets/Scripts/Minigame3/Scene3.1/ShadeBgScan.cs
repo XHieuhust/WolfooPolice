@@ -8,7 +8,7 @@ public class ShadeBgScan: MonoBehaviour
     Canvas canvas;
     public void Start()
     {
-        canvas = CanvasInstance.ins.GetComponent<Canvas>();
+        canvas = CanvasInstance.ins.canvas;
         rectTransform = GetComponent<RectTransform>();
         rectTransform.localScale = new Vector3(canvas.GetComponent<RectTransform>().rect.width / (rectTransform.rect.width),
         canvas.GetComponent<RectTransform>().rect.height / (rectTransform.rect.height));

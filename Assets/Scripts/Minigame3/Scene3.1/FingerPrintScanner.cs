@@ -10,7 +10,6 @@ public class FingerPrintScanner : MonoBehaviour
         buttonScan.onClick.AddListener(delegate {
             buttonScan.interactable = false;
             buttonScan.GetComponent<ButtonScan_Scene1_3>().BeClicked();
-            UIManager_Scene1_3.ins.ActiveScanningGamePlayPanel();
         });
     }
 }

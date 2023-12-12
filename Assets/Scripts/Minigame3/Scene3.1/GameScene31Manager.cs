@@ -36,4 +36,21 @@ public class GameScene31Manager : MonoBehaviour
     {
         return point;
     }
+
+    public void CompleteScanning()
+    {
+        StartCoroutine(StartEndScene());
+    }
+
+    IEnumerator StartEndScene()
+    {
+        yield return new WaitForSeconds(4f);
+        LoadNewScene(); 
+    }
+
+    private void LoadNewScene()
+    {
+        string curMinigame = PlayerPrefs.GetString("curMinigame");
+        ScenesManager.ins.LoadScene(curMinigame + ".2");
+    }
 }

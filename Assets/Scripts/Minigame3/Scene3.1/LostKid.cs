@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
 using UnityEngine.UI;
+using Spine;
 
 public class LostKid : MonoBehaviour
 {
     [SerializeField] public SkeletonGraphic skeleton;
     [SerializeField] Image teddyBear;
+
+    public delegate void KidPushHandOnButton();
+    public static event KidPushHandOnButton kidPushHandOnButton;
 
     private void Start()
     {
@@ -18,19 +22,25 @@ public class LostKid : MonoBehaviour
     {
         DragToys.trueDragToy += SetAnimHappy;
         ButtonScan_Scene1_3.buttonScanClicked += ScanHandOnButton;
+        UIManager_Scene1_3.completeScanning += CompleteScanning;
     }
     private void OnDestroy()
     {
         DragToys.trueDragToy -= SetAnimHappy;
         ButtonScan_Scene1_3.buttonScanClicked -= ScanHandOnButton;
+        UIManager_Scene1_3.completeScanning -= CompleteScanning;
+
     }
 
     private void ScanHandOnButton()
     {
-        skeleton.AnimationState.SetAnimation(0, "Idle_ScanHand", true);
+        skeleton.AnimationState.SetAnimation(0, "Idle_ScanHand", false).Complete += PushHandOnButton; 
     }
 
-
+    private void PushHandOnButton(Spine.TrackEntry trackEntry)
+    {
+        kidPushHandOnButton?.Invoke();
+    }
 
     private void SetAnimHappy(int idToy)
     {
@@ -72,5 +82,12 @@ public class LostKid : MonoBehaviour
     {
         StopAllCoroutines();
         skeleton.AnimationState.SetAnimation(0, "Idle", true);
+    }
+
+    private void CompleteScanning()
+    {
+        skeleton.AnimationState.AddAnimation(0, "Jump", true, 0);
+        skeleton.AnimationState.AddAnimation(0, "Jump_Cheer", true, 0.5f);
+        skeleton.AnimationState.AddAnimation(0, "Jump_Win", true, 1f);
     }
 }

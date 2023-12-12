@@ -8,17 +8,24 @@ public class MapManager : MonoBehaviour
     [SerializeField] List<GameObject> ListMap;
     private int numOfMap;
     public static MapManager ins;
-    void Start()
+    private void Start()
     {
         ins = this;
         numOfMap = ListMap.Count;
         LoadMap();
     }
 
-    public void LoadMap()
+    private void LoadMap()
     {
         string curMinigame = PlayerPrefs.GetString("curMinigame");
         int curLevel = LevelManager.ins.GetLevel(curMinigame);
-        Instantiate(ListMap[curLevel % numOfMap], transform.position, Quaternion.identity);
+        if (CanvasInstance.ins)
+        {
+            Instantiate(ListMap[curLevel % numOfMap], transform.position, Quaternion.identity, CanvasInstance.ins.transform);
+        }
+        else
+        {
+            Instantiate(ListMap[curLevel % numOfMap], transform.position, Quaternion.identity);
+        }
     }
 }
