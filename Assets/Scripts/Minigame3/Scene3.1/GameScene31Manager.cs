@@ -8,6 +8,7 @@ public class GameScene31Manager : MonoBehaviour
     private int point = 0;
     [SerializeField] int maxPoint;
     public bool isEndGame;
+    [SerializeField] ShadeBg endShade;
     private void Start()
     {
         ins = this;
@@ -45,6 +46,8 @@ public class GameScene31Manager : MonoBehaviour
     IEnumerator StartEndScene()
     {
         yield return new WaitForSeconds(4f);
+        endShade.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1f);
         LoadNewScene(); 
     }
 

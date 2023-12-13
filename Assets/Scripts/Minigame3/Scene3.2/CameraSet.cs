@@ -12,6 +12,17 @@ public class CameraSet : MonoBehaviour
     [SerializeField] Image posCam2;
     [SerializeField] Image posCam3;
 
+    public delegate void CamMoveIntro();
+    public static event CamMoveIntro camMoveIntro;
+    public delegate void CamMove();
+    public static event CamMove camMove;
+
+
+    private void Start()
+    {
+        IntroduceScene();
+    }
+
     public void UpdateCameraPos(int curCol)
     {
         if (curCol == 9 && isCurBg == 0)
@@ -19,17 +30,20 @@ public class CameraSet : MonoBehaviour
             isCurBg += 1;
             Vector3 newPos = new Vector3(posCam1.transform.position.x, transform.position.y, transform.position.z);
             StartCoroutine(MoveCam(newPos));
-        }else if (curCol == 19 && isCurBg == 1)
+        }
+        else if (curCol == 19 && isCurBg == 1)
         {
             isCurBg += 1;
             Vector3 newPos = new Vector3(posCam2.transform.position.x, transform.position.y, transform.position.z);
             StartCoroutine(MoveCam(newPos));
-        }else if (curCol == 25 && isCurBg == 2)
+        }
+        else if (curCol == 25 && isCurBg == 2)
         {
             isCurBg += 1;
             Vector3 newPos = new Vector3(posCam3.transform.position.x, transform.position.y, transform.position.z);
             StartCoroutine(MoveCam(newPos));
         }
+
     }
 
     IEnumerator MoveCam(Vector3 newPos)
@@ -45,8 +59,53 @@ public class CameraSet : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         transform.position = newPos;
+        camMove?.Invoke();
         GameScene32Manager.ins.isMovingCam = false;
 
+    }
+
+    private void IntroduceScene()
+    {
+        StartCoroutine(StartIntroduceScene());
+    }
+
+    IEnumerator StartIntroduceScene()
+    {
+        GameScene32Manager.ins.isMovingCam = true;
+        yield return new WaitForSeconds(1f);
+        float eslapsed = 0;
+        float seconds = 3f;
+        Vector3 start = transform.position;
+        Vector3 end = posCam3.transform.position;
+
+        while (eslapsed <= seconds)
+        {
+            eslapsed += Time.deltaTime;
+            transform.position = Vector3.Lerp(start, end, eslapsed/seconds);
+            yield return new WaitForEndOfFrame();
+        }
+        transform.position = end;
+
+        camMoveIntro?.Invoke();
+        yield return new WaitForSeconds(2f);
+
+        eslapsed = 0;
+
+        end = start;
+        start = transform.position;
+        while (eslapsed <= seconds)
+        {
+            eslapsed += Time.deltaTime;
+            transform.position = Vector3.Lerp(start, end, eslapsed / seconds);
+            yield return new WaitForEndOfFrame();
+        }
+        transform.position = end;
+        GameScene32Manager.ins.isMovingCam = false;
+        
+        camMove?.Invoke();
+
+        // Start Game
+        Map.ins.StartGame();
     }
 }
 

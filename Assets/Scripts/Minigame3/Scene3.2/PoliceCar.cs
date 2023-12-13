@@ -12,7 +12,7 @@ public class PoliceCar : MonoBehaviour
     IEnumerator co;
     Image imgCar;
     public bool isCanMove;
-    public void Start()
+    private void Start()
     {
         isCanMove = true;
         imgCar = GetComponent<Image>();
@@ -90,4 +90,6 @@ public class PoliceCar : MonoBehaviour
         imgCar.color = new Color(imgCar.color.r, imgCar.color.g, imgCar.color.b, 1);
         isCanMove = true;
     }
+
+
 }

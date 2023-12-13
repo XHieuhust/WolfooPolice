@@ -39,15 +39,16 @@ public class Map : MonoBehaviour
     public int rowTrain = 3;
     public int colTrain = 18;
 
+    public int rowPoliceStation = 1;
+    public int colPoliceStation = 0;
     private void Awake()
     {
         ins = this;
         gridLayout = GetComponent<GridLayoutGroup>();
         MatrixCells = new Cell[row, column];
         InstantiateCell();
-        InstantiateCar();
         gridLayout.constraintCount = column;
-
+        cellOnCar = MatrixCells[rowPoliceStation, colPoliceStation];
     }
 
     private void InstantiateCell()
@@ -61,13 +62,8 @@ public class Map : MonoBehaviour
                 MatrixCells[i, j].indexCol = j;
             }
         }
-    }
 
-    void InstantiateCar()
-    {
-        cellOnCar = MatrixCells[0, 0];
-        //car.transform.position = cellOnCar.transform.position;
-       
+
     }
 
     public void UpdatePositionCar(int newRow, int newCol)
@@ -110,5 +106,11 @@ public class Map : MonoBehaviour
         CanMove[2, 8] = 0;
     }
 
+    public void StartGame()
+    {
+        car.transform.position = cellOnCar.transform.position;
+        Vector3 newPos = MatrixCells[rowPoliceStation, colPoliceStation + 1].transform.position;
+        car.Move(rowPoliceStation, colPoliceStation + 1, newPos);
+    }
 
 }
