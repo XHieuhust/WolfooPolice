@@ -9,7 +9,7 @@ public class BridgeAnimControl : MonoBehaviour
     public Color c;
     Material material;
     public bool IsRight;
-    void Start()
+    private void Start()
     {
         material = new Material(m);
         gameObject.GetComponent<Image>().material = material;
@@ -55,6 +55,7 @@ public class BridgeAnimControl : MonoBehaviour
 
     IEnumerator StartOpen()
     {
+        Cell.hintCell?.Invoke();
         float eslapsed = 0;
         float seconds = 1f;
         while (eslapsed <= seconds)
@@ -64,7 +65,6 @@ public class BridgeAnimControl : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         Anim(150);
-
     }
 
     IEnumerator StartClose()
@@ -79,6 +79,7 @@ public class BridgeAnimControl : MonoBehaviour
         }
         Anim(0);
         Map.ins.SetTrueCellBridge();
+        Cell.hintCell?.Invoke();
 
     }
 

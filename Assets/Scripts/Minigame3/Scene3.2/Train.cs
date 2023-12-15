@@ -4,37 +4,44 @@ using UnityEngine;
 
 public class Train : MonoBehaviour
 {
-    [SerializeField] float speed;
-
-    Rigidbody2D rigidTrain;
-    Vector3 startPos;
-    float eslapsed;
-    [SerializeField] float timeBack;
-    float sizeTrain;
-    float lengthRailway;
+    [SerializeField] Transform startPos;
+    [SerializeField] Transform endPos;
+    [SerializeField] float timeMove;
+    [SerializeField] float timeDelay;
+    private float sizeTrain;
     private void Start()
     {
-        rigidTrain = GetComponent<Rigidbody2D>();
-        startPos = transform.position;
-        sizeTrain = GetComponent<Collider2D>().bounds.size.y;
-    }
-
-    private void FixedUpdate()
-    {
         Move();
+        sizeTrain = GetComponent<BoxCollider2D>().bounds.size.y;
+    }
+    private void Move()
+    {
+        StartCoroutine(nameof(StartMove));
     }
 
-    void Move()
+    IEnumerator StartMove()
     {
-        rigidTrain.velocity = new Vector2(0, +speed * Time.deltaTime);
-        if (eslapsed > timeBack)
+        float eslapsed;
+        float seconds = timeMove;
+
+        while (true)
         {
+            transform.position = startPos.position;
             eslapsed = 0;
-            lengthRailway = transform.position.y - startPos.y;
-            startPos = new Vector3(transform.position.x, transform.position.y - lengthRailway, transform.position.z);
-            transform.position = startPos;
+            while (eslapsed <= seconds)
+            {
+                eslapsed += Time.deltaTime;
+                transform.position = Vector3.Lerp(startPos.position, endPos.position, eslapsed / seconds);
+                CheckTrain();
+                yield return new WaitForEndOfFrame();
+            }
+            transform.position = endPos.position;
+            yield return new WaitForSeconds(timeDelay);
         }
-        eslapsed += Time.deltaTime;
+    }
+
+    public void CheckTrain()
+    {
         if (transform.position.y + sizeTrain >= Map.ins.MatrixCells[3, 18].transform.position.y && transform.position.y - sizeTrain <= Map.ins.MatrixCells[3, 18].transform.position.y)
         {
             Map.ins.CanMove[3, 18] = 0;
@@ -49,3 +56,4 @@ public class Train : MonoBehaviour
         }
     }
 }
+

@@ -12,10 +12,10 @@ public class CameraSet : MonoBehaviour
     [SerializeField] Image posCam2;
     [SerializeField] Image posCam3;
 
-    public delegate void CamMoveIntro();
-    public static event CamMoveIntro camMoveIntro;
+
     public delegate void CamMove();
-    public static event CamMove camMove;
+    public static event CamMove startCamMove;
+    public static event CamMove endCamMove;
 
 
     private void Start()
@@ -48,6 +48,7 @@ public class CameraSet : MonoBehaviour
 
     IEnumerator MoveCam(Vector3 newPos)
     {
+        startCamMove?.Invoke();
         Vector3 startingPos = transform.position;
         float eslapsed = 0;
         float second = 0.5f;
@@ -59,7 +60,7 @@ public class CameraSet : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         transform.position = newPos;
-        camMove?.Invoke();
+        endCamMove?.Invoke();
         GameScene32Manager.ins.isMovingCam = false;
 
     }
@@ -73,6 +74,7 @@ public class CameraSet : MonoBehaviour
     {
         GameScene32Manager.ins.isMovingCam = true;
         yield return new WaitForSeconds(1f);
+        startCamMove?.Invoke();
         float eslapsed = 0;
         float seconds = 3f;
         Vector3 start = transform.position;
@@ -86,9 +88,10 @@ public class CameraSet : MonoBehaviour
         }
         transform.position = end;
 
-        camMoveIntro?.Invoke();
+        endCamMove?.Invoke();
         yield return new WaitForSeconds(2f);
 
+        startCamMove?.Invoke();     
         eslapsed = 0;
 
         end = start;
@@ -102,7 +105,7 @@ public class CameraSet : MonoBehaviour
         transform.position = end;
         GameScene32Manager.ins.isMovingCam = false;
         
-        camMove?.Invoke();
+        endCamMove?.Invoke();
 
         // Start Game
         Map.ins.StartGame();

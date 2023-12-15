@@ -1,37 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Cano : MonoBehaviour
 {
-    [SerializeField] float speed;
+    [SerializeField] Transform startPos;
+    [SerializeField] Transform endPos;
+    [SerializeField] float timeMove;
+    [SerializeField] float timeDelay;
 
-    Rigidbody2D rigidCano;
-    Vector3 startPos;
-    float eslapsed;
-    [SerializeField] float timeBack;
-    float lengthRiver;
     private void Start()
-    {
-        rigidCano = GetComponent<Rigidbody2D>();
-        startPos = transform.position;
-    }
-
-    private void FixedUpdate()
     {
         Move();
     }
-
-    void Move()
+    private void Move()
     {
-        rigidCano.velocity = new Vector2(0, -speed * Time.deltaTime);
-        if (eslapsed > timeBack)
+        StartCoroutine(nameof(StartMove));
+    }
+
+    IEnumerator StartMove()
+    {
+        float eslapsed;
+        float seconds = timeMove;
+
+        while (true)
         {
+            transform.position = startPos.position;
             eslapsed = 0;
-            lengthRiver = transform.position.y - startPos.y;
-            startPos = new Vector3(transform.position.x, transform.position.y - lengthRiver, transform.position.z);
-            transform.position = startPos;
+            while(eslapsed <= seconds)
+            {
+                eslapsed += Time.deltaTime;
+                transform.position = Vector3.Lerp(startPos.position, endPos.position, eslapsed/seconds);
+                yield return new WaitForEndOfFrame();
+            }
+            transform.position = endPos.position;
+            yield return new WaitForSeconds(timeDelay);
         }
-        eslapsed += Time.deltaTime;
     }
 }

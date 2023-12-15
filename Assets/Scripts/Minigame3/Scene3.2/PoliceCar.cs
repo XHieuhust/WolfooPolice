@@ -12,6 +12,10 @@ public class PoliceCar : MonoBehaviour
     IEnumerator co;
     Image imgCar;
     public bool isCanMove;
+
+    public delegate void CarWait();
+    public static event CarWait carWait;
+
     private void Start()
     {
         isCanMove = true;
@@ -19,12 +23,11 @@ public class PoliceCar : MonoBehaviour
     }
     public void Move(int newRow, int newCol, Vector3 newPos)
     {
-        if (isCanMove)
+        if (isCanMove && !isMoving)
         {
             co = MoveToNewPosition(newRow, newCol, newPos);
             StartCoroutine(co);
         }
-
     }
     
     IEnumerator MoveToNewPosition(int newRow, int newCol, Vector3 newPos)
@@ -32,25 +35,35 @@ public class PoliceCar : MonoBehaviour
         bool canMove = Map.ins.CanMove[newRow, newCol] == 1 ? true : false;
         int oldRow = Map.ins.cellOnCar.indexRow;
         int oldCol = Map.ins.cellOnCar.indexCol;
-        if (Mathf.Abs(newRow - oldRow) + Mathf.Abs(newCol - oldCol) == 1 && canMove && !isMoving)
-        {
-            Map.ins.UpdatePositionCar(newRow, newCol);
-            int newRotation = (newCol - oldCol) * 90 + (newRow - oldRow == -1 ? 180 : 0);
-            transform.eulerAngles = new Vector3(0, 0, newRotation);
-            isMoving = true;
-            float elapsedTime = 0;
-            Vector3 startingPos = transform.position;
-            while (elapsedTime < timeMove)
-            {
-                transform.position = Vector3.Lerp(startingPos, newPos, (elapsedTime / timeMove));
-                elapsedTime += Time.deltaTime;
-                yield return new WaitForEndOfFrame();
-            }
-            transform.position = newPos;
-            isMoving = false;
-            Map.ins.cam.UpdateCameraPos(newCol);
-        }
 
+        if (Mathf.Abs(newRow - oldRow) + Mathf.Abs(newCol - oldCol) == 1 && !isMoving)
+        {
+            if (canMove)
+            {
+                carWait?.Invoke();
+                Map.ins.UpdatePositionCar(newRow, newCol);
+                int newRotation = (newCol - oldCol) * 90 + (newRow - oldRow == -1 ? 180 : 0);
+                transform.eulerAngles = new Vector3(0, 0, newRotation);
+                isMoving = true;
+                float elapsedTime = 0;
+                Vector3 startingPos = transform.position;
+                while (elapsedTime < timeMove)
+                {
+                    transform.position = Vector3.Lerp(startingPos, newPos, (elapsedTime / timeMove));
+                    elapsedTime += Time.deltaTime;
+                    yield return new WaitForEndOfFrame();
+                }
+                transform.position = newPos;
+                isMoving = false;
+                Map.ins.cam.UpdateCameraPos(newCol);
+                Cell.hintCell?.Invoke();
+            }
+            else
+            {
+                HookTheCell(newRow - oldRow);
+
+            }
+        }
     }
 
     public void MoveBackBridge()
@@ -73,6 +86,7 @@ public class PoliceCar : MonoBehaviour
 
     IEnumerator Flicker()
     {
+        carWait?.Invoke();
         isCanMove = false;
         float eslapsed = 0;
         float timeFlick = 2f;
@@ -89,7 +103,30 @@ public class PoliceCar : MonoBehaviour
         }
         imgCar.color = new Color(imgCar.color.r, imgCar.color.g, imgCar.color.b, 1);
         isCanMove = true;
+        Cell.hintCell?.Invoke();
     }
 
+    private void HookTheCell(int directRow)
+    {
+        StartCoroutine(StartHookTheCell(directRow));
+    }
 
+    IEnumerator StartHookTheCell(int directRow)
+    {
+        float eslapsed = 0;
+        Vector3 startPos = transform.position;
+        var speed = 50f; //how fast it shakes
+        var amount = 0.05f; //how much it shakes
+        isCanMove = false;
+        int X = directRow != 0 ? 0 : 1;
+        int Y = directRow != 0 ? 1 : 0;
+        while (eslapsed <= timeMove)
+        {
+            eslapsed += Time.deltaTime;
+            transform.position = startPos + new Vector3(Mathf.Sin(Time.time * speed) * amount * X, Mathf.Sin(Time.time * speed) * amount * Y, 0);
+            yield return new WaitForEndOfFrame();
+        }
+        transform.position = startPos;
+        isCanMove = true;
+    }
 }
