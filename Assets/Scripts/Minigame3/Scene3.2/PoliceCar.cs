@@ -10,16 +10,16 @@ public class PoliceCar : MonoBehaviour
     bool isMoving;
     [SerializeField] float timeMove;
     IEnumerator co;
-    Image imgCar;
+    [SerializeField] Image imgCar;
     public bool isCanMove;
-
+    [SerializeField] Image smoke1;
+    [SerializeField] Image smoke2;
     public delegate void CarWait();
     public static event CarWait carWait;
 
     private void Start()
     {
         isCanMove = true;
-        imgCar = GetComponent<Image>();
     }
     public void Move(int newRow, int newCol, Vector3 newPos)
     {
@@ -29,7 +29,7 @@ public class PoliceCar : MonoBehaviour
             StartCoroutine(co);
         }
     }
-    
+
     IEnumerator MoveToNewPosition(int newRow, int newCol, Vector3 newPos)
     {
         bool canMove = Map.ins.CanMove[newRow, newCol] == 1 ? true : false;
@@ -40,6 +40,7 @@ public class PoliceCar : MonoBehaviour
         {
             if (canMove)
             {
+                StartCoroutine(StartInstanceSmoke());
                 carWait?.Invoke();
                 Map.ins.UpdatePositionCar(newRow, newCol);
                 int newRotation = (newCol - oldCol) * 90 + (newRow - oldRow == -1 ? 180 : 0);
@@ -94,7 +95,7 @@ public class PoliceCar : MonoBehaviour
         while (eslapsed < timeFlick)
         {
             imgCar.color -= new Color(0, 0, 0, speedFlick * Time.deltaTime);
-            if(imgCar.color.a <= 0)
+            if (imgCar.color.a <= 0)
             {
                 imgCar.color = new Color(imgCar.color.r, imgCar.color.g, imgCar.color.b, 1);
             }
@@ -128,5 +129,16 @@ public class PoliceCar : MonoBehaviour
         }
         transform.position = startPos;
         isCanMove = true;
+    }
+
+    IEnumerator StartInstanceSmoke()
+    {
+        
+        float timeDelay = 0.2f;
+        Image newSmoke1 = Instantiate(smoke1, transform.position, Quaternion.identity, transform.parent);
+        gameObject.transform.SetAsLastSibling();
+        yield return new WaitForSeconds(timeDelay);
+        Image newSmoke2 = Instantiate(smoke2, transform.position, Quaternion.identity, transform.parent);
+        gameObject.transform.SetAsLastSibling();
     }
 }

@@ -36,7 +36,7 @@ public class Cell : MonoBehaviour
 
     private void OnClick()
     {
-        if (!GameScene32Manager.ins.isMovingCam)
+        if (!GameScene32Manager.ins.isMovingCam && !GameScene32Manager.ins.isEndgame)
         {
             Map.ins.car.Move(indexRow, indexCol, transform.position);
         }

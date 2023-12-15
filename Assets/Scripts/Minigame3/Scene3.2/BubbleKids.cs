@@ -130,4 +130,9 @@ public class BubbleKids : MonoBehaviour
         StopAllCoroutines();
         transform.localScale = Vector3.zero;
     }
+
+    private void EndGame()
+    {
+        bubbleImage.sprite = spriteBubbles[2];
+    }
 }

@@ -9,6 +9,11 @@ public class Train : MonoBehaviour
     [SerializeField] float timeMove;
     [SerializeField] float timeDelay;
     private float sizeTrain;
+
+    public delegate void TurnLight();
+    public static event TurnLight turnRed;
+    public static event TurnLight turnGreen;
+    bool isTurnLight;
     private void Start()
     {
         Move();
@@ -45,6 +50,13 @@ public class Train : MonoBehaviour
         if (transform.position.y + sizeTrain >= Map.ins.MatrixCells[3, 18].transform.position.y && transform.position.y - sizeTrain <= Map.ins.MatrixCells[3, 18].transform.position.y)
         {
             Map.ins.CanMove[3, 18] = 0;
+
+            if (!isTurnLight)
+            {
+                Cell.hintCell?.Invoke();
+                turnRed?.Invoke();
+                isTurnLight = true;
+            }
             if (Map.ins.cellOnCar.indexCol == 18 && Map.ins.cellOnCar.indexRow == 3)
             {
                 Map.ins.car.MoveBackRailway();
@@ -53,6 +65,13 @@ public class Train : MonoBehaviour
         else
         {
             Map.ins.CanMove[3, 18] = 1;
+
+            if (isTurnLight)
+            {
+                Cell.hintCell?.Invoke();
+                turnGreen?.Invoke();
+                isTurnLight = false;
+            }
         }
     }
 }

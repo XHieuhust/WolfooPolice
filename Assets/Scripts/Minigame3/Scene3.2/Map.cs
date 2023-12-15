@@ -80,7 +80,7 @@ public class Map : MonoBehaviour
 
         if (cellOnCar.indexCol == 32 && cellOnCar.indexRow == 1)
         {   
-            GameScene32Manager.ins.CompleteMinigame();
+            GameScene32Manager.ins.EndGame();
         }
     }
 
