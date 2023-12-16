@@ -8,10 +8,12 @@ public class GameScene31Manager : MonoBehaviour
     private int point = 0;
     [SerializeField] int maxPoint;
     public bool isEndGame;
+    [SerializeField] ShadeBg startShade;
     [SerializeField] ShadeBg endShade;
     private void Start()
     {
         ins = this;
+        startShade.gameObject.SetActive(true);
     }
 
     public void UpdatePoint()
@@ -21,16 +23,6 @@ public class GameScene31Manager : MonoBehaviour
         {
             UIManager_Scene1_3.ins.ActiveFingerScaning();
         }
-    }
-
-
-    public void CompleteScene()
-    {
-        isEndGame = true;
-        //Load new Scene
-
-        string curMinigame = PlayerPrefs.GetString("curMinigame");
-        ScenesManager.ins.LoadScene(curMinigame + ".2");
     }
 
     public int GetPoint()
@@ -53,7 +45,10 @@ public class GameScene31Manager : MonoBehaviour
 
     private void LoadNewScene()
     {
+        isEndGame = true;
         string curMinigame = PlayerPrefs.GetString("curMinigame");
-        ScenesManager.ins.LoadScene(curMinigame + ".2");
+        int curScene = PlayerPrefs.GetInt("curScene") + 1;
+        PlayerPrefs.SetInt("curScene", curScene);
+        ScenesManager.ins.LoadScene(curMinigame + "." + curScene.ToString());
     }
 }

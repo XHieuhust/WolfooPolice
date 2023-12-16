@@ -27,12 +27,15 @@ public class BubbleKids : MonoBehaviour
     {
         CameraSet.endCamMove += BubbleUpdatePosHint;
         CameraSet.startCamMove += SetScaleToZero;
+        GameScene32Manager.end += EndGame;
     }
 
     private void OnDestroy()
     {
         CameraSet.endCamMove -= BubbleUpdatePosHint;
         CameraSet.startCamMove -= SetScaleToZero;
+        GameScene32Manager.end -= EndGame;
+
     }
 
     IEnumerator StartScaleUp()

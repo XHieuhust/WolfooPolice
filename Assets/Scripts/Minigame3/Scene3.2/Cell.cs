@@ -26,12 +26,14 @@ public class Cell : MonoBehaviour
     {
         hintCell += Hint;
         PoliceCar.carWait += StopHint;
+        GameScene32Manager.end += StopHint;
     }
 
     private void OnDestroy()
     {
         hintCell -= Hint;
         PoliceCar.carWait -= StopHint;
+        GameScene32Manager.end -= StopHint;
     }
 
     private void OnClick()

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class PoliceCar : MonoBehaviour
 {
-    bool isMoving;
+    public bool isMoving;
     [SerializeField] float timeMove;
     IEnumerator co;
     [SerializeField] Image imgCar;
@@ -136,9 +136,12 @@ public class PoliceCar : MonoBehaviour
         
         float timeDelay = 0.2f;
         Image newSmoke1 = Instantiate(smoke1, transform.position, Quaternion.identity, transform.parent);
-        gameObject.transform.SetAsLastSibling();
+        newSmoke1.transform.SetSiblingIndex(4);
+        //gameObject.transform.SetAsLastSibling();
         yield return new WaitForSeconds(timeDelay);
         Image newSmoke2 = Instantiate(smoke2, transform.position, Quaternion.identity, transform.parent);
-        gameObject.transform.SetAsLastSibling();
+        newSmoke2.transform.SetSiblingIndex(4);
+
+        //gameObject.transform.SetAsLastSibling();
     }
 }

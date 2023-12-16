@@ -8,6 +8,9 @@ public class GameScene32Manager: MonoBehaviour
     public bool isMovingCam;
     [SerializeField] ShadeBg startShade;
     public bool isEndgame;
+    public delegate void End();
+    public static event End end;
+
     private void Awake()
     {
         ins = this;
@@ -21,6 +24,7 @@ public class GameScene32Manager: MonoBehaviour
 
     IEnumerator StartEndGame()
     {
+        end?.Invoke();
         isEndgame = true;
         yield return new WaitForSeconds(2f);
         CompleteMinigame3();
@@ -28,9 +32,8 @@ public class GameScene32Manager: MonoBehaviour
 
     private void CompleteMinigame3()
     {
-
-        /*string curMinigame = PlayerPrefs.GetString("curMinigame");
+        string curMinigame = PlayerPrefs.GetString("curMinigame");
         LevelManager.ins.UpdateLevel(curMinigame);
-        ScenesManager.ins.LoadScene("SceneMenu");*/
+        ScenesManager.ins.LoadScene("SceneMenu");
     }
 }

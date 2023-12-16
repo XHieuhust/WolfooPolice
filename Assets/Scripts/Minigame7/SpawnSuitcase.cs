@@ -34,6 +34,7 @@ public class SpawnSuitcase : MonoBehaviour
                 newSuit.SetUp(Sprites[cnt % Sprites.Count], (cnt % 4 == 0 && cnt > 0));
                 cnt++;
                 eslapsed = 0;
+                //Random.RandomRange(3,6)
             }
             yield return new WaitForEndOfFrame();
         }

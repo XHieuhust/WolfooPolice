@@ -53,7 +53,10 @@ public class Train : MonoBehaviour
 
             if (!isTurnLight)
             {
-                Cell.hintCell?.Invoke();
+                if (!Map.ins.car.isMoving)
+                {
+                    Cell.hintCell?.Invoke();
+                }
                 turnRed?.Invoke();
                 isTurnLight = true;
             }
@@ -68,7 +71,10 @@ public class Train : MonoBehaviour
 
             if (isTurnLight)
             {
-                Cell.hintCell?.Invoke();
+                if (!Map.ins.car.isMoving)
+                {
+                    Cell.hintCell?.Invoke();
+                }
                 turnGreen?.Invoke();
                 isTurnLight = false;
             }

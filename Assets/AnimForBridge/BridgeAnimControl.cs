@@ -55,7 +55,10 @@ public class BridgeAnimControl : MonoBehaviour
 
     IEnumerator StartOpen()
     {
-        Cell.hintCell?.Invoke();
+        if (!Map.ins.car.isMoving)
+        {
+            Cell.hintCell?.Invoke();
+        }
         float eslapsed = 0;
         float seconds = 1f;
         while (eslapsed <= seconds)
@@ -79,7 +82,10 @@ public class BridgeAnimControl : MonoBehaviour
         }
         Anim(0);
         Map.ins.SetTrueCellBridge();
-        Cell.hintCell?.Invoke();
+        if (!Map.ins.car.isMoving)
+        {
+            Cell.hintCell?.Invoke();
+        }
 
     }
 
