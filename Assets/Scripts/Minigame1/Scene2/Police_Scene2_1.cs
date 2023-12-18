@@ -8,6 +8,11 @@ public class Police_Scene2_1 : MonoBehaviour
     [SerializeField] SkeletonAnimation wolfoo;
     [SerializeField] SkeletonAnimation kat;
 
+    private void Start()
+    {
+        wolfoo.AnimationState.SetAnimation(0, "Idle", true);
+        kat.AnimationState.SetAnimation(0, "Idle", true);
+    }
 
     public void Move(float seconds)
     {

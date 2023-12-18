@@ -25,7 +25,6 @@ public class GameScenePoliceCarManager : MonoBehaviour
      
     IEnumerator StartEndScene()
     {
-        police.gameObject.SetActive(true);
         police.Move(1.5f);
         yield return new WaitForSeconds(1.5f + 2f);
         coverShadeBg.SetActive(true);

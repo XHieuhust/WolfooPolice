@@ -10,7 +10,7 @@ public class PanelClick : MonoBehaviour
     [SerializeField] Button trueClickBtn2;
     [SerializeField] Button falseClick1;
     [SerializeField] Button falseClick2;
-    [SerializeField] TrueClick trueTick;
+    [SerializeField] TrueTick trueTick;
     [SerializeField] FalseTick falseTick;
     float startScale;
     bool isCanClick;
@@ -20,7 +20,6 @@ public class PanelClick : MonoBehaviour
         trueClickBtn2.onClick.AddListener(TrueClicked);
         falseClick1.onClick.AddListener(FalseClick);
         falseClick2.onClick.AddListener(FalseClick);
-
     }
 
     void TrueClicked()
@@ -34,8 +33,9 @@ public class PanelClick : MonoBehaviour
     IEnumerator StartTrueClick()
     {
         isCanClick = false;
-        TrueClick firstTick = Instantiate(trueTick, trueClickBtn1.transform.position, Quaternion.identity, transform);
-        TrueClick secondTick = Instantiate(trueTick, trueClickBtn2.transform.position, Quaternion.identity, transform);
+        Hint.eStopHint?.Invoke();
+        TrueTick firstTick = Instantiate(trueTick, trueClickBtn1.transform.position, Quaternion.identity, transform);
+        TrueTick secondTick = Instantiate(trueTick, trueClickBtn2.transform.position, Quaternion.identity, transform);
         firstTick.Enable(0.25f);
         secondTick.Enable(0.25f);
         GameScene3Manager.ins.UpdateBar(0.25f);

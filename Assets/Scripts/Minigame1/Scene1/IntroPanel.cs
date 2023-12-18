@@ -81,7 +81,7 @@ public class IntroPanel : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
         rect.position = newPos;
-        ob.GetComponent<Screen>().TurnOnTheLight();
+        ob.GetComponent<Screen_SceneCall>().TurnOnTheLight();
     }
 
 }

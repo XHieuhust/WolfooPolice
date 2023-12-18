@@ -4,40 +4,47 @@ using UnityEngine;
 
 public class LoobBackground : MonoBehaviour
 {
-    [SerializeField] GameObject bg1;
-    [SerializeField] GameObject bg2;
+    [SerializeField] List<GameObject> ListBgs;
+    private List<float> ListSizeBgs = new List<float>();
     [SerializeField] float speedLayer;
-    float oldPosition;
-    private void FixedUpdate()
+    private float oldPosition;
+
+    private void Start()
+    {
+        oldPosition = Camera.main.transform.position.x;
+        for (int i = 0; i < ListBgs.Count; ++i)
+        {
+            ListSizeBgs.Add(ListBgs[i].GetComponent<SpriteRenderer>().size.x);
+        }
+    }
+    private void LateUpdate()
     {
         LayerTransform();
         LoopLayer();
     }
 
-    void LayerTransform()
+    private void LayerTransform()
     {
-        if(Camera.main.transform.position.x > 0 && (Camera.main.transform.position.x != oldPosition))
+        if(Camera.main.transform.position.x > 0)
         {
-            //bg1.transform.position += new Vector3(speedLayer * car.GetComponent<Rigidbody2D>().velocity.x / 10, 0, 0);
-            //bg2.transform.position += new Vector3(speedLayer * car.GetComponent<Rigidbody2D>().velocity.x / 10, 0, 0);
-         
             float dist = (Camera.main.transform.position.x - oldPosition) * speedLayer;
-            bg1.transform.position += new Vector3(dist, 0, 0);
-            bg2.transform.position += new Vector3(dist, 0, 0);
+            for (int i = 0; i < ListBgs.Count; ++i)
+            {
+                ListBgs[i].transform.position += new Vector3(dist, 0, 0);
+            }
             oldPosition = Camera.main.transform.position.x;
         }
     }
 
-    void LoopLayer()
+    private void LoopLayer()
     {
-        if (bg1.transform.position.x + bg1.GetComponent<SpriteRenderer>().size.x / 2 <= Camera.main.transform.position.x - Camera.main.aspect * Camera.main.orthographicSize)
+        for (int i = 0; i < ListBgs.Count; ++i)
         {
-            bg1.transform.position = new Vector3(bg2.transform.position.x + bg2.GetComponent<SpriteRenderer>().size.x / 2 + bg1.GetComponent<SpriteRenderer>().size.x / 2 - 0.05f, bg1.transform.position.y, 0);
-        }
-
-        if (bg2.transform.position.x + bg2.GetComponent<SpriteRenderer>().size.x / 2 <= Camera.main.transform.position.x - Camera.main.aspect * Camera.main.orthographicSize)
-        {
-            bg2.transform.position = new Vector3(bg1.transform.position.x + bg1.GetComponent<SpriteRenderer>().size.x / 2 + bg2.GetComponent<SpriteRenderer>().size.x / 2 - 0.05f, bg1.transform.position.y, 0);
+            if (ListBgs[i].transform.position.x + ListSizeBgs[i] / 2 <= Camera.main.transform.position.x - Camera.main.aspect * Camera.main.orthographicSize)
+            {
+                int nextIndexBg = (i + ListBgs.Count - 1) % (ListBgs.Count);
+                ListBgs[i].transform.position = new Vector3(ListBgs[nextIndexBg].transform.position.x + ListSizeBgs[nextIndexBg] / 2 + ListSizeBgs[i] / 2 - 0.05f, ListBgs[i].transform.position.y, 0);
+            }
         }
     }
 }

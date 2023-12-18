@@ -31,7 +31,7 @@ public class Leaf : MonoBehaviour
     IEnumerator StartBeHitted(GameObject leaf)
     {
         leaf.GetComponent<Rigidbody2D>().isKinematic = false;
-        float directionX = Random.Range(-0.2f, 0.2f);
+        float directionX = Random.Range(0.4f, 0.7f);
         leaf.GetComponent<Rigidbody2D>().AddForce(new Vector2(directionX, 1) * forceFly);
         yield return new WaitForSeconds(2f);
         Destroy(leaf);

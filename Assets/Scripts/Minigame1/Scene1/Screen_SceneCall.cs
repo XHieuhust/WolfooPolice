@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Spine.Unity;
 
-public class Screen : MonoBehaviour
+public class Screen_SceneCall : MonoBehaviour
 {
     [SerializeField] Image imageMap;
     [SerializeField] GameObject lightNormal;
