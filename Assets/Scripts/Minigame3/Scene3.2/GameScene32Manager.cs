@@ -27,13 +27,15 @@ public class GameScene32Manager: MonoBehaviour
         end?.Invoke();
         isEndgame = true;
         yield return new WaitForSeconds(2f);
-        CompleteMinigame3();
+        LoadNextScene();
     }
 
-    private void CompleteMinigame3()
+    private void LoadNextScene()
     {
         string curMinigame = PlayerPrefs.GetString("curMinigame");
-        LevelManager.ins.UpdateLevel(curMinigame);
-        ScenesManager.ins.LoadScene("SceneMenu");
+        int curScene = PlayerPrefs.GetInt("curScene") + 1;
+        PlayerPrefs.SetInt("curScene", curScene);
+        ScenesManager.ins.LoadScene(curMinigame + "." + curScene.ToString());
     }
+
 }

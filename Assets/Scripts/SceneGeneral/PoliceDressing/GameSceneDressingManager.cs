@@ -58,19 +58,8 @@ public class GameSceneDressingManager : MonoBehaviour
     private void LoadNewScene()
     {
         string curMinigame = PlayerPrefs.GetString("curMinigame");
-        if (curMinigame.Equals("Scene2"))
-        {
-            ScenesManager.ins.LoadScene(curMinigame + ".3");
-        }
-
-        if (curMinigame.Equals("Scene4"))
-        {
-            ScenesManager.ins.LoadScene(curMinigame + ".2");
-        }
-
-        if (curMinigame.Equals("Scene8"))
-        {
-            ScenesManager.ins.LoadScene(curMinigame + ".3");
-        }
+        int curScene = PlayerPrefs.GetInt("curScene") + 1;
+        PlayerPrefs.SetInt("curScene", curScene);
+        ScenesManager.ins.LoadScene(curMinigame + "." + curScene.ToString());
     }
 }

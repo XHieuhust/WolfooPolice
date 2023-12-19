@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameScene15Manager : MonoBehaviour
 {
-    [SerializeField] ShadeBg shade;
+    [SerializeField] ShadeBg endShade;
     public static GameScene15Manager ins;
     [SerializeField] Wolfoo_Scene5_1 wolfoo;
     public Criminal_Scene5_1 criminal;
@@ -78,8 +78,8 @@ public class GameScene15Manager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         UIManager_Scene5_1.ins.TurnOnPointPanel();
         yield return new WaitForSeconds(2f);
-/*        shade.gameObject.SetActive(true);
-        yield return new WaitForSeconds(1f);*/
+        endShade.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1f);
         CompleteMiniGame1();
     }
 

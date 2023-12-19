@@ -541,4 +541,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f88a30b9f68f08441a8f95f5d03c4262, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shadeBg: {fileID: 308134374}
+  endShade: {fileID: 308134374}

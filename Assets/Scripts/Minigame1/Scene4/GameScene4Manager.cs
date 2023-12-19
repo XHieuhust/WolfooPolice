@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameScene4Manager : MonoBehaviour
 {
     public static GameScene4Manager ins;
-    [SerializeField] ShadeBg shadeBg;
+    [SerializeField] ShadeBg endShade;
 
     private void Start()
     {
@@ -19,10 +19,16 @@ public class GameScene4Manager : MonoBehaviour
 
     IEnumerator StartToNextScene()
     {
-        shadeBg.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
-        string newScene = PlayerPrefs.GetString("curMinigame");
-
-        ScenesManager.ins.LoadScene(newScene + ".5");
+        endShade.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        LoadNextScene();
+    }
+    public void LoadNextScene()
+    {
+        string curMinigame = PlayerPrefs.GetString("curMinigame");
+        int curScene = PlayerPrefs.GetInt("curScene") + 1;
+        PlayerPrefs.SetInt("curScene", curScene);
+        ScenesManager.ins.LoadScene(curMinigame + "." + curScene.ToString());
     }
 }

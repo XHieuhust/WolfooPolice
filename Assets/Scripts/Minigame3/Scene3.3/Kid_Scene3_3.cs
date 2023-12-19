@@ -30,9 +30,8 @@ public class Kid_Scene3_3 : MonoBehaviour
         }
         transform.position = end;
         skeleton.AnimationState.SetAnimation(0, "Crying_hug", true);
-        yield return new WaitForSeconds(1f);
-        skeleton.AnimationState.SetAnimation(0, "Excited", true);
-
+        GameScene33Manager.ins.momKid.HugeTheKid();
+        GameScene33Manager.ins.EndScene();
     }
 
 }

@@ -40,6 +40,13 @@ public class GameScene3Manager : MonoBehaviour
     {
         barProgress.MoveLeft();
         yield return new WaitForSeconds(0.5f);
-        ScenesManager.ins.LoadScene("Scene1.4");
+        LoadNextScene();
+    }
+    private void LoadNextScene()
+    {
+        string curMinigame = PlayerPrefs.GetString("curMinigame");
+        int curScene = PlayerPrefs.GetInt("curScene") + 1;
+        PlayerPrefs.SetInt("curScene", curScene);
+        ScenesManager.ins.LoadScene(curMinigame + "." + curScene.ToString());
     }
 }

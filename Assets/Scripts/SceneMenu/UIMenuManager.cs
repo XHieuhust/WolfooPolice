@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class UIMeneManager : MonoBehaviour
+public class UIMenuManager : MonoBehaviour
 {
     [SerializeField] Button button1;
     [SerializeField] Button button2;

@@ -34,21 +34,9 @@ public class GameScenePoliceCarManager : MonoBehaviour
 
     public void LoadNextScene()
     {
-        string newScene = PlayerPrefs.GetString("curMinigame");
-        if (newScene.Equals("Scene1"))
-        {
-            ScenesManager.ins.LoadScene(newScene + ".3");
-        }
-        else if (newScene.Equals("Scene6"))
-        {
-            ScenesManager.ins.LoadScene(newScene + ".2");
-        }else if (newScene.Equals("Scene8"))
-        {
-            ScenesManager.ins.LoadScene(newScene + ".4");
-        }
-        else
-        {
-            ScenesManager.ins.LoadScene(newScene + ".4");
-        }
+        string curMinigame = PlayerPrefs.GetString("curMinigame");
+        int curScene = PlayerPrefs.GetInt("curScene") + 1;
+        PlayerPrefs.SetInt("curScene", curScene);
+        ScenesManager.ins.LoadScene(curMinigame + "." + curScene.ToString());
     }
 }
