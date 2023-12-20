@@ -12,10 +12,12 @@ public class GameScenePoliceCarManager : MonoBehaviour
     [SerializeField] public ShopKeeper shopKeeper;
     public Transform endPosition;
     public bool isEndGame;
-    [SerializeField] GameObject coverShadeBg;
+    [SerializeField] ShadeBg startShade;
+    [SerializeField] ShadeBg endShade;
     private void Awake()
     {
         ins = this;
+        startShade.gameObject.SetActive(true);
     }
     public void EndScene()
     {
@@ -27,7 +29,7 @@ public class GameScenePoliceCarManager : MonoBehaviour
     {
         police.Move(1.5f);
         yield return new WaitForSeconds(1.5f + 2f);
-        coverShadeBg.SetActive(true);
+        endShade.gameObject.SetActive(true);
         yield return new WaitForSeconds(1);
         LoadNextScene();
     }

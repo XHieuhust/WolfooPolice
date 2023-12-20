@@ -23,6 +23,7 @@ public class Criminal_Scene5_2 : MonoBehaviour
     [SerializeField] float timeAttack;
     [SerializeField] public Transform headPos;
     [SerializeField] List<int> markChangeSkins;
+    [SerializeField] SkeletonAnimation boostMad;
     private int curSkin;
     private int cntBullet;
     private int curBullet;
@@ -103,6 +104,8 @@ public class Criminal_Scene5_2 : MonoBehaviour
     }
     IEnumerator StartNewTurn(float timeStartTurn)
     {
+        boostMad.gameObject.SetActive(false);
+
         isAttacking = false;
         eslapsed = 0;
         transform.position = startPos;
@@ -196,6 +199,7 @@ public class Criminal_Scene5_2 : MonoBehaviour
 
     public void GetMad()
     {
+        boostMad.gameObject.SetActive(true);
         curBullet = 0;
         StopCoroutine(nameof(StartBeAttacked));
         isGetMad = true;

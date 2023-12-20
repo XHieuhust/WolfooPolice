@@ -11,12 +11,14 @@ public class GameScene24Manager : MonoBehaviour
     [SerializeField] SpawnCriminal_SceneBank spawnManager;
     [SerializeField] int pointAppearCriminalGun;
     private bool isEndGame;
-    [SerializeField] ShadeBg shade;
+    [SerializeField] ShadeBg startShade;
+    [SerializeField] ShadeBg endShade;
     public delegate void EndScene();
     public event EndScene endScene;
     private void Awake()
     {
         ins = this;
+        startShade.gameObject.SetActive(true);
     }
 
     public void UpdatePoint()
@@ -43,7 +45,7 @@ public class GameScene24Manager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         endScene?.Invoke();
         yield return new WaitForSeconds(2f);
-        shade.gameObject.SetActive(true);
+        endShade.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
         LoadNewScene();
     }

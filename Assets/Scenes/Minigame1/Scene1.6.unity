@@ -1797,6 +1797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 506cc691f4bc8594cb43cdb00186066c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startShade: {fileID: 1926930847}
   endShade: {fileID: 1541424559}
   wolfoo: {fileID: 897907055}
   criminal: {fileID: 0}
@@ -3211,7 +3212,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6153424811417282327, guid: a25f166d4475c634680cc0c92fd312be, type: 3}
       propertyPath: m_Name
-      value: StartShade
+      value: starShade
+      objectReference: {fileID: 0}
+    - target: {fileID: 6153424811417282327, guid: a25f166d4475c634680cc0c92fd312be, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6153424811417282410, guid: a25f166d4475c634680cc0c92fd312be, type: 3}
       propertyPath: startA
@@ -3223,6 +3228,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a25f166d4475c634680cc0c92fd312be, type: 3}
+--- !u!114 &1926930847 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6153424811417282410, guid: a25f166d4475c634680cc0c92fd312be, type: 3}
+  m_PrefabInstance: {fileID: 1926930846}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8454a48cd965d74a9fdd85eacf63435, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1951234748 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7386444477637118638, guid: d8aeec3b3f5237e4cb3821c2ab5f576b, type: 3}

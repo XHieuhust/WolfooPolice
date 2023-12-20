@@ -77,6 +77,7 @@ public class ScanningBtn : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
                 isComplete = true;
                 CompleteScanning();
                 StopCoroutine(nameof(StartScan));
+                Destroy(rayScan.gameObject);
             }
             yield return new WaitForEndOfFrame();
         }

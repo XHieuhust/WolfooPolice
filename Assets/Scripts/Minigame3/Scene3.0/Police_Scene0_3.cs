@@ -10,11 +10,16 @@ public class Police_Scene0_3 : MonoBehaviour
 
     [SerializeField] Transform endPos;
     Vector3 end;
-    private void Start()
+    
+    private void Awake()
     {
         end = endPos.position;
 
         transform.position = new Vector3(Camera.main.orthographicSize * Camera.main.aspect + 2f, transform.position.y, transform.position.z);
+    }
+
+    public void MoveToEndPos()
+    {
         StartCoroutine(StartMoveToEndPos());
     }
 

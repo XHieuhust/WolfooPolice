@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameScene15Manager : MonoBehaviour
 {
+    [SerializeField] ShadeBg startShade;
     [SerializeField] ShadeBg endShade;
     public static GameScene15Manager ins;
     [SerializeField] Wolfoo_Scene5_1 wolfoo;
@@ -29,6 +30,8 @@ public class GameScene15Manager : MonoBehaviour
     {
         ins = this;
         level = levelScale[0];
+
+        startShade.gameObject.SetActive(true);
     }
 
     private void Start()

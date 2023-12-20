@@ -6,10 +6,11 @@ public class GameScene4Manager : MonoBehaviour
 {
     public static GameScene4Manager ins;
     [SerializeField] ShadeBg endShade;
-
+    [SerializeField] ShadeBg startShade;
     private void Start()
     {
         ins = this;
+        startShade.gameObject.SetActive(true);
     }
 
     public void EndScene()

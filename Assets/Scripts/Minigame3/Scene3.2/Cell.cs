@@ -47,7 +47,7 @@ public class Cell : MonoBehaviour
     private void Hint()
     {
         StopHint();
-        if (Mathf.Abs(indexRow - Map.ins.cellOnCar.indexRow) + Mathf.Abs(indexCol - Map.ins.cellOnCar.indexCol) == 1)
+        if (Mathf.Abs(indexRow - Map.ins.cellOnCar.indexRow) + Mathf.Abs(indexCol - Map.ins.cellOnCar.indexCol) == 1 && !GameScene32Manager.ins.isEndgame)
         {
             if (Map.ins.CanMove[indexRow, indexCol] == 1)
             {

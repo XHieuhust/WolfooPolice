@@ -6,11 +6,10 @@ public class BoPhanGhepHinh : DragSprite
 {
     [SerializeField] GameObject hinhVuongHienThi;
     [SerializeField] GameObject hintSprite;
+    [SerializeField] GameObject hintNetDut;
     [SerializeField] GameObject light;
-    HintNhapNhay hintNhapNhay;
     private void Awake()
     {
-        hintNhapNhay = hintSprite.GetComponent<HintNhapNhay>();
         SetStartValue();
     }
     public override void CorrectDrag()
@@ -34,7 +33,8 @@ public class BoPhanGhepHinh : DragSprite
         }
         transform.localScale = new Vector3(end, end, end);
         hinhVuongHienThi.GetComponent<SquareShow>().ScaleDown(0.2f);
-        hintNhapNhay.StopHint();
+        hintSprite.GetComponent<HintNhapNhay>().StopHint();
+        hintNetDut.GetComponent<HintNhapNhay>().StopHint();
         yield return new WaitForSeconds(0.2f);
         GamePlay_Scene4_1_Manager.ins.UpdateCntTrueBoPhan();
     }
@@ -55,13 +55,15 @@ public class BoPhanGhepHinh : DragSprite
     public override void DoSthingWhenOnMouseDown()
     {
         base.DoSthingWhenOnMouseDown();
-        hintNhapNhay.StartHint();
+        hintSprite.GetComponent<HintNhapNhay>().StartHint();
+        hintNetDut.GetComponent<HintNhapNhay>().StartHint();
     }
 
     public override void DoSthingWhenOnMouseUp()
     {
         base.DoSthingWhenOnMouseUp();
-        hintNhapNhay.StopHint();
+        hintSprite.GetComponent<HintNhapNhay>().StopHint();
+        hintNetDut.GetComponent<HintNhapNhay>().StopHint();
     }
 
     public void MoveToStartPos(float seconds)

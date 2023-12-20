@@ -7,6 +7,7 @@ public class GameScene30Manager : MonoBehaviour
     public static GameScene30Manager ins;
     [SerializeField] GameObject Scene1;
     [SerializeField] GameObject Scene2;
+    [SerializeField] Police_Scene0_3 police;
     [SerializeField] ShadeBg endShade;
     private void Awake()
     {
@@ -17,6 +18,7 @@ public class GameScene30Manager : MonoBehaviour
     {
         Scene1.SetActive(false);
         Scene2.SetActive(true);
+        police.MoveToEndPos();
     }
 
     public void EndScene()

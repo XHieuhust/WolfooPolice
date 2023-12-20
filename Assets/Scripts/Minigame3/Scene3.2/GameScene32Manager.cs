@@ -7,6 +7,7 @@ public class GameScene32Manager: MonoBehaviour
     public static GameScene32Manager ins;
     public bool isMovingCam;
     [SerializeField] ShadeBg startShade;
+    [SerializeField] ShadeBg endShade;
     public bool isEndgame;
     public delegate void End();
     public static event End end;
@@ -24,9 +25,11 @@ public class GameScene32Manager: MonoBehaviour
 
     IEnumerator StartEndGame()
     {
-        end?.Invoke();
         isEndgame = true;
+        end?.Invoke();
         yield return new WaitForSeconds(2f);
+        endShade.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1f);
         LoadNextScene();
     }
 
