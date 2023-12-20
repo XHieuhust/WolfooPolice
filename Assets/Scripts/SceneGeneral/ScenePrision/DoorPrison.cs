@@ -13,6 +13,9 @@ public class DoorPrison : MonoBehaviour
     [SerializeField] GameObject rattle;
     private bool isCanClick;
 
+    public delegate void ECompleteCloseDoor();
+    public static event ECompleteCloseDoor completeCloseDoor;
+
     private void OnEnable()
     {
         Criminal_ScenePrison.innerPrison += Play;
@@ -99,6 +102,7 @@ public class DoorPrison : MonoBehaviour
                 yield return new WaitForEndOfFrame();
             }
             transform.position = end;
+            completeCloseDoor?.Invoke();
         }
         
     }

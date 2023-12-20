@@ -21,6 +21,17 @@ public class Criminal_ScenePrison : MonoBehaviour
         StartCoroutine(StartMoveToPrison());
     }
 
+    private void OnEnable()
+    {
+        DoorPrison.completeCloseDoor += KneerScare;
+    }
+
+    private void OnDestroy()
+    {
+        DoorPrison.completeCloseDoor -= KneerScare;
+    }
+
+
     IEnumerator StartMoveToPrison()
     {
         float eslapsed = 0;
@@ -31,7 +42,7 @@ public class Criminal_ScenePrison : MonoBehaviour
 
         skeleton.AnimationState.SetAnimation(0, "Walk_Prisoner", true);
 
-        while(eslapsed <= seconds)
+        while (eslapsed <= seconds)
         {
             eslapsed += Time.deltaTime;
             transform.position = Vector3.Lerp(start, end, eslapsed / seconds);
@@ -50,7 +61,12 @@ public class Criminal_ScenePrison : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         transform.position = end;
-        skeleton.AnimationState.SetAnimation(0, "Kneel_Prisoner", true);
+        skeleton.AnimationState.SetAnimation(0, "Idle_Prisoner", true);
         innerPrison?.Invoke();
+    }
+
+    private void KneerScare()
+    {
+        skeleton.AnimationState.SetAnimation(0, "Kneel_Prisoner", true);
     }
 }
