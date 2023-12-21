@@ -73,6 +73,9 @@ public class DoorPrison : MonoBehaviour
         }
         transform.position = end;
         rattle.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        completeCloseDoor?.Invoke();
+        GameScenePrisionManager.ins.ActiveEndScene();
     }
 
     IEnumerator StartHint()
@@ -102,7 +105,7 @@ public class DoorPrison : MonoBehaviour
                 yield return new WaitForEndOfFrame();
             }
             transform.position = end;
-            completeCloseDoor?.Invoke();
+
         }
         
     }

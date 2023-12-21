@@ -4,7 +4,8 @@ using UnityEngine;
 using Spine.Unity;
 public class Criminal_ScenePrison : MonoBehaviour
 {
-    [SerializeField] SkeletonAnimation skeleton;
+    [SerializeField] List<SkeletonAnimation> listSkeletons;
+    SkeletonAnimation skeleton;
     [SerializeField] Transform firstPos;
     [SerializeField] Transform secondPos;
     private Vector3 first;
@@ -15,6 +16,13 @@ public class Criminal_ScenePrison : MonoBehaviour
 
     private void Awake()
     {
+        // set level
+        string curMinigame = PlayerPrefs.GetString("curMinigame");
+        int curLevel = LevelManager.ins.GetLevel(curMinigame);
+        listSkeletons[curLevel % listSkeletons.Count].gameObject.SetActive(true);
+        skeleton = listSkeletons[curLevel % listSkeletons.Count];
+
+
         first = firstPos.position;
         second = secondPos.position;
         transform.position = new Vector3(-Camera.main.orthographicSize * Camera.main.aspect - 2f, transform.position.y, transform.position.z);
@@ -61,7 +69,7 @@ public class Criminal_ScenePrison : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         transform.position = end;
-        skeleton.AnimationState.SetAnimation(0, "Idle_Prisoner", true);
+        //skeleton.AnimationState.SetAnimation(0, "Idle_Prisoner", true);
         innerPrison?.Invoke();
     }
 

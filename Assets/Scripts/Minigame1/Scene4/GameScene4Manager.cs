@@ -25,7 +25,7 @@ public class GameScene4Manager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         LoadNextScene();
     }
-    public void LoadNextScene()
+    private void LoadNextScene()
     {
         string curMinigame = PlayerPrefs.GetString("curMinigame");
         int curScene = PlayerPrefs.GetInt("curScene") + 1;

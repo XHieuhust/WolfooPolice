@@ -61,10 +61,15 @@ public class Criminal_SceneBank : MonoBehaviour
         while (eslasped <= seconds)
         {
             eslasped += Time.deltaTime;
-            skeleton.Skeleton.A = (1 - eslasped / seconds);
+            if(eslasped/seconds >= 1)
+            {
+                Destroy(gameObject);
+            }
+            skeleton.Skeleton.SetColor(new Color(skeleton.Skeleton.R, skeleton.Skeleton.G, skeleton.Skeleton.B, 1 - (eslasped / seconds)));
+            //skeleton.Skeleton.A = 1 - (eslasped / seconds);
             yield return new WaitForEndOfFrame();
         }
-        //skeleton.Skeleton.A = 0;
+        skeleton.Skeleton.SetColor(new Color(skeleton.Skeleton.R, skeleton.Skeleton.G, skeleton.Skeleton.B, 1 - (eslasped / seconds)));
         Destroy(gameObject);
     }
 
