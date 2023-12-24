@@ -8,13 +8,14 @@ public class BgUIDetected : MonoBehaviour
     public void Start()
     {
         rectTransform = GetComponent<RectTransform>();
-        Canvas canvas = FindObjectOfType<Canvas>();
-        float newScaleX = canvas.GetComponent<RectTransform>().rect.width / (rectTransform.rect.width);
-        float newScaleY = canvas.GetComponent<RectTransform>().rect.height / (rectTransform.rect.height);
+        Canvas canvas = CanvasInstance.ins.canvas;
+        float newScaleX = canvas.GetComponent<RectTransform>().rect.width / (rectTransform.rect.width * transform.localScale.x);
+        float newScaleY = canvas.GetComponent<RectTransform>().rect.height / (rectTransform.rect.height * transform.localScale.y);
+
         if (newScaleX > 1 || newScaleY > 1)
         {
             float newScale = (newScaleX >= newScaleY ? newScaleX : newScaleY);
-            rectTransform.localScale = new Vector3(newScale, newScale, 0);
+            rectTransform.localScale = new Vector3(newScale * transform.localScale.x, newScale * transform.localScale.y, 0);
         }
     }
 }

@@ -55,8 +55,8 @@ public class DevicePolice_SceneDressing : MonoBehaviour
             if (!police.isEquipped)
             {
                 isTrueDrop = true;
-                Rope_SceneDressing.deviceTrueDrop?.Invoke(sideDevice);
                 police.EquipTheDevice();
+                Rope_SceneDressing.deviceTrueDrop?.Invoke(sideDevice);
                 Destroy(gameObject);    
             }
         }

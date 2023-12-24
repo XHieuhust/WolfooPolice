@@ -52,7 +52,9 @@ public class GameScene24Manager : MonoBehaviour
 
     private void LoadNewScene()
     {
-        string newScene = PlayerPrefs.GetString("curMinigame");
-        ScenesManager.ins.LoadScene(newScene + ".5");
+        string curMinigame = PlayerPrefs.GetString("curMinigame");
+        int curScene = PlayerPrefs.GetInt("curScene") + 1;
+        PlayerPrefs.SetInt("curScene", curScene);
+        ScenesManager.ins.LoadScene(curMinigame + "." + curScene.ToString());
     }
 }

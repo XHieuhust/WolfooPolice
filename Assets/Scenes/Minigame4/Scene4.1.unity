@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 10607799}
   - component: {fileID: 10607801}
   m_Layer: 0
-  m_Name: mu Swat
+  m_Name: Hat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,14 +149,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 10607797}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.79999995, y: 0.79999995, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1778940376}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!61 &10607799
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -173,8 +173,8 @@ BoxCollider2D:
   m_Offset: {x: 0.023603082, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 1}
-    oldSize: {x: 2.6, y: 3.68}
+    pivot: {x: 0.5740523, y: 0.97225165}
+    oldSize: {x: 2.44, y: 1.76}
     newSize: {x: 4.56, y: 3.72}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -224,7 +224,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: e749f2ed988cd89489cb200a9689c48a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 18a1bb7b32a18b74e9772de2b5567010, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -531,7 +531,7 @@ GameObject:
   - component: {fileID: 390247499}
   - component: {fileID: 390247498}
   m_Layer: 0
-  m_Name: sung nuoc
+  m_Name: SpeedGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -569,8 +569,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: -1.438189}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5565936, y: 0.996235}
-    oldSize: {x: 3.92, y: 2.88}
+    pivot: {x: 0.5, y: 0.9045735}
+    oldSize: {x: 2.8, y: 2.8}
     newSize: {x: 4.56, y: 3.72}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -620,7 +620,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: ae0a232dfde99f142b878e42e1b7940d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a7e03fc4eaf0bab46bd3f59a6573ae73, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -644,7 +644,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1778940376}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -814,8 +814,8 @@ Transform:
   m_Children:
   - {fileID: 831808506538003166}
   - {fileID: 4087544525420153024}
-  - {fileID: 8946243578499679079}
   - {fileID: 2585731353733622539}
+  - {fileID: 8946243578499679079}
   m_Father: {fileID: 32617121}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -834,8 +834,8 @@ MonoBehaviour:
   ListDevices:
   - {fileID: 831808506538003168}
   - {fileID: 4087544525420153031}
-  - {fileID: 8946243578499679080}
   - {fileID: 2585731353733622540}
+  - {fileID: 8946243578499679080}
   sideRope: 1
   timeMove: 0.25
 --- !u!1 &784520492
@@ -947,7 +947,7 @@ GameObject:
   - component: {fileID: 1109102502}
   - component: {fileID: 1109102504}
   m_Layer: 0
-  m_Name: CongTay
+  m_Name: Stick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -966,7 +966,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1778940376}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1109102502
 BoxCollider2D:
@@ -984,8 +984,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: -1.674157}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 1}
-    oldSize: {x: 3.6, y: 3.4}
+    pivot: {x: 0.5, y: 0.9971841}
+    oldSize: {x: 0.72, y: 4.56}
     newSize: {x: 4.56, y: 3.72}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1035,7 +1035,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 2938fbbfa426b344e9c5dade78980958, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b7983fa6d3fd5a54aa06682b37d7def7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -1414,7 +1414,7 @@ GameObject:
   - component: {fileID: 1706251338}
   - component: {fileID: 1706251340}
   m_Layer: 0
-  m_Name: quan ao SWAT
+  m_Name: Shirt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1427,14 +1427,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1706251336}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.79999995, y: 0.79999995, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1778940376}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!61 &1706251338
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1451,8 +1451,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: -1.885993}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 1}
-    oldSize: {x: 4.56, y: 3.72}
+    pivot: {x: 0.52034235, y: 0.9925243}
+    oldSize: {x: 3.92, y: 3.2}
     newSize: {x: 4.56, y: 3.72}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1502,7 +1502,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 888a32d122c69bf43ab8919361960e5d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8f3586c8157f74845be7931141143d4d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -1613,8 +1613,8 @@ Transform:
   m_Children:
   - {fileID: 1706251337}
   - {fileID: 10607798}
-  - {fileID: 390247501}
   - {fileID: 1109102501}
+  - {fileID: 390247501}
   m_Father: {fileID: 32617121}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1633,8 +1633,8 @@ MonoBehaviour:
   ListDevices:
   - {fileID: 1706251340}
   - {fileID: 10607801}
-  - {fileID: 390247498}
   - {fileID: 1109102504}
+  - {fileID: 390247498}
   sideRope: 0
   timeMove: 0.25
 --- !u!1 &1933876947
@@ -1647,6 +1647,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1933876949}
   - component: {fileID: 1933876948}
+  - component: {fileID: 1933876950}
   m_Layer: 0
   m_Name: BG
   m_TagString: Untagged
@@ -1721,6 +1722,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1933876950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1933876947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3539bb5d588389946889802903d8aa04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2051043760
 GameObject:
   m_ObjectHideFlags: 0
@@ -1814,7 +1827,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 888a32d122c69bf43ab8919361960e5d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8f3586c8157f74845be7931141143d4d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -1838,7 +1851,7 @@ GameObject:
   - component: {fileID: 831808506538003167}
   - component: {fileID: 831808506538003168}
   m_Layer: 0
-  m_Name: quan ao SWAT
+  m_Name: Shirt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1851,14 +1864,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 831808506538003163}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 709009899}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &831808506538003167
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1875,8 +1888,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: -1.8859934}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 1}
-    oldSize: {x: 4.56, y: 3.72}
+    pivot: {x: 0.52034235, y: 0.9925243}
+    oldSize: {x: 3.92, y: 3.2}
     newSize: {x: 4.56, y: 3.72}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1914,7 +1927,7 @@ GameObject:
   - component: {fileID: 2585731353733622537}
   - component: {fileID: 2585731353733622540}
   m_Layer: 0
-  m_Name: CongTay
+  m_Name: Stick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1961,7 +1974,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 2938fbbfa426b344e9c5dade78980958, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b7983fa6d3fd5a54aa06682b37d7def7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -1988,8 +2001,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: -1.6741568}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 1}
-    oldSize: {x: 3.6, y: 3.4}
+    pivot: {x: 0.5, y: 0.9971841}
+    oldSize: {x: 0.72, y: 4.56}
     newSize: {x: 4.56, y: 3.72}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -2011,7 +2024,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 709009899}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &2585731353733622540
 MonoBehaviour:
@@ -2036,14 +2049,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4087544525420153028}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 709009899}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4087544525420153025
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2085,7 +2098,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: e749f2ed988cd89489cb200a9689c48a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 18a1bb7b32a18b74e9772de2b5567010, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -2109,7 +2122,7 @@ GameObject:
   - component: {fileID: 4087544525420153030}
   - component: {fileID: 4087544525420153031}
   m_Layer: 0
-  m_Name: mu Swat
+  m_Name: Hat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2131,8 +2144,8 @@ BoxCollider2D:
   m_Offset: {x: 0.023603082, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 1}
-    oldSize: {x: 2.6, y: 3.68}
+    pivot: {x: 0.5740523, y: 0.97225165}
+    oldSize: {x: 2.44, y: 1.76}
     newSize: {x: 4.56, y: 3.72}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -2173,8 +2186,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: -1.4381893}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5565936, y: 0.996235}
-    oldSize: {x: 3.92, y: 2.88}
+    pivot: {x: 0.5, y: 0.9045735}
+    oldSize: {x: 2.8, y: 2.8}
     newSize: {x: 4.56, y: 3.72}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -2196,7 +2209,7 @@ GameObject:
   - component: {fileID: 8946243578499679073}
   - component: {fileID: 8946243578499679080}
   m_Layer: 0
-  m_Name: sung nuoc
+  m_Name: SpeedGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2243,7 +2256,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: ae0a232dfde99f142b878e42e1b7940d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a7e03fc4eaf0bab46bd3f59a6573ae73, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -2267,7 +2280,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 709009899}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &8946243578499679080
 MonoBehaviour:

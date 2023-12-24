@@ -6,6 +6,8 @@ public class GameScene33Manager : MonoBehaviour
 {
     public static GameScene33Manager ins;
     [SerializeField] public MomKid momKid;
+    [SerializeField] GameObject endScene;
+    [SerializeField] GameObject particleSystem;
     [SerializeField] ShadeBg startShade;
     [SerializeField] ShadeBg endShade;
     private void Awake()
@@ -21,13 +23,16 @@ public class GameScene33Manager : MonoBehaviour
 
     IEnumerator StartEndScene()
     {
+        yield return new WaitForSeconds(1f);
+        particleSystem.SetActive(true);
         yield return new WaitForSeconds(2f);
+        endScene.gameObject.SetActive(true);
+        yield return new WaitForSeconds(3f);
         endShade.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
-        CompleteMinigame3();
+        CompleteMinigame();
     }
-
-    private void CompleteMinigame3()
+    private void CompleteMinigame()
     {
         string curMinigame = PlayerPrefs.GetString("curMinigame");
         LevelManager.ins.UpdateLevel(curMinigame);

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class FingerPrintScanner : MonoBehaviour
 {
     [SerializeField] Button buttonScan;
-    [SerializeField] Image rayCompleteScan;
+    [SerializeField] Image computer;
 
     private void Awake()
     {
@@ -15,18 +15,5 @@ public class FingerPrintScanner : MonoBehaviour
         });
     }
 
-    private void OnEnable()
-    {
-        UIManager_Scene1_3.completeScanning += CompleteScanning;
-    }
 
-    private void OnDestroy()
-    {
-        UIManager_Scene1_3.completeScanning -= CompleteScanning;
-    }
-
-    public void CompleteScanning()
-    {
-        rayCompleteScan.gameObject.SetActive(true);
-    }
 }

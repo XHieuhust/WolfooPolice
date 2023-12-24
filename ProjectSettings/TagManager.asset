@@ -19,6 +19,8 @@ TagManager:
   - LimitScene
   - Police
   - Criminal
+  - LimitShoot
+  - BossShoot
   layers:
   - Default
   - TransparentFX

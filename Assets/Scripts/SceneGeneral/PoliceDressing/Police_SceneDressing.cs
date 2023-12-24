@@ -42,14 +42,16 @@ public class Police_SceneDressing : MonoBehaviour
 
     public void EquipTheDevice()
     {
+
         StopCoroutine(nameof(StartEquip));
         StartCoroutine(nameof(StartEquip));
+
     }
 
     IEnumerator StartEquip()
     {
-        cntEquip++;
         isEquipped = true;
+        cntEquip++;
 
         string SceneSkin = null;
         string curMinigame = PlayerPrefs.GetString("curMinigame");
@@ -75,7 +77,6 @@ public class Police_SceneDressing : MonoBehaviour
 
         yield return new WaitForSeconds(1);
         skeleton.AnimationState.SetAnimation(0, "Idle", true);
-        isEquipped = false;
 
     }
 

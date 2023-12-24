@@ -49,14 +49,15 @@ public class GameScene25Manager : MonoBehaviour
         yield return new WaitForSeconds(timeEndGame + 2f);
         endShade.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
-        CompleteMiniGame2();
+        LoadNextScene();
         
     }
 
-    private void CompleteMiniGame2()
+    private void LoadNextScene()
     {
         string curMinigame = PlayerPrefs.GetString("curMinigame");
-        LevelManager.ins.UpdateLevel(curMinigame);
-        ScenesManager.ins.LoadScene("SceneMenu");
+        int curScene = PlayerPrefs.GetInt("curScene") + 1;
+        PlayerPrefs.SetInt("curScene", curScene);
+        ScenesManager.ins.LoadScene(curMinigame + "." + curScene.ToString());
     }
 }

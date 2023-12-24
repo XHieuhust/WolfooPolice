@@ -18,6 +18,7 @@ public class BarPanel_Scene5_2 : MonoBehaviour
         rectIcon = icon.GetComponent<RectTransform>();
         startYIcon = rectIcon.anchoredPosition.y;
         animEnd = GetComponent<Animator>();
+
     }
 
 
