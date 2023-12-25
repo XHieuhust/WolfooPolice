@@ -78,6 +78,10 @@ public class CarEnemy_Scene2_4 : MonoBehaviour
             {
                 StartCoroutine(StartBecomeNormal());
             }
+            else
+            {
+                StartCoroutine(StartDelay());   
+            }
         }
 
     }
@@ -93,6 +97,14 @@ public class CarEnemy_Scene2_4 : MonoBehaviour
         MoveNormal();
         yield return new WaitForSeconds(0.5f);
         canShooted = true;
+    }
+
+    IEnumerator StartDelay()
+    {
+        canShooted = false;
+        yield return new WaitForSeconds(timeBeShooted + 0.5f);
+        canShooted = true;
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
