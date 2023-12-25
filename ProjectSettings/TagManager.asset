@@ -21,6 +21,9 @@ TagManager:
   - Criminal
   - LimitShoot
   - BossShoot
+  - CarPolice
+  - CarBoss
+  - LimitCarBoss
   layers:
   - Default
   - TransparentFX

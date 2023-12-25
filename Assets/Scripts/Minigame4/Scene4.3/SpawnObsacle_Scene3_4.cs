@@ -2,20 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnCarEnemy_Scene3_4 : MonoBehaviour
+public class SpawnObsacle_Scene3_4 : MonoBehaviour
 {
-    [SerializeField] CarEnemy_Scene3_4 carEnemy;
-    [SerializeField] List<Transform> posYSpawn;
+    [SerializeField] List<GameObject> ListObsacle;
     [SerializeField] float timeDelayToStartSpawn;
     [SerializeField] float timeDelaySpawn;
-
-    Dictionary<int, string> DSkin = new Dictionary<int, string>()
+    [SerializeField] List<Transform> posYSpawn;
+    private void Awake()
     {
-        {0, "Xe1"},
-        {1, "Xe2"},
-        {2, "Xe3"},
-    };
-
+        StartCoroutine(nameof(StartSpawn));
+    }
     private void OnEnable()
     {
         GameScene43Manager.eEndGame += EndGame;
@@ -27,28 +23,20 @@ public class SpawnCarEnemy_Scene3_4 : MonoBehaviour
         GameScene43Manager.eEndGame -= EndGame;
         GameScene43Manager.ePrepareEndGame -= EndGame;
     }
-
-    private void Start()
-    {
-        StartCoroutine(nameof(StartSpawn));
-    }
-
     IEnumerator StartSpawn()
     {
         yield return new WaitForSeconds(timeDelayToStartSpawn);
         int ranPosY;
-        int ranSkin;
+        int ranObsacle;
         Vector3 posSpawn;
         while (true)
         {
             ranPosY = Random.Range(0, posYSpawn.Count);
             posSpawn = new Vector3(Camera.main.transform.position.x + Camera.main.orthographicSize * Camera.main.aspect + 3f, posYSpawn[ranPosY].position.y, transform.position.z);
-            CarEnemy_Scene3_4 newCar = Instantiate(carEnemy, posSpawn, Quaternion.identity);
-            ranSkin = Random.Range(0, DSkin.Count);
-            newCar.SetUp(DSkin[ranSkin]);
+            ranObsacle = Random.Range(0, ListObsacle.Count);
+            Instantiate(ListObsacle[ranObsacle], posSpawn, Quaternion.identity);
             yield return new WaitForSeconds(timeDelaySpawn);
         }
-
     }
 
     protected void EndGame()

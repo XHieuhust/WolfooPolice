@@ -13,7 +13,7 @@ public class Radar : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Car"))
         {
@@ -21,10 +21,10 @@ public class Radar : MonoBehaviour
         }
     }
 
-    public List<Transform> CheckPosCantMove()
+    public List<Transform> GetCarsInRadar()
     {
-        List<Transform> PosCantMove = CarsInRadar;
-
-        return PosCantMove;
+        return CarsInRadar;
     }
+
+
 }
