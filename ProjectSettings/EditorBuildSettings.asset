@@ -72,6 +72,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Minigame4/Scene4.3.unity
     guid: 6280cba85e44be44dbf0d50e60853980
   - enabled: 1
+    path: Assets/Scenes/Minigame4/Scene4.4.unity
+    guid: 7ebc85a2b71df8a41b3716cb0ef978bb
+  - enabled: 1
     path: Assets/Scenes/Minigame5/Scene5.1.unity
     guid: 1097df38bcea36d4da5747f1b02b4f8b
   - enabled: 1
@@ -87,10 +90,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Minigame6/Scene6.3.unity
     guid: e065a57ac2b7bc646962c93d8b4f1e16
   - enabled: 1
-    path: Assets/Scenes/Minigame7/Scene7.1.unity
+    path: Assets/Scenes/MiniGame7/Scene7.1.unity
     guid: 1e21379967857944fb92ee2769cff9f6
   - enabled: 1
-    path: Assets/Scenes/Minigame7/Scene7.2.unity
+    path: Assets/Scenes/MiniGame7/Scene7.2.unity
     guid: 4c143f8b92a39ab46822b33414b3d9cb
   - enabled: 1
     path: Assets/Scenes/Minigame8/Scene8.1.unity

@@ -12,6 +12,7 @@ public class CarPolice_Scene3_4 : MonoBehaviour
     [SerializeField] float timeBeHitted;
     [SerializeField] List<Transform> posCar;
     Rigidbody2D rigid;
+    Animator animator;
     private bool isBeHitted;
 
     Dictionary<int, string> DAnim = new Dictionary<int, string>()
@@ -24,6 +25,7 @@ public class CarPolice_Scene3_4 : MonoBehaviour
     {
         transform.position = new Vector3(- Camera.main.orthographicSize * Camera.main.aspect - 3f, transform.position.y, transform.position.z);
         rigid = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         skeleton.AnimationState.SetAnimation(0, "Idle", true);
         StartCoroutine(StartMoveToStartPos());
     }
@@ -123,7 +125,14 @@ public class CarPolice_Scene3_4 : MonoBehaviour
         float start = transform.position.y;
         float end = newY;
         float posY;
-
+        if (newY > start)
+        {
+            animator.Play("CarMoveYUp");
+        }
+        else
+        {
+            animator.Play("CarMoveYDown");
+        }
         isMoving = true;
         while (eslapsed <= seconds) 
         {
@@ -133,6 +142,8 @@ public class CarPolice_Scene3_4 : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         transform.position = new Vector3(transform.position.x, end, transform.position.z);
+        animator.Rebind();
+        animator.Update(0f);
         yield return new WaitForSeconds(0.1f);
         isMoving = false;
         startMouse = endMouse = 0;
@@ -188,6 +199,14 @@ public class CarPolice_Scene3_4 : MonoBehaviour
         float seconds = 0.5f;
  
         Vector3 end = GameScene43Manager.ins.carBoss.transform.position;
+        if (end.y > transform.position.y)
+        {
+            animator.Play("CarMoveYUp");
+        }
+        else
+        {
+            animator.Play("CarMoveYDown");
+        }
         while (eslaped <= seconds)
         {
             eslaped += Time.deltaTime;

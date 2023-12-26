@@ -11,7 +11,6 @@ public class GameScene42Manager : MonoBehaviour
     [SerializeField] ShadeBg startShade;
     [SerializeField] ShadeBg endShade;
     private int curPoint;
-    private bool isEndGame;
 
     public delegate void EEndGame();
     public static event EEndGame eEndGame;

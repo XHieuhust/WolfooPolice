@@ -15,8 +15,15 @@ public class ThingOnRoad : MonoBehaviour
         startScale = new Vector3(maxScale.x / 10, maxScale.y / 10, maxScale.z / 10);
         transform.localScale = startScale;
     }
-    
+    private void OnEnable()
+    {
+        SteeringWheel.eGetGoalPos += End;
+    }
+    private void OnDestroy()
+    {
+        SteeringWheel.eGetGoalPos -= End;
 
+    }
     IEnumerator MoveToEndSpawn(Transform startSpawn, Transform endSpawn, Transform posMaxScale)
     {
         float maxDist = startSpawn.position.y - posMaxScale.position.y;
@@ -46,6 +53,12 @@ public class ThingOnRoad : MonoBehaviour
 
     public void StartMove(Transform startSpawn, Transform endSpawn, Transform posMaxScale)
     {
-        StartCoroutine(MoveToEndSpawn(startSpawn, endSpawn, posMaxScale));
+        IEnumerator co = MoveToEndSpawn(startSpawn, endSpawn, posMaxScale);
+        StartCoroutine(co);
+    }
+
+    private void End()
+    {
+        StopAllCoroutines();
     }
 }

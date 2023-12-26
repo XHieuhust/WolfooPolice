@@ -14,10 +14,10 @@ public class Bubble : MonoBehaviour
 
     IEnumerator MoveToStartPos()
     {
-        Vector3 startPos = transform.position + new Vector3(5f, 0, 0);
-        Vector3 endPos = transform.position;
+        Vector3 startPos = new Vector3(Camera.main.orthographicSize * Camera.main.aspect + 3f, transform.position.y, transform.position.z);
+        Vector3 endPos = new Vector3(Camera.main.orthographicSize * Camera.main.aspect - 2f, transform.position.y, transform.position.z);
         float eslapsed = 0;
-        float seconds = 1f;
+        float seconds = 0.5f;
         while (eslapsed <= seconds)
         {
             eslapsed += Time.deltaTime;

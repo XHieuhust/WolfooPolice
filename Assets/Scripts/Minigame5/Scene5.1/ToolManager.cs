@@ -5,9 +5,9 @@ using UnityEngine;
 public class ToolManager : MonoBehaviour
 {
     public static ToolManager ins;
+    [SerializeField] WaterTap waterTap;
     [SerializeField] Bubble bubble;
     [SerializeField] Towel towel;
-    [SerializeField] WaterTap waterTap;
     [SerializeField] ShowerHead showerHead;
     public bool isStartTurn = true;
 
@@ -15,6 +15,12 @@ public class ToolManager : MonoBehaviour
     {
         ins = this;
     }
+
+    public void StartWaterTap()
+    {
+        waterTap.gameObject.SetActive(true);
+    }
+
     public void StartBubble()
     {
         StartCoroutine(MoveRightAndStartNextTurn(waterTap.gameObject, bubble.gameObject));
@@ -34,7 +40,7 @@ public class ToolManager : MonoBehaviour
     {
         isStartTurn = false;
         Vector3 startPos = dis.transform.position;
-        Vector3 endPos = dis.transform.position + new Vector3(0, 5f, 0);
+        Vector3 endPos = new Vector3(dis.transform.position.x, Camera.main.orthographicSize * Camera.main.aspect + 3f, dis.transform.position.z);
         float eslapsed = 0;
         float seconds = 1f;
         while (eslapsed <= seconds)
@@ -53,7 +59,7 @@ public class ToolManager : MonoBehaviour
     {
         isStartTurn = false;
         Vector3 startPos = dis.transform.position;
-        Vector3 endPos = dis.transform.position + new Vector3(5f, 0f, 0);
+        Vector3 endPos = new Vector3(Camera.main.orthographicSize * Camera.main.aspect + 3f, dis.transform.position.y, dis.transform.position.z);
         float eslapsed = 0;
         float seconds = 1f;
         while (eslapsed <= seconds)

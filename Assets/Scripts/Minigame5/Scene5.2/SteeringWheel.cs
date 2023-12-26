@@ -13,7 +13,8 @@ public class SteeringWheel : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float speedRotate;
     [SerializeField] float MaxRotate;
-
+    public delegate void EGetGoalPos();
+    public static event EGetGoalPos eGetGoalPos;
     private void Update()
     {
         RotateSteering();
@@ -105,7 +106,7 @@ public class SteeringWheel : MonoBehaviour
     IEnumerator StartEndScene()
     {
         float eslapsed = 0;
-        float seconds = GameScene52Manager.ins.timeEndScene;
+        float seconds = 1f;
         Vector3 startPos = cam.transform.position;
         Vector3 endPos = new Vector3(maxDist, cam.transform.position.y, cam.transform.position.z);
         while (eslapsed <= seconds)
@@ -115,5 +116,6 @@ public class SteeringWheel : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         cam.transform.position = endPos;
+        eGetGoalPos?.Invoke();
     }
 }

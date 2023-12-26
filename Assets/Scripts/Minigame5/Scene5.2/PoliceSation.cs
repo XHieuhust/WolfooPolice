@@ -18,7 +18,7 @@ public class PoliceSation : MonoBehaviour
         float eslapsed = 0;
         float maxDist = Vector2.Distance(endPos.position, startPos);
         float curDist;
-        float seconds = GameScene52Manager.ins.timeEndScene;
+        float seconds = 1f;
         while (eslapsed <= seconds)
         {
             eslapsed += Time.deltaTime;

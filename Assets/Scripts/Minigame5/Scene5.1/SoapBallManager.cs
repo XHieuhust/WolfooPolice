@@ -9,7 +9,8 @@ public class SoapBallManager : MonoBehaviour
     [SerializeField] List<GameObject> SoapBalls;
     [SerializeField] float timeWashMax;
     List<float> timeWash;
-
+    public delegate void EEndShower();
+    public static event EEndShower eEndShower;
     private void Start()
     {
         timeWash = new List<float>(SoapBalls.Count);
@@ -48,6 +49,7 @@ public class SoapBallManager : MonoBehaviour
         }
         if (clearSoapBalls == SoapBalls.Count)
         {
+            eEndShower?.Invoke();
             ToolManager.ins.StartTowel();
         }
     }

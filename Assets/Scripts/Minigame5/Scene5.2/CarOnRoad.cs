@@ -6,7 +6,8 @@ public class CarOnRoad : MonoBehaviour
 {
     [SerializeField] Camera cam;
 
-    private void Update()
+
+    private void LateUpdate()
     {
         transform.position = new Vector3(cam.transform.position.x, transform.position.y, transform.position.z);
     }

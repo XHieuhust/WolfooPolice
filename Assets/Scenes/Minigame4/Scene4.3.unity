@@ -686,7 +686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93cd4cad73d64a141b9007f224992b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeMaxPlay: 25
+  timeMaxPlay: 30
   startShade: {fileID: 1148898426}
   endShade: {fileID: 1082393043}
   carBoss: {fileID: 6875095045942152160}
@@ -1363,6 +1363,7 @@ GameObject:
   - component: {fileID: 1375324580}
   - component: {fileID: 1375324581}
   - component: {fileID: 1375324579}
+  - component: {fileID: 1375324582}
   m_Layer: 0
   m_Name: CarPolice
   m_TagString: CarPolice
@@ -1453,6 +1454,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.0952559, y: 1.2738141}
   m_EdgeRadius: 0
+--- !u!95 &1375324582
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375324577}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 466b027b6ae6b234db44a65b7fc37d34, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1731444574
 GameObject:
   m_ObjectHideFlags: 0
@@ -1734,6 +1755,7 @@ GameObject:
   - component: {fileID: 6875095045942152172}
   - component: {fileID: 6875095045942152173}
   - component: {fileID: 6875095045942152176}
+  - component: {fileID: 6875095045942152177}
   m_Layer: 0
   m_Name: CarBoss
   m_TagString: CarBoss
@@ -1828,3 +1850,23 @@ MonoBehaviour:
   timeDelayRandomMove: 2
   radar: {fileID: 605982384}
   speedTired: 230
+--- !u!95 &6875095045942152177
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6875095045942152160}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 466b027b6ae6b234db44a65b7fc37d34, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

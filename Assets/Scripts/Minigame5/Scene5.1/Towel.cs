@@ -7,31 +7,37 @@ public class Towel : MonoBehaviour
     bool isbeingHeld;
     private Vector3 offset;
     Vector3 startPos;
+    private bool isEnd;
+    [SerializeField] float minDist;
 
-    private void OnEnable()
-    {
-        StartCoroutine(MoveToStartPos());
-    }
 
     IEnumerator MoveToStartPos()
     {
-        Vector3 startPos = transform.position + new Vector3(5f, 0, 0);
-        Vector3 endPos = transform.position;
+        Vector3 start = new Vector3(Camera.main.orthographicSize * Camera.main.aspect + 3f, transform.position.y, transform.position.z);
+        Vector3 end = new Vector3(Camera.main.orthographicSize * Camera.main.aspect - 2f, transform.position.y, transform.position.z);
         float eslapsed = 0;
-        float seconds = 1f;
+        float seconds = 0.5f;
         while (eslapsed <= seconds)
         {
             eslapsed += Time.deltaTime;
-            transform.position = Vector3.Lerp(startPos, endPos, eslapsed / seconds);
+            transform.position = Vector3.Lerp(start, end, eslapsed / seconds);
             yield return new WaitForEndOfFrame();
         }
-        transform.position = endPos;
-    }
-
-    private void Awake()
-    {
+        transform.position = end;
         startPos = transform.position;
     }
+
+    private void OnEnable()
+    {
+        CarWash.eCompleteCleanWater += EndTowel;
+        StartCoroutine(MoveToStartPos());
+    }
+
+    private void OnDestroy()
+    {
+        CarWash.eCompleteCleanWater -= EndTowel;
+    }
+
     private void Update()
     {
         if (isbeingHeld && ToolManager.ins.isStartTurn)
@@ -50,12 +56,15 @@ public class Towel : MonoBehaviour
     private void OnMouseUp()
     {
         isbeingHeld = false;
-        StartCoroutine(StartToMoveBack());
+        if (!isEnd)
+        {
+            StartCoroutine(StartToMoveBack());
+        }
     }   
 
     void CleanWater()
     {
-        if (Vector2.Distance(transform.position, GameScene51Manager.ins.car.transform.position) < 4f)
+        if (Vector2.Distance(transform.position, GameScene51Manager.ins.car.transform.position) < minDist && !isEnd)
         {
             GameScene51Manager.ins.car.ClearWaterSprite();
         }
@@ -73,6 +82,29 @@ public class Towel : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         transform.position = startPos;
+    }
 
+    private void EndTowel()
+    {
+        isEnd = true;
+        GetComponent<CapsuleCollider2D>().enabled = false;
+        isbeingHeld = false;
+        StartCoroutine(StartMoveToOutSideScreen());
+    }
+
+    IEnumerator StartMoveToOutSideScreen()
+    {
+        float eslapsed = 0;
+        float seconds = 0.5f;
+        Vector3 start = transform.position;
+        Vector3 end = new Vector3(Camera.main.orthographicSize * Camera.main.aspect + 3f, transform.position.y, transform.position.z);
+        while (eslapsed <= seconds)
+        {
+            eslapsed += Time.deltaTime;
+            transform.position = Vector3.Lerp(start, end, eslapsed / seconds);
+            yield return new WaitForEndOfFrame();
+        }
+        transform.position = end;
+        Destroy(gameObject);
     }
 }

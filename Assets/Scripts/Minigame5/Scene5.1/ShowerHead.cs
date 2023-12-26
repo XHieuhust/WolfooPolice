@@ -18,6 +18,8 @@ public class ShowerHead : MonoBehaviour
     [SerializeField] float speedRay;
     List<GameObject> Hits;
     [SerializeField] SoapBallManager soapBallManager;
+    private bool isEnd;
+
     private void Awake()
     {
         Hits = new List<GameObject>();
@@ -26,22 +28,30 @@ public class ShowerHead : MonoBehaviour
 
     private void OnEnable()
     {
+        SoapBallManager.eEndShower += EndShower;
         StartCoroutine(MoveToStartPos());
+    }
+
+    private void OnDestroy()
+    {
+        SoapBallManager.eEndShower -= EndShower;
     }
 
     IEnumerator MoveToStartPos()
     {
-        Vector3 startPos = transform.position + new Vector3(0, 5f, 0);
-        Vector3 endPos = transform.position;
+        Vector3 start = new Vector3(transform.position.x, Camera.main.orthographicSize + 3f, transform.position.z);
+        Vector3 end = new Vector3(transform.position.x, Camera.main.orthographicSize - 0.75f, transform.position.z);
         float eslapsed = 0;
-        float seconds = 1f;
+        float seconds = 0.5f;
         while (eslapsed <= seconds)
         {
             eslapsed += Time.deltaTime;
-            transform.position = Vector3.Lerp(startPos, endPos, eslapsed / seconds);
+            transform.position = Vector3.Lerp(start, end, eslapsed / seconds);
             yield return new WaitForEndOfFrame();
         }
-        transform.position = endPos;
+        transform.position = end;
+        startPos = transform.position;
+
     }
 
     private void Update()
@@ -104,7 +114,10 @@ public class ShowerHead : MonoBehaviour
     private void OnMouseUp()
     {
         isbeingHeld = false;
-        StartCoroutine(StartToMoveBack());
+        if (!isEnd)
+        {
+            StartCoroutine(StartToMoveBack());
+        }
         particleSystem.Stop();
     }
 
@@ -123,5 +136,8 @@ public class ShowerHead : MonoBehaviour
 
     }   
 
-    
+    private void EndShower()
+    {
+        isEnd = true;
+    }
 }

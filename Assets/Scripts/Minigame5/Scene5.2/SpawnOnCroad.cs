@@ -10,6 +10,16 @@ public class SpawnOnCroad : MonoBehaviour
     [SerializeField] Transform startSpawn;
     [SerializeField] Transform endSpawn;
     [SerializeField] Transform posMaxScale;
+    [SerializeField] bool isLeft;
+    private void OnEnable()
+    {
+        SteeringWheel.eGetGoalPos += End;
+    }
+    private void OnDestroy()
+    {
+        SteeringWheel.eGetGoalPos -= End;
+
+    }
     private void Start()
     {
         StartCoroutine(nameof(SpawnThingOnRoad));
@@ -18,7 +28,7 @@ public class SpawnOnCroad : MonoBehaviour
 
     IEnumerator SpawnThingOnRoad()
     {
-        while (true && !GameScene52Manager.ins.isEndGame)
+        while (isLeft || !GameScene52Manager.ins.isEndGame)
         {
             float scale = GameScene52Manager.ins.scaleSpeed;
             ThingOnRoad thing = Instantiate(ListOfThings[(amountSpawned++) % ListOfThings.Count], startSpawn.position, Quaternion.identity);
@@ -27,5 +37,9 @@ public class SpawnOnCroad : MonoBehaviour
         }
     }
     
+    private void End()
+    {
+        StopCoroutine(nameof(SpawnThingOnRoad));
+    }
 
 }

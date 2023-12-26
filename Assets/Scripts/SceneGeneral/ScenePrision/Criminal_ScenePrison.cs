@@ -69,7 +69,7 @@ public class Criminal_ScenePrison : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         transform.position = end;
-        //skeleton.AnimationState.SetAnimation(0, "Idle_Prisoner", true);
+        skeleton.AnimationState.SetAnimation(0, "Idle_prison", true);
         innerPrison?.Invoke();
     }
 

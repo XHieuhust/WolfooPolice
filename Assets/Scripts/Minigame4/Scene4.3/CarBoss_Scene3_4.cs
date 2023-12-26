@@ -9,9 +9,11 @@ public class CarBoss_Scene3_4 : CarEnemy_Scene3_4
     [SerializeField] float timeDelayRandomMove;
     [SerializeField] Radar radar;
     [SerializeField] float speedTired;
+    Animator animator;
     private new void Awake()
     {
         base.Awake();
+        animator = GetComponent<Animator>();
         transform.position = new Vector3(-Camera.main.orthographicSize * Camera.main.aspect - 2.5f, transform.position.y, transform.position.z);
         StartCoroutine(StartMoveToStartPos());
     }
@@ -94,6 +96,14 @@ public class CarBoss_Scene3_4 : CarEnemy_Scene3_4
             float end = newY;
             float posY;
 
+            if (newY > start)
+            {
+                animator.Play("CarMoveYUp");
+            }
+            else if(newY < start)
+            {
+                animator.Play("CarMoveYDown");
+            }
 
             while (eslapsed <= seconds)
             {
@@ -103,7 +113,8 @@ public class CarBoss_Scene3_4 : CarEnemy_Scene3_4
                 yield return new WaitForEndOfFrame();
             }
             transform.position = new Vector3(transform.position.x, end, transform.position.z);
-
+            animator.Rebind();
+            animator.Update(0f);
         } 
 
     }
@@ -119,6 +130,9 @@ public class CarBoss_Scene3_4 : CarEnemy_Scene3_4
 
     IEnumerator StartEndGame()
     {
+        animator.Rebind();
+        animator.Update(0f);
+        animator.enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;
         float eslapsed = 0;
         float seconds = 2f;

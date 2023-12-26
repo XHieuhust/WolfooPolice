@@ -59,6 +59,7 @@ public class InstantiateVirrus : MonoBehaviour
         if(cntDiedVirrus == SpritesOfVirrus.Count)
         {
             ToolManager.ins.StartBubble();
+            GameScene51Manager.ins.car.ActiveListSoapBalls();
         }
     }
 }

@@ -28,16 +28,6 @@ public class GameScene43Manager : MonoBehaviour
     {
         StartCoroutine(StartEndGame());
     }
-
-    IEnumerator StartEndGame()
-    {
-        isEndGame = true;
-        eEndGame?.Invoke();
-        yield return new WaitForSeconds(3f);
-        endShade.gameObject.SetActive(true);
-        yield return new WaitForSeconds(1f);
-    }
-
     IEnumerator StartCountTimePlay()
     {
         float eslased = 0;
@@ -47,5 +37,22 @@ public class GameScene43Manager : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         ePrepareEndGame?.Invoke();
+    }
+    IEnumerator StartEndGame()
+    {
+        isEndGame = true;
+        eEndGame?.Invoke();
+        yield return new WaitForSeconds(3f);
+        endShade.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        LoadNewScene();
+    }
+
+    private void LoadNewScene()
+    {
+        string curMinigame = PlayerPrefs.GetString("curMinigame");
+        int curScene = PlayerPrefs.GetInt("curScene") + 1;
+        PlayerPrefs.SetInt("curScene", curScene);
+        ScenesManager.ins.LoadScene(curMinigame + "." + curScene.ToString());
     }
 }
