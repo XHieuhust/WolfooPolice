@@ -10,6 +10,7 @@ public class BarScene52Manager : MonoBehaviour
 
     public void UpdateBarFill(float rate)
     {
+        rate = rate >= 1 ? 1 : rate;
         barFill.fillAmount = rate;
     }
 }

@@ -11,6 +11,25 @@ public class SoapBallManager : MonoBehaviour
     List<float> timeWash;
     public delegate void EEndShower();
     public static event EEndShower eEndShower;
+
+    public delegate void ECleanSoapBall(List<GameObject> ListSoapBall);
+    public static ECleanSoapBall eCleanSoapBall;
+
+    public delegate void EEnableSoapbBall();
+    public static EEnableSoapbBall eEnableSoapBall;
+
+    private void OnEnable()
+    {
+        eCleanSoapBall += Clean;
+        eEnableSoapBall += UpdateEnableSoapBall;
+    }
+
+    private void OnDestroy()
+    {
+        eCleanSoapBall -= Clean;
+        eEnableSoapBall -= UpdateEnableSoapBall;
+    }
+
     private void Start()
     {
         timeWash = new List<float>(SoapBalls.Count);
@@ -19,17 +38,23 @@ public class SoapBallManager : MonoBehaviour
             timeWash.Add(0);
         }
     }
-    public void UpdateEnableSoapBall()
+    private void UpdateEnableSoapBall()
     {
         enableSoapBalls++;
         if (enableSoapBalls == SoapBalls.Count)
         {
-            GameScene51Manager.ins.car.TransformCleanSpriteCar();
             ToolManager.ins.StartShower();
         }
     }
 
-    public void CleanSoapBall(GameObject soapBall)
+    private void Clean(List<GameObject> ListSoapBall)
+    {
+        foreach (GameObject soapBall in ListSoapBall)
+        {
+            CleanSoapBall(soapBall);
+        }
+    }
+    private void CleanSoapBall(GameObject soapBall)
     {
         int index = SoapBalls.IndexOf(soapBall);
         timeWash[index] += Time.deltaTime;

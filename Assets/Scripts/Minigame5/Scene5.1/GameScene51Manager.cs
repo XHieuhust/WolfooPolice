@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameScene51Manager : MonoBehaviour
 {
     public static GameScene51Manager ins;
-    [SerializeField] public CarWash car;
+    public CarWash car;
     [SerializeField] ShadeBg startShade;
     [SerializeField] ShadeBg endShade;
     private void Awake()
@@ -26,7 +26,7 @@ public class GameScene51Manager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         LoadNewScene();
     }
-    public void LoadNewScene()
+    private void LoadNewScene()
     {
         string curMinigame = PlayerPrefs.GetString("curMinigame");
         int curScene = PlayerPrefs.GetInt("curScene") + 1;

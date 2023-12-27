@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Bubble : MonoBehaviour
 {
-    bool isbeingHeld;
+    private bool isbeingHeld;
     private Vector3 offset;
-
+    
     private void OnEnable()
     {
         StartCoroutine(MoveToStartPos());
@@ -38,10 +38,6 @@ public class Bubble : MonoBehaviour
     {
         isbeingHeld = true;
         offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //if (transform.parent)
-        //{
-        //    offset -= transform.parent.position;
-        //}
     }
 
     private void OnMouseUp()

@@ -24,6 +24,7 @@ TagManager:
   - CarPolice
   - CarBoss
   - LimitCarBoss
+  - Bubble
   layers:
   - Default
   - TransparentFX

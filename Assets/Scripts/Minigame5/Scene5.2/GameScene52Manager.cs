@@ -18,27 +18,35 @@ public class GameScene52Manager : MonoBehaviour
     public float scaleSpeed;
     [SerializeField] float timeSpeedUp;
     [SerializeField] SteeringWheel steering;
+
+
+    [SerializeField] ShadeBg startShade;
+    [SerializeField] ShadeBg endShade;
+
+    public delegate void EEndGame();
+    public static event EEndGame eEndGame;
+
     private void Awake()
     {
         scaleSpeed = 1;
         ins = this;
+        startShade.gameObject.SetActive(true);
     }
 
     public void UpdatePoint()
     {
-        if (!isEndGame)
+        point++; 
+        if (point >= maxPoint)
         {
-            point++; 
-            if (point >= maxPoint)
+            if (!isEndGame)
             {
                 isEndGame = true;
-                StopAllCoroutines();
                 EndScene();
             }
-            starManager.UpdatePosIcon(1.0f * point / maxPoint);
-            barManager.UpdateBarFill(1.0f * point / maxPoint);
-
         }
+        starManager.UpdatePosIcon(1.0f * point / maxPoint);
+        barManager.UpdateBarFill(1.0f * point / maxPoint);
+
     }
 
     private void EndScene()
@@ -49,11 +57,7 @@ public class GameScene52Manager : MonoBehaviour
 
     public void SpeedUp()
     {
-        if (!isEndGame)
-        {
-            StartCoroutine(nameof(StartToSpeedUp));
-        }
-
+        StartCoroutine(nameof(StartToSpeedUp));
     }
 
     IEnumerator StartToSpeedUp()
@@ -63,28 +67,26 @@ public class GameScene52Manager : MonoBehaviour
         yield return new WaitForSeconds(timeSpeedUp);
         scaleSpeed = 1f;
         boostSystem.SetActive(false);
-
     }
 
-    void StopCouroutineS()
-    {
-        scaleSpeed = 1;
-        StopAllCoroutines();
-    }
 
     IEnumerator StartEndScene()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(timeSpeedUp);
         policeStation.SetActive(true);
         steering.EndScene();
-        yield return new WaitForSeconds(2f);
-        CompleteMinigame5();
+        eEndGame?.Invoke();
+        yield return new WaitForSeconds(3f);
+        endShade.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        LoadNewScene();
     }
 
-    public void CompleteMinigame5()
+    public void LoadNewScene()
     {
         string curMinigame = PlayerPrefs.GetString("curMinigame");
-        LevelManager.ins.UpdateLevel(curMinigame);
-        ScenesManager.ins.LoadScene("SceneMenu");
+        int curScene = PlayerPrefs.GetInt("curScene") + 1;
+        PlayerPrefs.SetInt("curScene", curScene);
+        ScenesManager.ins.LoadScene(curMinigame + "." + curScene.ToString());
     }
 }

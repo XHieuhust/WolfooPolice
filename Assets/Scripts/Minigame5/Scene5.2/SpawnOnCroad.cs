@@ -14,11 +14,13 @@ public class SpawnOnCroad : MonoBehaviour
     private void OnEnable()
     {
         SteeringWheel.eGetGoalPos += End;
+        GameScene52Manager.eEndGame += StopSpawnOnRight;
+
     }
     private void OnDestroy()
     {
         SteeringWheel.eGetGoalPos -= End;
-
+        GameScene52Manager.eEndGame -= StopSpawnOnRight;
     }
     private void Start()
     {
@@ -28,7 +30,7 @@ public class SpawnOnCroad : MonoBehaviour
 
     IEnumerator SpawnThingOnRoad()
     {
-        while (isLeft || !GameScene52Manager.ins.isEndGame)
+        while (true)
         {
             float scale = GameScene52Manager.ins.scaleSpeed;
             ThingOnRoad thing = Instantiate(ListOfThings[(amountSpawned++) % ListOfThings.Count], startSpawn.position, Quaternion.identity);
@@ -42,4 +44,11 @@ public class SpawnOnCroad : MonoBehaviour
         StopCoroutine(nameof(SpawnThingOnRoad));
     }
 
+    private void StopSpawnOnRight()
+    {
+        if (!isLeft)
+        {
+            StopCoroutine(nameof(SpawnThingOnRoad));
+        }
+    }
 }

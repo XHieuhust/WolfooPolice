@@ -4,26 +4,26 @@ using UnityEngine;
 
 public class SoapBall : MonoBehaviour
 {
-    SpriteRenderer spriteSoap;
-    [SerializeField] Bubble bubble;
-    [SerializeField] SoapBallManager soapBallManager;
-    bool isClean;
-    private void Start()
+    Animator animator;
+    private SpriteRenderer spriteSoap;
+    private bool isClean;
+    private void Awake()
     {
         spriteSoap = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
-    private void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        CheckDist();
-    }
-
-    void CheckDist()
-    {
-        if(!isClean && Vector2.Distance(transform.position, bubble.transform.position) < 0.5f)
+        float minDist = 2f;
+        if (collision.gameObject.CompareTag("Bubble"))
         {
-            spriteSoap.enabled = true;
-            isClean = true;
-            soapBallManager.UpdateEnableSoapBall();
+            if (!isClean && Vector2.Distance(transform.position, collision.gameObject.transform.position) <= minDist)
+            {
+                isClean = true;
+                spriteSoap.enabled = true;
+                animator.Play("SoapBall");
+                SoapBallManager.eEnableSoapBall?.Invoke();
+            }
         }
     }
 }

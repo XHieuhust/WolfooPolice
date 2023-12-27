@@ -11,13 +11,15 @@ public class ShowerHead : MonoBehaviour
     bool isStartPartical;
     [SerializeField] Transform PosRaycastLeft;
     [SerializeField] Transform PosRaycastRight;
+    [SerializeField] Transform PosRaycastCenter;
     RaycastHit2D[] hitLeft;
     RaycastHit2D[] hitRight;
+    RaycastHit2D[] hitCenter;
     public LayerMask layer;
     float distRaycast;
     [SerializeField] float speedRay;
     List<GameObject> Hits;
-    [SerializeField] SoapBallManager soapBallManager;
+
     private bool isEnd;
 
     private void Awake()
@@ -66,9 +68,9 @@ public class ShowerHead : MonoBehaviour
             }
             hitLeft = Physics2D.RaycastAll(PosRaycastLeft.position, Vector2.down, distRaycast, layer);
             hitRight = Physics2D.RaycastAll(PosRaycastRight.position, Vector2.down, distRaycast, layer);
-            if (hitLeft != null || hitRight != null)
+            hitCenter = Physics2D.RaycastAll(PosRaycastCenter.position, Vector2.down, distRaycast, layer);
+            if (hitLeft != null || hitRight != null || hitCenter != null)
             {
-
                 // Get coliders raycast hit
                 foreach (RaycastHit2D soapBall in hitLeft)
                 {
@@ -84,20 +86,22 @@ public class ShowerHead : MonoBehaviour
                         Hits.Add(soapBall.collider.gameObject);
                     }
                 }
-                UpdateTimeWash();
+
+                foreach (RaycastHit2D soapBall in hitCenter)
+                {
+                    if (!Hits.Contains(soapBall.collider.gameObject))
+                    {
+                        Hits.Add(soapBall.collider.gameObject);
+                    }
+                }
+
+                SoapBallManager.eCleanSoapBall?.Invoke(Hits);
                 Hits.Clear();
             }
 
         }
     }
 
-    void UpdateTimeWash()
-    {
-        foreach (GameObject soapBall in Hits)
-        {
-            soapBallManager.CleanSoapBall(soapBall);
-        }
-    }
 
     private void OnMouseDown()
     {

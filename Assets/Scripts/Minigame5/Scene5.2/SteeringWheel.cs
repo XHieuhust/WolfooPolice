@@ -7,6 +7,7 @@ public class SteeringWheel : MonoBehaviour
 {
     [SerializeField] Camera cam;
     bool isClicked;
+    private bool isEnd;
     Vector3 startMouse;
     Vector3 endMouse;
     [SerializeField] float maxDist;
@@ -22,7 +23,7 @@ public class SteeringWheel : MonoBehaviour
 
     private void RotateSteering()
     {
-        if (isClicked && !GameScene52Manager.ins.isEndGame)
+        if (isClicked && !isEnd)
         {
             endMouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             float directX = (startMouse == Vector3.zero ? 0 : endMouse.x - startMouse.x);
@@ -105,8 +106,9 @@ public class SteeringWheel : MonoBehaviour
 
     IEnumerator StartEndScene()
     {
+        isEnd = true;
         float eslapsed = 0;
-        float seconds = 1f;
+        float seconds = 2f;
         Vector3 startPos = cam.transform.position;
         Vector3 endPos = new Vector3(maxDist, cam.transform.position.y, cam.transform.position.z);
         while (eslapsed <= seconds)

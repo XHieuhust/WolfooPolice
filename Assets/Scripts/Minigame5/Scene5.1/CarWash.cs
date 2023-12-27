@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CarWash : MonoBehaviour
 {
-    [SerializeField] SpriteRenderer carBody;
     [SerializeField] SpriteRenderer waterSpriteCar;
     [SerializeField] Sprite cleanCar;
     [SerializeField] GameObject wheel1;
@@ -12,7 +11,6 @@ public class CarWash : MonoBehaviour
     [SerializeField] GameObject driverPolice;
     [SerializeField] GameObject spawnVirus;
     [SerializeField] GameObject ListSoapBalls;
-
     public delegate void ECompleteCleanWater();
     public static event ECompleteCleanWater eCompleteCleanWater;
 
@@ -21,7 +19,10 @@ public class CarWash : MonoBehaviour
         transform.position = new Vector3(-Camera.main.orthographicSize * Camera.main.aspect - 12f, transform.position.y, transform.position.z);
         StartCoroutine(StartMoveToThePosWashing());
     }
-
+    private void Start()
+    {
+        GameScene51Manager.ins.car = this;
+    }
     IEnumerator StartMoveToThePosWashing()
     {
         float eslapsed = 0;
@@ -54,12 +55,6 @@ public class CarWash : MonoBehaviour
     public void ActivewaterSpriteCar()
     {
         waterSpriteCar.gameObject.SetActive(true);
-    }
-
-    public void TransformCleanSpriteCar()
-    {
-        carBody.sprite = cleanCar;
-        carBody.transform.localScale = new Vector3(carBody.transform.localScale.x * 3/4, carBody.transform.localScale.y * 3 / 4);
     }
 
     public void ClearWaterSprite()

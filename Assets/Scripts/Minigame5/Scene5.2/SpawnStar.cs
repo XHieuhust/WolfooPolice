@@ -10,15 +10,26 @@ public class SpawnStar : MonoBehaviour
     [SerializeField] ThingOnRoad star;
     [SerializeField] Transform posMaxScale;
     [SerializeField] float timeSpawn;
+
+    private void OnEnable()
+    {
+        GameScene52Manager.eEndGame += StopSpawn;
+    }
+
+    private void OnDestroy()
+    {
+        GameScene52Manager.eEndGame -= StopSpawn;
+    }
+
     private void Start()
     {
-        StartCoroutine(StartSpawnStar());
+        StartCoroutine(nameof(StartSpawnStar));
     }
 
     IEnumerator StartSpawnStar()
     {
         int random;
-        while (!GameScene52Manager.ins.isEndGame)
+        while (true)
         {
             float scale = GameScene52Manager.ins.scaleSpeed;
             random = Random.Range(0, ListStartSpawns.Count);
@@ -26,5 +37,10 @@ public class SpawnStar : MonoBehaviour
             newStar.StartMove(ListStartSpawns[random], ListEndSpawns[random], posMaxScale);
             yield return new WaitForSeconds(timeSpawn / scale);
         }
+    }
+
+    private void StopSpawn()
+    {
+        StopCoroutine(nameof(StartSpawnStar));
     }
 }

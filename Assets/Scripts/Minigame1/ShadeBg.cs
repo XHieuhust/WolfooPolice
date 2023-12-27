@@ -29,7 +29,6 @@ public class ShadeBg : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         sprite.color = new Color(255, 255, 255, endA);
-        Destroy(gameObject);
     }
 
 }
