@@ -13,12 +13,23 @@ public class PanelBarUIMini6 : MonoBehaviour
     Vector3 startPosWolfIcon;
 
     private float lengthBar;
-
+    private float lengthMove;
     private void Start()
     {
         ins = this;
         lengthBar = RihinoIcon.transform.position.x - WolfIcon.transform.position.x;
         startPosWolfIcon = WolfIcon.transform.position;
+        lengthMove = GameScene62Manager.ins.endPos.position.x - (Camera.main.orthographicSize * Camera.main.aspect * 2 / 3);
+
+    }
+
+    private void Update()
+    {
+        if (GameScene62Manager.ins.isStartGame && !GameScene62Manager.ins.isEndGame)
+        {
+            float tmp = GameScene62Manager.ins.wolfoo.transform.position.x - -(Camera.main.orthographicSize * Camera.main.aspect * 2 / 3);
+            UpdateBar(tmp / lengthMove);
+        }
     }
 
 

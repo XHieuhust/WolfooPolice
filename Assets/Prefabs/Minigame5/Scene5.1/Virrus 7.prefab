@@ -136,7 +136,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ca144a9c698d8b541950e5709956c46c, type: 2}
+  - {fileID: 2100000, guid: 338c0a8aed70dc044a4f37368c960600, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: e95a8ae6216b6a64aa3f199a67c7f3cc, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: a8b64ec7ae46a1b42ba9b0cf89134682, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0

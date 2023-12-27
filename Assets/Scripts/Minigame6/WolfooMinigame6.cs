@@ -43,14 +43,17 @@ public class WolfooMinigame6 : MonoBehaviour
     public Vector3 startPos;
     public Vector3 endPos;
 
+    public delegate void ECatchUpWith();
+    public static event ECatchUpWith eCatchUpWith;
+
     private void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
-        skeleton.AnimationState.SetAnimation(0, "Run_Ninja", true);
 
         hightYonGround = transform.position.y;
-        startPos = new Vector3(-(Camera.main.orthographicSize * Camera.main.aspect * 2 / 3), transform.position.y, transform.position.z);
-        endPos = new Vector3(GameScene62Manager.ins.rihino.endPos.position.x - 2f, transform.position.y, transform.position.z);
+        startPos = new Vector3(Camera.main.transform.position.x - 2f/3 * Camera.main.orthographicSize * Camera.main.aspect, transform.position.y, transform.position.z);
+        endPos = new Vector3(GameScene62Manager.ins.endPos.position.x - 2f, transform.position.y, transform.position.z);
+        StartCoroutine(StartMoveToStartGame());
     }
 
     private void Update()
@@ -58,9 +61,26 @@ public class WolfooMinigame6 : MonoBehaviour
         Move();
         Jump();
         CheckFallOnPit();
-        CheckEndGame();
     }
+    IEnumerator StartMoveToStartGame()
+    {
+        rigid.velocity = Vector2.zero;
+        transform.position = new Vector3(Camera.main.transform.position.x - Camera.main.orthographicSize * Camera.main.aspect - 7f, transform.position.y, transform.position.z);
+        skeleton.AnimationState.SetAnimation(0, "Run_Ninja", true);
 
+        float eslapsed = 0;
+        float seconds = 2.5f;
+        Vector3 start = transform.position;
+        Vector3 end = startPos;
+        while (eslapsed <= seconds)
+        {
+            eslapsed += Time.deltaTime;
+            transform.position = Vector3.Lerp(start, end, eslapsed/seconds);
+            yield return new WaitForEndOfFrame();
+        }
+        transform.position = end;
+        GameScene62Manager.ins.StartGame();
+    }
     bool CheckOnGround()
     {
         rayLeft = Physics2D.Raycast(PosRayLeft.position, Vector2.down, lengthRay, layer);
@@ -90,27 +110,32 @@ public class WolfooMinigame6 : MonoBehaviour
 
     private void Move()
     {
-        if (!isHitted && !isFallingDown && !isJumpingUp)
+        if (GameScene62Manager.ins.isStartGame)
         {
-            if (!isBoosting)
+            if (!isHitted && !isFallingDown && !isJumpingUp)
             {
-                speed = speedNormal;
-            }
-            if (isBoosting)
-            {
-                speed = speedBoost;
-                if (transform.position.y <= hightYonGround)
+                if (!isBoosting)
                 {
-                    transform.position = new Vector3(transform.position.x, hightYonGround + 0.05f, transform.position.z);
-                    rigid.velocity = new Vector2(speed, 0);
+                    speed = speedNormal;
+                }
+                if (isBoosting)
+                {
+                    speed = speedBoost;
+                    if (transform.position.y <= hightYonGround)
+                    {
+                        transform.position = new Vector3(transform.position.x, hightYonGround + 0.05f, transform.position.z);
+                        rigid.velocity = new Vector2(speed, 0);
+                    }
                 }
             }
-        } else
-        {
-            speed = 0;
+            else
+            {
+                speed = 0;
+            }
+            if (!CheckNearOb() && !GameScene62Manager.ins.isEndGame) rigid.velocity = new Vector2(speed, rigid.velocity.y);
+            SetAnimRun();
         }
-        if (!CheckNearOb() && !GameScene62Manager.ins.isEndGame) rigid.velocity = new Vector2(speed, rigid.velocity.y);
-        SetAnimRun();
+        
     }
 
     private void SetAnimRun()
@@ -150,6 +175,18 @@ public class WolfooMinigame6 : MonoBehaviour
         if (collision.gameObject.CompareTag("Buff"))
         {
             StartCoroutine(nameof(StartBoost));
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("LimitScene"))
+        {
+            if (!GameScene62Manager.ins.isEndGame)
+            {
+                GameScene62Manager.ins.isEndGame = true;
+                StartCoroutine(nameof(StartMoveToRihino));
+            }
         }
     }
 
@@ -202,23 +239,13 @@ public class WolfooMinigame6 : MonoBehaviour
         isHitted = false;
     }
 
-    void CheckFallOnPit()
+    private void CheckFallOnPit()
     {
         if ((transform.position.y <= hightYonGround - 1f) && !isFallingDown && !isJumpingUp)
         {
             isFallingDown = true;
         }
     }
-
-    void CheckEndGame()
-    {
-        if (GameScene62Manager.ins.rihino.transform.position.x - transform.position.x <= Camera.main.orthographicSize * Camera.main.aspect && !GameScene62Manager.ins.isEndGame)
-        {
-            GameScene62Manager.ins.isEndGame = true;
-            StartCoroutine(nameof(StartMoveToRihino));
-        }
-    }
-
     IEnumerator StartMoveToRihino()
     {
         rigid.velocity = Vector2.zero;
@@ -230,8 +257,6 @@ public class WolfooMinigame6 : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         skeleton.AnimationState.SetAnimation(0, "Cheer", true);
-        GameScene62Manager.ins.rihino.SetAnimCry();
-        yield return new WaitForSeconds(2f);
-        GameScene62Manager.ins.LoadNewScene();
+        eCatchUpWith?.Invoke();
     }
 }

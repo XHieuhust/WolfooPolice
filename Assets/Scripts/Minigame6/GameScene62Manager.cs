@@ -8,23 +8,15 @@ public class GameScene62Manager : MonoBehaviour
 
     public bool isStartGame;
     public bool isEndGame;
-    [SerializeField] public RihinoMinigame6 rihino;
     [SerializeField] public WolfooMinigame6 wolfoo;
-    private float lengthMove;
+    [SerializeField] GameObject limitScene;
+
+    public Transform endPos;
     private void Awake()
     {
         ins = this;
         // Get Length Move
-        lengthMove = rihino.endPos.position.x - (Camera.main.orthographicSize * Camera.main.aspect * 2 / 3);
-    }
-
-    private void Update()
-    {
-        if (isStartGame && !isEndGame)
-        {
-            float tmp = wolfoo.transform.position.x - -(Camera.main.orthographicSize * Camera.main.aspect * 2 / 3);
-            PanelBarUIMini6.ins.UpdateBar(tmp / lengthMove);
-        }
+        limitScene.transform.position = new Vector3(endPos.position.x - Camera.main.orthographicSize * Camera.main.aspect, limitScene.transform.position.y, limitScene.transform.position.z);
     }
 
     public void LoadNewScene()
@@ -35,5 +27,8 @@ public class GameScene62Manager : MonoBehaviour
 
     }
 
-
+    public void StartGame()
+    {
+        isStartGame = true;
+    }
 }

@@ -9,7 +9,7 @@ public class InstantiateVirrus : MonoBehaviour
 
     [SerializeField] List<Virrus> ListVirrus;
     List<Vector3> NewPosInstantiateVirrus = new List<Vector3>();
-    int cntDiedVirrus;
+    private int cntDiedVirrus;
     int[] maxDie;
 
     [SerializeField] int maxDieOfOneVirus;
