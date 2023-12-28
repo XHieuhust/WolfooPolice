@@ -10,25 +10,41 @@ public class GameScene62Manager : MonoBehaviour
     public bool isEndGame;
     [SerializeField] public WolfooMinigame6 wolfoo;
     [SerializeField] GameObject limitScene;
-
+    [SerializeField] ShadeBg startShade;
+    [SerializeField] ShadeBg endShade;
     public Transform endPos;
     private void Awake()
     {
         ins = this;
         // Get Length Move
         limitScene.transform.position = new Vector3(endPos.position.x - Camera.main.orthographicSize * Camera.main.aspect, limitScene.transform.position.y, limitScene.transform.position.z);
-    }
-
-    public void LoadNewScene()
-    {
-        string newScene = PlayerPrefs.GetString("curMinigame");
-
-        ScenesManager.ins.LoadScene(newScene + ".3");
-
+        startShade.gameObject.SetActive(true);
     }
 
     public void StartGame()
     {
         isStartGame = true;
+        PanelBarUIMini6.ins.StartGame();
+    }
+
+    public void EndGame()
+    {
+        StartCoroutine(StartEndGame());
+    }
+
+    IEnumerator StartEndGame()
+    {
+        PanelBarUIMini6.ins.EndGame();
+        yield return new WaitForSeconds(2f);
+        endShade.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        LoadNextScene();
+    }
+    public void LoadNextScene()
+    {
+        string curMinigame = PlayerPrefs.GetString("curMinigame");
+        int curScene = PlayerPrefs.GetInt("curScene") + 1;
+        PlayerPrefs.SetInt("curScene", curScene);
+        ScenesManager.ins.LoadScene(curMinigame + "." + curScene.ToString());
     }
 }

@@ -7,14 +7,20 @@ public class ObsacleMinigame6 : MonoBehaviour
     [SerializeField] float forceFly;
     [SerializeField] float speedRotate;
     Rigidbody2D rigid;
+    private bool isFlying;
     private void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
     }
     public void Fly()
     {
-        rigid.isKinematic = false;
-        rigid.AddForce(new Vector2(2, 1) * forceFly);
+        if (!isFlying)
+        {
+            isFlying = true;
+            rigid.isKinematic = false;
+            rigid.AddForce(new Vector2(2, 1) * forceFly);
+        }
+
     }
 
     private void Update()

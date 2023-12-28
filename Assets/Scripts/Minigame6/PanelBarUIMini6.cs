@@ -9,16 +9,16 @@ public class PanelBarUIMini6 : MonoBehaviour
     [SerializeField] Image barFill;
     [SerializeField] Image WolfIcon;
     [SerializeField] Image RihinoIcon;
-
+    Animator animator;
     Vector3 startPosWolfIcon;
 
-    private float lengthBar;
     private float lengthMove;
+    [SerializeField] float lengthBar;
     private void Start()
     {
         ins = this;
-        lengthBar = RihinoIcon.transform.position.x - WolfIcon.transform.position.x;
-        startPosWolfIcon = WolfIcon.transform.position;
+        animator = GetComponent<Animator>();
+        startPosWolfIcon = WolfIcon.rectTransform.anchoredPosition;
         lengthMove = GameScene62Manager.ins.endPos.position.x - (Camera.main.orthographicSize * Camera.main.aspect * 2 / 3);
 
     }
@@ -37,10 +37,19 @@ public class PanelBarUIMini6 : MonoBehaviour
     {
         if (rate >= 0)
         {
-            WolfIcon.transform.position = startPosWolfIcon + new Vector3(rate * lengthBar, 0, 0);
+            WolfIcon.rectTransform.anchoredPosition = new Vector3(startPosWolfIcon.x + rate * lengthBar, barFill.rectTransform.anchoredPosition.y);
             barFill.fillAmount = rate;
         }
 
     }
 
+    public void StartGame()
+    {
+        animator.Play("StartGame");
+    }
+
+    public void EndGame()
+    {
+        animator.Play("EndGame");
+    }
 }

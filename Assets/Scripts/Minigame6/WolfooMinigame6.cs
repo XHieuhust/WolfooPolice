@@ -66,7 +66,7 @@ public class WolfooMinigame6 : MonoBehaviour
     {
         rigid.velocity = Vector2.zero;
         transform.position = new Vector3(Camera.main.transform.position.x - Camera.main.orthographicSize * Camera.main.aspect - 7f, transform.position.y, transform.position.z);
-        skeleton.AnimationState.SetAnimation(0, "Run_Ninja", true);
+        skeleton.AnimationState.SetAnimation(0, "Run_Pointing", true);
 
         float eslapsed = 0;
         float seconds = 2.5f;
@@ -79,6 +79,8 @@ public class WolfooMinigame6 : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         transform.position = end;
+        skeleton.AnimationState.SetAnimation(0, "Run_Ninja", true);
+
         GameScene62Manager.ins.StartGame();
     }
     bool CheckOnGround()
@@ -98,7 +100,7 @@ public class WolfooMinigame6 : MonoBehaviour
 
     private void Jump()
     {
-        if (Input.GetMouseButtonDown(0) && !isHitted && GameScene62Manager.ins.isStartGame && !GameScene62Manager.ins.isEndGame)
+        if (Input.GetMouseButtonDown(0) && !isHitted && GameScene62Manager.ins.isStartGame && !GameScene62Manager.ins.isEndGame &&!isJumpingUp)
         {
             if (CheckOnGround())
             {
@@ -158,10 +160,6 @@ public class WolfooMinigame6 : MonoBehaviour
                     collision.gameObject.GetComponent<Collider2D>().enabled = false;
                     Hitted();
                 }
-                else
-                {
-                    collision.gameObject.GetComponent<ObsacleMinigame6>().Fly();
-                }
             }
         }
 
@@ -193,7 +191,23 @@ public class WolfooMinigame6 : MonoBehaviour
     IEnumerator StartBoost()
     {
         isBoosting = true;
-        yield return new WaitForSeconds(timeBoost);
+        float eslapsed = 0;
+        float seconds = timeBoost;
+        float lengthCheckBoost = 0.5f;
+        while (eslapsed <= seconds)
+        {
+            eslapsed += Time.deltaTime;
+            RaycastHit2D rayCheck = Physics2D.Raycast(PosRayRight.position, Vector2.right, lengthCheckBoost, layer);
+            if (rayCheck)
+            {
+                if (rayCheck.collider.gameObject.CompareTag("Obsacle"))
+                {
+                    rayCheck.collider.gameObject.GetComponent<ObsacleMinigame6>().Fly();
+                }
+            }
+
+            yield return new WaitForEndOfFrame();
+        }
         isBoosting = false;
     }
 
@@ -225,6 +239,7 @@ public class WolfooMinigame6 : MonoBehaviour
         GetComponent<Collider2D>().enabled = true;
         GetComponent<Rigidbody2D>().isKinematic = false;
     }
+
     private void Hitted()
     {
         StartCoroutine(nameof(StartBeHitted));
@@ -258,5 +273,6 @@ public class WolfooMinigame6 : MonoBehaviour
         }
         skeleton.AnimationState.SetAnimation(0, "Cheer", true);
         eCatchUpWith?.Invoke();
+        GameScene62Manager.ins.EndGame();
     }
 }
